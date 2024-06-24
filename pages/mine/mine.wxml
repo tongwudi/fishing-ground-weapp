@@ -1,0 +1,8 @@
+<!--pages/mine/mine.wxml-->
+<view class="container">
+  <van-cell-group>
+    <van-cell title="单元格" is-link value="内容" />
+    <van-cell title="单元格" is-link value="内容" />
+  </van-cell-group>
+
+</view>

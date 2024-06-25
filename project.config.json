@@ -23,6 +23,9 @@
         "packageJsonPath": "./package.json",
         "miniprogramNpmDistDir": "./"
       }
+    ],
+    "useCompilerPlugins": [
+      "sass"
     ]
   },
   "condition": {},

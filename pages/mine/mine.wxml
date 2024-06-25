@@ -1,8 +1,9 @@
 <!--pages/mine/mine.wxml-->
 <view class="container">
   <van-cell-group>
-    <van-cell title="单元格" is-link value="内容" />
-    <van-cell title="单元格" is-link value="内容" />
+    <van-cell title="钓场老板认证" is-link />
+    <van-cell title="我的钓场" is-link />
+    <van-cell title="我的帖子" is-link />
+    <van-cell title="设置" is-link />
   </van-cell-group>
-
 </view>

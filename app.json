@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/details/details",
     "pages/mine/mine",
     "pages/index/index",
     "pages/logs/logs"
@@ -10,15 +11,18 @@
     "van-cell": "@vant/weapp/cell/index",
     "van-cell-group": "@vant/weapp/cell-group/index",
     "van-skeleton": "@vant/weapp/skeleton/index",
-    "van-row": "@vant/weapp/row/index",
-    "van-col": "@vant/weapp/col/index"
+    "van-tag": "@vant/weapp/tag/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index"
   },
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "Weixin",
+    "navigationBarTitleText": "钓鱼小助手",
     "navigationBarBackgroundColor": "#ffffff"
   },
   "tabBar": {
+    "custom": true,
     "color": "#646566",
     "selectedColor": "#1989fa",
     "list": [

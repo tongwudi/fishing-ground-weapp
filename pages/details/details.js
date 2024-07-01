@@ -1,4 +1,4 @@
-// pages/home/home.js
+// pages/details/details.js
 Page({
   /**
    * 页面的初始数据
@@ -9,22 +9,20 @@ Page({
         url:
           "https://img95.699pic.com/xsj/0w/39/0n.jpg%21/fw/700/watermark/url/L3hzai93YXRlcl9kZXRhaWwyLnBuZw/align/southeast",
       },
-      {
-        url:
-          "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimage109.360doc.com%2FDownloadImg%2F2023%2F09%2F1409%2F272232655_1_20230914092523542&refer=http%3A%2F%2Fimage109.360doc.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1721874578&t=4187ef3e9966ffb592eaf6550d69f3e4",
-      },
-      {
-        url:
-          "https://img0.baidu.com/it/u=100080021,1406455647&fm=253&fmt=auto&app=120&f=JPEG?w=756&h=500",
-      },
     ],
-    loading: true,
-    list: [{ id: 1 }, { id: 2 }],
+    tabs: [
+      { id: 1, title: "大混养", content: "大混养" },
+      { id: 2, title: "斤塘", content: "斤塘" },
+      { id: 3, title: "新手塘", content: "新手塘" },
+    ],
+    active: 1,
   },
 
-  goDetails(e) {
-    const { item } = e.currentTarget.dataset;
-    wx.navigateTo({ url: `/pages/details/details?id=${item.id}` });
+  onChange(event) {
+    wx.showToast({
+      title: `切换到标签 ${event.detail.name}`,
+      icon: "none",
+    });
   },
 
   /**
@@ -35,20 +33,12 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-    setTimeout(() => {
-      this.setData({
-        loading: false,
-      });
-    }, 500);
-  },
+  onReady() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-    this.getTabBar().init();
-  },
+  onShow() {},
 
   /**
    * 生命周期函数--监听页面隐藏

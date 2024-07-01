@@ -1,8 +1,15 @@
 /**app.wxss**/
-// @import './assets/font/iconfont.scss';
+@import './assets/font/iconfont.scss';
 
-Page {
+page {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica,
+    Segoe UI, Arial, Roboto, "PingFang SC", "miui", "Hiragino Sans GB",
+    "Microsoft Yahei", sans-serif;
   background-color: #f7f8fa;
+}
+
+a {
+  color: #3e74ec;
 }
 /* .container {
   height: 100%;

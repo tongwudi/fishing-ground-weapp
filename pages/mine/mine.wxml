@@ -5,5 +5,8 @@
     <van-cell title="我的钓场" is-link />
     <van-cell title="我的帖子" is-link />
     <van-cell title="设置" is-link />
+    <van-cell title="基本信息" is-link url="/pages/profile/profile" />
+    <van-cell title="塘口管理" is-link url="/pages/pond/detail/detail" />
+    <van-cell title="钓场圈设置" is-link url="/pages/forum/forum" border="{{ false }}" />
   </van-cell-group>
 </view>

@@ -1,5 +1,5 @@
 /**app.wxss**/
-@import './assets/font/iconfont.scss';
+@import "./assets/font/iconfont.scss";
 
 page {
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica,
@@ -20,3 +20,15 @@ a {
   padding: 200rpx 0;
   box-sizing: border-box;
 } */
+.cell-title {
+  margin-right: 12px;
+}
+.upload-box {
+  display: flex;
+  .van-uploader__upload {
+    margin: 0 !important;
+  }
+}
+.save-btn {
+  margin: 40rpx 20%;
+}

@@ -3,8 +3,12 @@
     "pages/home/home",
     "pages/details/details",
     "pages/mine/mine",
+    "pages/profile/profile",
+    "pages/pond/list/list",
+    "pages/pond/detail/detail",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/forum/forum"
   ],
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
@@ -14,7 +18,15 @@
     "van-tag": "@vant/weapp/tag/index",
     "van-icon": "@vant/weapp/icon/index",
     "van-tab": "@vant/weapp/tab/index",
-    "van-tabs": "@vant/weapp/tabs/index"
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-calendar": "@vant/weapp/calendar/index",
+    "van-uploader": "@vant/weapp/uploader/index",
+    "van-radio": "@vant/weapp/radio/index",
+    "van-radio-group": "@vant/weapp/radio-group/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index"
   },
   "window": {
     "navigationBarTextStyle": "black",

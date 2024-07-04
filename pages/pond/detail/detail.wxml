@@ -1,0 +1,39 @@
+<!--pages/pond/detail/detail.wxml-->
+<view class="container">
+  <van-cell-group>
+    <van-field label="塘口名称" value="{{ form.name }}" clearable placeholder="请输入塘口名称" />
+    <van-cell title="状态" title-width="6.2em" title-class="cell-title">
+      <van-radio-group value="{{ form.status }}">
+        <van-row>
+          <van-col span="12">
+            <van-radio name="1">单选框 1</van-radio>
+          </van-col>
+          <van-col span="12">
+            <van-radio name="2">单选框 2</van-radio>
+          </van-col>
+        </van-row>
+      </van-radio-group>
+    </van-cell>
+    <van-field label="塘口大小" value="{{ form.size }}" clearable placeholder="请输入塘口大小">
+      <text slot="button">亩</text>
+    </van-field>
+    <van-field label="钓位数" type="number" value="{{ form.number }}" clearable placeholder="请输入钓位数">
+      <text slot="button">个</text>
+    </van-field>
+    <van-field label="水深" type="number" value="{{ form.height }}" clearable placeholder="请输入水深">
+      <text slot="button">米</text>
+    </van-field>
+    <van-cell title="塘口图片" title-width="6.2em" title-class="cell-title">
+      <view class="upload-box">
+        <van-uploader file-list="{{ form.fileList }}" max-count="1" bind:after-read="afterRead" />
+      </view>
+    </van-cell>
+    <van-field label="收费标准" type="textarea" value="{{ form.standard }}" autosize clearable placeholder="请输入收费标准" />
+    <van-field label="回鱼规则" type="textarea" value="{{ form.rule }}" autosize clearable placeholder="请输入回鱼规则" />
+    <van-field label="塘口规则" type="textarea" value="{{ form.pontRule }}" autosize clearable placeholder="请输入塘口规则" border="{{ false }}" />
+  </van-cell-group>
+
+  <view class="save-btn">
+    <van-button type="primary" block>保存</van-button>
+  </view>
+</view>

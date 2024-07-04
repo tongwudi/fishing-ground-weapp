@@ -1,0 +1,31 @@
+<!--pages/profile/profile.wxml-->
+<view class="container">
+  <van-cell-group>
+    <van-field label="钓场名称" value="{{ form.username }}" clearable placeholder="请输入钓场名称" />
+    <van-field label="钓场位置" value="{{ form.password }}" clearable placeholder="请输入钓场位置">
+      <text slot="button" class="iconfont icon-position"></text>
+    </van-field>
+    <van-field label="营业时间" value="{{ form.time }}" readonly placeholder="请选择营业时间" bind:click-input="handleCalendar" />
+    <van-cell title="支付宝收款码" title-width="6.2em" title-class="cell-title">
+      <view class="upload-box">
+        <van-uploader file-list="{{ form.fileList }}" max-count="1" bind:after-read="afterRead" />
+      </view>
+    </van-cell>
+    <van-cell title="微信收款码" title-width="6.2em" title-class="cell-title">
+      <view class="upload-box">
+        <van-uploader file-list="{{ form.fileList }}" max-count="1" bind:after-read="afterRead" />
+      </view>
+    </van-cell>
+    <van-cell title="塘口宣传图" title-width="6.2em" title-class="cell-title" border="{{ false }}">
+      <view class="upload-box">
+        <van-uploader file-list="{{ form.fileList }}" max-count="1" bind:after-read="afterRead" />
+      </view>
+    </van-cell>
+  </van-cell-group>
+
+  <view class="save-btn">
+    <van-button type="primary" block>保存</van-button>
+  </view>
+
+  <van-calendar show="{{ show }}" type="range" bind:close="onClose" bind:confirm="onConfirm" />
+</view>

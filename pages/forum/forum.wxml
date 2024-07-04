@@ -1,0 +1,33 @@
+<!--pages/forum/forum.wxml-->
+<view class="container">
+  <van-cell-group>
+    <van-cell title="是否开通钓场圈" title-width="8.2em" title-class="cell-title">
+      <van-radio-group value="{{ form.status }}">
+        <van-radio name="1">需要</van-radio>
+        <van-radio name="2">不需要</van-radio>
+      </van-radio-group>
+    </van-cell>
+    <van-cell title="钓友发布话题是否需要塘主审核" title-width="8.2em" title-class="cell-title">
+      <van-radio-group value="{{ form.status }}">
+        <van-radio name="1">需要</van-radio>
+        <van-radio name="2">不需要</van-radio>
+      </van-radio-group>
+    </van-cell>
+    <van-cell title="是否开通加粉功能" title-width="8.2em" title-class="cell-title">
+      <van-radio-group value="{{ form.status }}">
+        <van-radio name="1">需要</van-radio>
+        <van-radio name="2">不需要</van-radio>
+      </van-radio-group>
+    </van-cell>
+    <van-cell title="是否开通发鱼货获取积分功能" title-width="8.2em" title-class="cell-title">
+      <van-radio-group value="{{ form.status }}">
+        <van-radio name="1">需要</van-radio>
+        <van-radio name="2">不需要</van-radio>
+      </van-radio-group>
+    </van-cell>
+  </van-cell-group>
+
+  <view class="save-btn">
+    <van-button type="primary" block>保存</van-button>
+  </view>
+</view>

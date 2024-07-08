@@ -12,7 +12,7 @@
   <view class="title">热门钓场推荐</view>
   <van-skeleton avatar avatar-size="80px" row="3" loading="{{ loading }}">
     <view class="list">
-      <block wx:for="{{ list }}" wx:key="index" wx:for-item="item">
+      <block wx:for="{{ list }}" wx:key="index">
         <view class="item" bind:tap="goDetails" data-item="{{ item }}">
           <view class="item-info">
             <view>

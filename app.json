@@ -1,14 +1,17 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/details/details",
     "pages/mine/mine",
+    "pages/put/put",
+    "pages/details/details",
     "pages/profile/profile",
     "pages/pond/list/list",
     "pages/pond/detail/detail",
+    "pages/plan/list/list",
+    "pages/plan/detail/detail",
+    "pages/forum/forum",
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/forum/forum"
+    "pages/logs/logs"
   ],
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
@@ -35,8 +38,6 @@
   },
   "tabBar": {
     "custom": true,
-    "color": "#646566",
-    "selectedColor": "#1989fa",
     "list": [
       {
         "pagePath": "pages/home/home",
@@ -49,6 +50,12 @@
         "text": "我的",
         "iconPath": "./assets/images/mine.png",
         "selectedIconPath": "./assets/images/mine-active.png"
+      },
+      {
+        "pagePath": "pages/put/put",
+        "text": "放鱼",
+        "iconPath": "./assets/images/fish.png",
+        "selectedIconPath": "./assets/images/fish-active.png"
       }
     ]
   },

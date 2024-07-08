@@ -11,7 +11,6 @@ Component({
     color: "#646566",
     selectedColor: "#1989fa",
   },
-
   computed: {
     tabbar(data) {
       const list = [
@@ -43,6 +42,14 @@ Component({
           selectedIconPath: "../assets/images/mine-active.png",
           role: "owner",
         },
+        {
+          pagePath: "/pages/put/put",
+          text: "放鱼",
+          iconPath: "../assets/images/fish.png",
+          selectedIconPath: "../assets/images/fish-active.png",
+          role: "user",
+          isCenter: true,
+        },
       ];
       return list.filter((v) => v.role == data.role);
     },
@@ -55,10 +62,9 @@ Component({
     switchTab(e) {
       const data = e.currentTarget.dataset;
       const url = data.path;
+      const idx = data.index;
       wx.switchTab({ url });
-      this.setData({
-        selected: data.index,
-      });
+      this.setData({ selected: idx });
     },
     init() {
       const page = getCurrentPages().pop();

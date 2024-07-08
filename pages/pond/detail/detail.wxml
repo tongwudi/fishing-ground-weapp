@@ -6,10 +6,10 @@
       <van-radio-group value="{{ form.status }}">
         <van-row>
           <van-col span="12">
-            <van-radio name="1">单选框 1</van-radio>
+            <van-radio icon-size="18px" name="1">单选框 1</van-radio>
           </van-col>
           <van-col span="12">
-            <van-radio name="2">单选框 2</van-radio>
+            <van-radio icon-size="18px" name="2">单选框 2</van-radio>
           </van-col>
         </van-row>
       </van-radio-group>

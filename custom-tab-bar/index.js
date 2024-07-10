@@ -9,7 +9,7 @@ Component({
     role: "user",
     selected: 0,
     color: "#646566",
-    selectedColor: "#1989fa",
+    selectedColor: "#1989fa"
   },
   computed: {
     tabbar(data) {
@@ -19,28 +19,28 @@ Component({
           text: "首页",
           iconPath: "../assets/images/home.png",
           selectedIconPath: "../assets/images/home-active.png",
-          role: "user",
+          role: "user"
         },
         {
           pagePath: "/pages/mine/mine",
           text: "我的",
           iconPath: "../assets/images/mine.png",
           selectedIconPath: "../assets/images/mine-active.png",
-          role: "user",
+          role: "user"
         },
         {
           pagePath: "/pages/mine/mine",
           text: "我的钓场",
           iconPath: "../assets/images/mine.png",
           selectedIconPath: "../assets/images/mine-active.png",
-          role: "owner",
+          role: "owner"
         },
         {
           pagePath: "/pages/mine/mine",
           text: "钓场管理",
           iconPath: "../assets/images/mine.png",
           selectedIconPath: "../assets/images/mine-active.png",
-          role: "owner",
+          role: "owner"
         },
         {
           pagePath: "/pages/put/put",
@@ -48,11 +48,11 @@ Component({
           iconPath: "../assets/images/fish.png",
           selectedIconPath: "../assets/images/fish-active.png",
           role: "user",
-          isCenter: true,
-        },
+          isCenter: true
+        }
       ];
-      return list.filter((v) => v.role == data.role);
-    },
+      return list.filter(v => v.role == data.role);
+    }
   },
 
   /**
@@ -70,8 +70,8 @@ Component({
       const page = getCurrentPages().pop();
       const { tabbar } = this.data;
       this.setData({
-        selected: tabbar.findIndex((v) => v.pagePath === `/${page.route}`),
+        selected: tabbar.findIndex(v => v.pagePath === `/${page.route}`)
       });
-    },
-  },
+    }
+  }
 });

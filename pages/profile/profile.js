@@ -1,13 +1,15 @@
 // pages/profile/profile.js
+import { fishPlaceDetails, addFishPlace } from "@/api/index";
+
 Page({
   /**
    * 页面的初始数据
    */
   data: {
     form: {
-      fileList: [],
+      fileList: []
     },
-    show: false,
+    show: false
   },
 
   handleCalendar() {
@@ -24,7 +26,7 @@ Page({
     const [start, end] = event.detail;
     this.setData({
       show: false,
-      "form.time": `${this.formatDate(start)} - ${this.formatDate(end)}`,
+      "form.time": `${this.formatDate(start)} - ${this.formatDate(end)}`
     });
   },
   afterRead(event) {
@@ -40,8 +42,11 @@ Page({
         const { form } = this.data;
         form.fileList.push({ ...file, url: res.data });
         this.setData({ "form.fileList": fileList });
-      },
+      }
     });
+  },
+  async handleSave() {
+    const res = await addFishPlace({ name: "九寨沟" });
   },
 
   /**
@@ -52,7 +57,11 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {},
+  async onReady() {
+    const params = { id: "20f2c6abdad4417494855242da6a39b9" };
+    const res = await fishPlaceDetails(params);
+    console.log(res, "fishPlaceDetails");
+  },
 
   /**
    * 生命周期函数--监听页面显示
@@ -82,5 +91,5 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {},
+  onShareAppMessage() {}
 });

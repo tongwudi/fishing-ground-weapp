@@ -10,8 +10,7 @@
     "pages/plan/list/list",
     "pages/plan/detail/detail",
     "pages/forum/forum",
-    "pages/index/index",
-    "pages/logs/logs"
+    "pages/index/index"
   ],
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",

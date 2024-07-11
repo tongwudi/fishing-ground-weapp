@@ -1,5 +1,5 @@
 // pages/home/home.js
-import { userList } from "@/api/index";
+import { fishPlaceList } from "@/api/index";
 
 Page({
   /**
@@ -33,7 +33,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    const res = await userList();
+    const res = await fishPlaceList();
     console.log(res, "resssss");
   },
 

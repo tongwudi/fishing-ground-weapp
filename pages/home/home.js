@@ -20,8 +20,19 @@ Page({
           "https://img0.baidu.com/it/u=100080021,1406455647&fm=253&fmt=auto&app=120&f=JPEG?w=756&h=500"
       }
     ],
-    loading: true,
+    loading: false,
+    total: 0,
     list: [{ id: 1 }, { id: 2 }]
+  },
+
+  async getList() {
+    const res = await fishPlaceList();
+    console.log(res, "resssss");
+    this.setData({
+      list: res.list,
+      total: res.total,
+      loading: false
+    });
   },
 
   goDetails(e) {
@@ -32,19 +43,14 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  async onLoad(options) {
-    const res = await fishPlaceList();
-    console.log(res, "resssss");
+  onLoad(options) {
+    this.getList();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-    setTimeout(() => {
-      this.setData({ loading: false });
-    }, 500);
-  },
+  onReady() {},
 
   /**
    * 生命周期函数--监听页面显示

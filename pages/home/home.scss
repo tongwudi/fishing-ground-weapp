@@ -6,7 +6,9 @@
   font-weight: 600;
   line-height: 1.5;
 }
-
+.van-skeleton {
+  margin-top: global.$gutter-12;
+}
 .list {
   margin: 0 global.$gutter-12;
   .item {
@@ -31,7 +33,7 @@
       height: 100%;
     }
     & + .item {
-      margin-top: 30rpx;
+      margin-top: global.$gutter-12;
     }
   }
 }

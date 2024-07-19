@@ -23,7 +23,7 @@
             <view class="item-info">
               <view>
                 <text class="label">钓场名称</text>
-                <text class="value">xx钓场</text>
+                <text class="value">{{ item.name }}</text>
               </view>
               <view>
                 <text class="label">位置</text>

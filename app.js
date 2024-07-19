@@ -1,5 +1,5 @@
 // app.js
-import { login } from "@/api/index";
+import { authorize, login } from "@/api/index";
 
 App({
   onLaunch() {
@@ -7,9 +7,14 @@ App({
       async success(res) {
         console.log("wx.login：", res);
         if (res.code) {
-          const data = await login({ code: res.code });
-          // wx.setStorageSync("openid", data.token);
-          // wx.setStorageSync("sessionKey", data.session_key);
+          const authRes = await authorize({ code: res.code });
+          const loginRes = await login({
+            user_name: "wzj1",
+            password: "123456"
+          });
+          // wx.setStorageSync("openid", authRes.openid);
+          // wx.setStorageSync("sessionKey", authRes.session_key);
+          wx.setStorageSync("token", loginRes.token);
         } else {
           console.log("登录失败！" + res.errMsg);
         }

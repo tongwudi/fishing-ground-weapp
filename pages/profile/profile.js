@@ -29,6 +29,9 @@ Page({
       "form.time": `${this.formatDate(start)} - ${this.formatDate(end)}`
     });
   },
+  handleInputValue(e) {
+
+  },
   afterRead(event) {
     const { file } = event.detail;
     // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
@@ -46,7 +49,7 @@ Page({
     });
   },
   async handleSave() {
-    const res = await addFishPlace({ name: "九寨沟" });
+    const res = await addFishPlace({ ...form, name: "九寨沟" });
   },
 
   /**
@@ -58,9 +61,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   async onReady() {
-    const params = { id: "20f2c6abdad4417494855242da6a39b9" };
-    const res = await fishPlaceDetails(params);
-    console.log(res, "fishPlaceDetails");
+    // const params = { id: "25905b018cb148beb67bcdad0dd93a80" };
+    // const res = await fishPlaceDetails(params);
+    // console.log(res, "fishPlaceDetails");
   },
 
   /**

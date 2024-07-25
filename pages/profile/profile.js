@@ -1,36 +1,44 @@
 // pages/profile/profile.js
 import { fishPlaceDetails, addFishPlace } from "@/api/index";
+import { formatDate } from "@/utils/util";
 
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    pickerConfig: {
+      show: false,
+      activeKey: ""
+    },
     form: {
       fileList: []
-    },
-    show: false
+    }
   },
 
-  handleCalendar() {
-    this.setData({ show: true });
+  handleInput(event) {
+    const { field } = event.currentTarget.dataset;
+    const value = event.detail;
+    this.setData({ [`form.${field}`]: value });
   },
-  onClose() {
-    this.setData({ show: false });
+  openPicker(event) {
+    const { field } = event.currentTarget.dataset;
+    const { pickerConfig } = this.data;
+    pickerConfig.show = true;
+    pickerConfig.activeKey = field;
+    this.setData({ pickerConfig });
   },
-  formatDate(date) {
-    date = new Date(date);
-    return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+  closePicker() {
+    this.setData({ "pickerConfig.show": false });
   },
-  onConfirm(event) {
+  confirmPicker(event) {
     const [start, end] = event.detail;
+    const dateStr = `${formatDate(start)} ~ ${formatDate(end)}`;
+    const { pickerConfig } = this.data;
     this.setData({
-      show: false,
-      "form.time": `${this.formatDate(start)} - ${this.formatDate(end)}`
+      "pickerConfig.show": false,
+      [`form.${pickerConfig.activeKey}`]: dateStr
     });
-  },
-  handleInputValue(e) {
-
   },
   afterRead(event) {
     const { file } = event.detail;
@@ -49,7 +57,8 @@ Page({
     });
   },
   async handleSave() {
-    const res = await addFishPlace({ ...form, name: "九寨沟" });
+    const { form } = this.data;
+    const res = await addFishPlace({ ...form });
   },
 
   /**

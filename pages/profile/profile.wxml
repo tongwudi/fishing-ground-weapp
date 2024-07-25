@@ -1,11 +1,11 @@
 <!--pages/profile/profile.wxml-->
 <view class="container">
   <van-cell-group>
-    <van-field label="钓场名称" value="{{ form.name }}" clearable placeholder="请输入钓场名称" data-name="name" bind:input="handleInputValue" />
-    <van-field label="钓场位置" value="{{ form.address }}" clearable placeholder="请输入钓场位置" data-name="address" bind:input="handleInputValue">
+    <van-field label="钓场名称" value="{{ form.name }}" data-field="name" clearable placeholder="请输入钓场名称" bind:change="handleInput" />
+    <van-field label="钓场位置" value="{{ form.address }}" data-field="address" clearable placeholder="请输入钓场位置" bind:change="handleInput">
       <text slot="button" class="iconfont icon-position"></text>
     </van-field>
-    <van-field label="营业时间" value="{{ form.time }}" readonly placeholder="请选择营业时间" data-name="address" bind:input="handleInputValue" />
+    <van-field label="营业时间" value="{{ form.business_hours }}" data-field="business_hours" readonly placeholder="请选择营业时间" bind:click-input="openPicker" />
     <!-- <van-cell title="支付宝收款码" title-width="6.2em" title-class="cell-title">
       <view class="upload-box">
         <van-uploader file-list="{{ form.fileList }}" max-count="1" bind:after-read="afterRead" />
@@ -27,5 +27,5 @@
     <van-button type="primary" block bind:click="handleSave">保存</van-button>
   </view>
 
-  <van-calendar show="{{ show }}" type="range" bind:close="onClose" bind:confirm="onConfirm" />
+  <van-calendar show="{{ pickerConfig.show }}" type="range" bind:close="closePicker" bind:confirm="confirmPicker" />
 </view>

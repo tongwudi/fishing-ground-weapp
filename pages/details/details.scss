@@ -4,17 +4,25 @@
   margin-bottom: global.$gutter-12;
   background-color: #fff;
 }
-.title {
+.card-head {
   display: flex;
   align-items: center;
-  gap: global.$gutter-12;
+  justify-content: space-between;
   margin: global.$gutter-12 0;
-  > text {
-    font-size: global.$title-font;
-    font-weight: 600;
+  .title {
+    display: flex;
+    align-items: center;
+    gap: global.$gutter-12;
+    > text {
+      font-size: global.$title-font;
+      font-weight: 600;
+    }
   }
 }
-.details {
+.forum {
+  float: right;
+}
+.card-body {
   display: flex;
   align-items: center;
   justify-content: space-between;

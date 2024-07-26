@@ -1,4 +1,4 @@
-const formatTime = date => {
+const formatTime = (date) => {
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   const day = date.getDate();
@@ -15,12 +15,12 @@ const formatTime = date => {
     .join(":")}`;
 };
 
-const formatNumber = n => {
+const formatNumber = (n) => {
   n = n.toString();
   return n[1] ? n : `0${n}`;
 };
 
-const formatDate = date => {
+const formatDate = (date) => {
   date = new Date(date);
   return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 };

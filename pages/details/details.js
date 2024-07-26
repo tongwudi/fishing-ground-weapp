@@ -1,4 +1,6 @@
 // pages/details/details.js
+import { fishPondList } from "@/api/index";
+
 Page({
   /**
    * 页面的初始数据
@@ -7,28 +9,41 @@ Page({
     banner: [
       {
         url:
-          "https://img95.699pic.com/xsj/0w/39/0n.jpg%21/fw/700/watermark/url/L3hzai93YXRlcl9kZXRhaWwyLnBuZw/align/southeast",
-      },
+          "https://img95.699pic.com/xsj/0w/39/0n.jpg%21/fw/700/watermark/url/L3hzai93YXRlcl9kZXRhaWwyLnBuZw/align/southeast"
+      }
     ],
     tabs: [
       { id: 1, title: "大混养", content: "大混养" },
       { id: 2, title: "斤塘", content: "斤塘" },
-      { id: 3, title: "新手塘", content: "新手塘" },
+      { id: 3, title: "新手塘", content: "新手塘" }
     ],
-    active: 1,
+    loading: false,
+    active: 1
+  },
+
+  async getList(id) {
+    const res = await fishPondList({ id });
+    console.log(res, 'ress');
+    this.setData({
+      tabs: res,
+      loading: false
+    });
+    console.log(this.data.tabs);
   },
 
   onChange(event) {
     wx.showToast({
       title: `切换到标签 ${event.detail.name}`,
-      icon: "none",
+      icon: "none"
     });
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {},
+  onLoad(options) {
+    this.getList(options.id);
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -63,5 +78,5 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {},
+  onShareAppMessage() {}
 });

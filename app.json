@@ -9,7 +9,7 @@
     "pages/pond/detail/detail",
     "pages/plan/list/list",
     "pages/plan/detail/detail",
-    "pages/forum/forum",
+    "pages/forum/settings/settings",
     "pages/index/index"
   ],
   "usingComponents": {

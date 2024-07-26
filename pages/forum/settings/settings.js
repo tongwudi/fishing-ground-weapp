@@ -1,4 +1,3 @@
-// pages/forum/forum.js
 Page({
 
   /**

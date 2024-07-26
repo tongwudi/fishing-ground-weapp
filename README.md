@@ -25,3 +25,4 @@ npm install
 
 pond：塘口
 group：钓场
+forum：钓场圈

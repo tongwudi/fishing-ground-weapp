@@ -1,16 +1,30 @@
-/* pages/home/home.wxss */
+.container {
+  height: calc(100vh - #{global.$tabbar-height} - env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+}
+
+.swiper-view {
+  flex-shrink: 0;
+}
+
 .title {
+  line-height: 1.5;
   padding-left: 36rpx;
   margin: global.$gutter-12 0;
   font-size: global.$title-font;
   font-weight: 600;
-  line-height: 1.5;
+}
+
+.scroll-view {
+  flex: 1;
+  overflow: auto;
 }
 .van-skeleton {
   margin-top: global.$gutter-12;
 }
 .list {
-  margin: 0 global.$gutter-12;
+  padding: 0 global.$gutter-12 24rpx;
   .item {
     height: 240rpx;
     display: flex;

@@ -1,5 +1,5 @@
 // pages/profile/profile.js
-import { fishPlaceDetails, addFishPlace } from "@/api/index";
+import { groupDetails, addGroup } from "@/api/index";
 import { formatDate } from "@/utils/util";
 
 Page({
@@ -58,7 +58,7 @@ Page({
   },
   async handleSave() {
     const { form } = this.data;
-    const res = await addFishPlace({ ...form });
+    const res = await addGroup({ ...form });
   },
 
   /**
@@ -71,8 +71,8 @@ Page({
    */
   async onReady() {
     // const params = { id: "25905b018cb148beb67bcdad0dd93a80" };
-    // const res = await fishPlaceDetails(params);
-    // console.log(res, "fishPlaceDetails");
+    // const res = await groupDetails(params);
+    // console.log(res, "groupDetails");
   },
 
   /**

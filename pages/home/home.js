@@ -1,5 +1,4 @@
-// pages/home/home.js
-import { fishPlaceList } from "@/api/index";
+import { groupList } from "@/api/index";
 
 Page({
   /**
@@ -26,8 +25,7 @@ Page({
   },
 
   async getList() {
-    const res = await fishPlaceList();
-    console.log(res, "resssss");
+    const res = await groupList();
     this.setData({
       list: res.list,
       total: res.total,
@@ -36,8 +34,8 @@ Page({
   },
 
   goDetails(e) {
-    const { item } = e.currentTarget.dataset;
-    wx.navigateTo({ url: `/pages/details/details?id=${item.id}` });
+    const { id } = e.currentTarget.dataset;
+    wx.navigateTo({ url: `/pages/group/details/details?id=${id}` });
   },
 
   /**

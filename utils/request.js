@@ -109,7 +109,7 @@ instance.interceptors.response = response => {
   // 处理返回状态
   if (statusCode != 200) {
     wx.showToast({ title: "网络异常！", icon: "error" });
-    return Promise.reject(data);
+    return Promise.reject(data.errMsg);
   }
   switch (data.code) {
     case 0:
@@ -132,7 +132,7 @@ instance.interceptors.response = response => {
       });
     default:
       wx.showToast({ title: data.msg, icon: "none" });
-      return Promise.reject(response);
+      return Promise.reject(data.msg);
   }
 };
 // 将 WxRequest 的实例通过模块化的方式暴露出去

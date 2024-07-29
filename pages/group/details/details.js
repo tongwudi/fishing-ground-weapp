@@ -1,4 +1,3 @@
-// pages/details/details.js
 import { fishPondList } from "@/api/index";
 
 Page({
@@ -12,23 +11,17 @@ Page({
           "https://img95.699pic.com/xsj/0w/39/0n.jpg%21/fw/700/watermark/url/L3hzai93YXRlcl9kZXRhaWwyLnBuZw/align/southeast"
       }
     ],
-    tabs: [
-      { id: 1, title: "大混养", content: "大混养" },
-      { id: 2, title: "斤塘", content: "斤塘" },
-      { id: 3, title: "新手塘", content: "新手塘" }
-    ],
+    tabs: [],
     loading: false,
     active: 1
   },
 
   async getList(id) {
     const res = await fishPondList({ id });
-    console.log(res, 'ress');
     this.setData({
       tabs: res,
       loading: false
     });
-    console.log(this.data.tabs);
   },
 
   onChange(event) {

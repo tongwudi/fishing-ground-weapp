@@ -7,7 +7,15 @@ Page({
    */
   data: {
     form: {
-      fileList: []
+      name: "",
+      status: "",
+      size: 0,
+      position_num: 0,
+      water_depth: 0,
+      fileList: [],
+      charge_standard: "",
+      return_fish_rule: "",
+      rule: ""
     }
   },
   afterRead(event) {
@@ -50,6 +58,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    // fishPondDetails({ id: options.id });
     wx.setNavigationBarTitle({
       title: "" ? "新增塘口" : "编辑塘口"
     });

@@ -1,4 +1,3 @@
-<!--pages/details/details.wxml-->
 <view class="container">
   <!--轮播图-->
   <swiper indicator-dots='true' autoplay='true' interval='5000' duration='1000'>
@@ -40,13 +39,15 @@
     </view>
   </view>
 
-  <van-tabs sticky animated swipeable active="{{ active }}" bind:change="onChange">
-    <block wx:for="{{ tabs }}" wx:key="id" wx:for-item="tab">
-      <van-tab title="{{ tab.name }}" name="{{ tab.id }}">
-        <view class="tab-content">
-          {{ tab.description }}
-        </view>
-      </van-tab>
-    </block>
-  </van-tabs>
+  <block wx:if="{{ tabs.length > 0 }}">
+    <van-tabs sticky animated swipeable ellipsis="{{ false }}" active="{{ active }}" bind:change="onChange">
+      <block wx:for="{{ tabs }}" wx:key="id" wx:for-item="tab">
+        <van-tab title="{{ tab.name }}" name="{{ tab.id }}">
+          <view class="tab-content">
+            {{ tab.description }}
+          </view>
+        </van-tab>
+      </block>
+    </van-tabs>
+  </block>
 </view>

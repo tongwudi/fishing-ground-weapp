@@ -1,15 +1,15 @@
 /* components/BasicTabbar/BasicTabbar.wxss */
 .tab-bar {
-  pointer-events: auto;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 140rpx;
-  background: global.$bg-white;
+  height: global.$tabbar-height;
   display: flex;
   flex-direction: row;
+  background-color: global.$bg-white;
   padding-bottom: env(safe-area-inset-bottom);
+  pointer-events: auto;
 }
 
 .tab-bar-border {
@@ -41,13 +41,14 @@
 }
 
 .center-item {
-  width: 140rpx;
-  height: 140rpx;
+  width: calc(#{global.$tabbar-height} * 1.2);
+  height: calc(#{global.$tabbar-height} * 1.2);
   position: absolute;
   left: 50%;
-  top: -70rpx;
-  margin-left: -70rpx;
+  top: calc(-#{global.$tabbar-height} / 1.6);
+  margin-left: calc(-#{global.$tabbar-height} * 1.2 / 2);
   border-top: 1px solid rgba(0, 0, 0, 0.23);
   border-radius: 50%;
   background: global.$bg-white;
+  box-sizing: border-box;
 }

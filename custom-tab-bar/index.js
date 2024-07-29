@@ -33,14 +33,14 @@ Component({
           text: "我的钓场",
           iconPath: "../assets/images/mine.png",
           selectedIconPath: "../assets/images/mine-active.png",
-          role: "owner"
+          role: "fish"
         },
         {
           pagePath: "/pages/mine/mine",
           text: "钓场管理",
           iconPath: "../assets/images/mine.png",
           selectedIconPath: "../assets/images/mine-active.png",
-          role: "owner"
+          role: "fish"
         },
         {
           pagePath: "/pages/put/put",

@@ -9,7 +9,7 @@ App({
         if (res.code) {
           const authRes = await authorize({ code: res.code });
           const loginRes = await login({
-            user_name: "wzj1",
+            user_name: "admin",
             password: "123456"
           });
           // wx.setStorageSync("openid", authRes.openid);

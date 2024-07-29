@@ -1,5 +1,12 @@
 <!--pages/mine/mine.wxml-->
 <view class="container">
+  <view class="profile">
+    <image class="avatar" src="{{ userInfo.avatar }}"></image>
+    <view class="info">
+      <text class="name">{{ userInfo.nick_name || '点击登录' }}</text>
+    </view>
+    <image class="btn" src='/assets/images/arrow.png'></image>
+  </view>
   <van-cell-group>
     <van-cell title="钓场老板认证" is-link />
     <van-cell title="我的钓场" is-link />

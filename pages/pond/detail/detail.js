@@ -9,14 +9,20 @@ Page({
     form: {
       name: "",
       status: "",
-      size: 0,
-      position_num: 0,
-      water_depth: 0,
+      size: "",
+      position_num: "",
+      water_depth: "",
       fileList: [],
       charge_standard: "",
       return_fish_rule: "",
       rule: ""
     }
+  },
+
+  handleChange(event) {
+    const { field } = event.currentTarget.dataset;
+    const value = event.detail;
+    this.setData({ [`form.${field}`]: value });
   },
   afterRead(event) {
     const { file } = event.detail;
@@ -35,6 +41,8 @@ Page({
     });
   },
   async handleSave() {
+    // console.log(this.data.form, "form");
+    // return;
     const params = {
       angling_site_id: "b964e320757c47d9931a4addb910a039",
       charge_standard: "ad Lorem Ut",

@@ -16,7 +16,7 @@ Page({
     }
   },
 
-  handleInput(event) {
+  handleChange(event) {
     const { field } = event.currentTarget.dataset;
     const value = event.detail;
     this.setData({ [`form.${field}`]: value });

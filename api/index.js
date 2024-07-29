@@ -1,6 +1,6 @@
 import http from "@/utils/request";
 
-// 获取授权
+// 获取微信唯一标识
 const authorize = params => http.get("/base/system/wx/openid", params);
 // 登录
 const login = params => http.post("/base/system/login", params);

@@ -6,11 +6,11 @@ const { envVersion } = miniProgram;
 // 小程序版本对照路径
 const baseApi = {
   // 开发版
-  develop: "http://124.223.8.237:8980",
+  develop: "https://uvdream.cn/fish",
   // 体验版  mock数据
-  trial: "http://127.0.0.1:4523/m1/3772395-3404252-default",
+  trial: "https://uvdream.cn/fish",
   // 正式版
-  release: "https://release.com"
+  release: "https://uvdream.cn/fish"
 };
 
 const env = {};

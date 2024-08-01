@@ -1,4 +1,4 @@
-import { groupDetails, fishPondList } from "@/api/index";
+import { groupDetails, getFishPondList } from "@/api/index";
 
 Page({
   /**
@@ -17,10 +17,10 @@ Page({
     active: 1
   },
 
-  async getList(id) {
-    const [info, list] = await Promise.all([groupDetails({ id: "25905b018cb148beb67bcdad0dd93a80" }), fishPondList({ id })])
+  async getData(id) {
+    const [info, list] = await Promise.all([groupDetails({ id: "25905b018cb148beb67bcdad0dd93a80" }), getFishPondList({ id })])
     // const info = await groupDetails({ id });
-    // const list = await fishPondList({ id });
+    // const list = await getFishPondList({ id });
     this.setData({
       info,
       tabs: list,
@@ -39,7 +39,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.getList(options.id);
+    this.getData(options.id);
   },
 
   /**

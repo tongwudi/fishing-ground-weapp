@@ -3,11 +3,12 @@
     "pages/login/login",
     "pages/home/home",
     "pages/mine/mine",
-    "pages/put/put",
     "pages/group/profile/profile",
     "pages/group/details/details",
     "pages/pond/list/list",
     "pages/pond/detail/detail",
+    "pages/put/list/list",
+    "pages/put/details/details",
     "pages/plan/list/list",
     "pages/plan/detail/detail",
     "pages/forum/settings/settings",
@@ -54,7 +55,7 @@
         "text": "我的"
       },
       {
-        "pagePath": "pages/put/put",
+        "pagePath": "pages/put/details/details",
         "iconPath": "/assets/images/fish.png",
         "selectedIconPath": "/assets/images/fish-active.png",
         "text": "放鱼"

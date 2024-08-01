@@ -24,9 +24,9 @@ Component({
   methods: {
     switchTab(e) {
       const data = e.currentTarget.dataset;
-      const { path, idx } = data;
+      const { path, index } = data;
       wx.switchTab({ url: path });
-      this.setData({ selected: idx });
+      this.setData({ selected: index });
     },
     init() {
       const page = getCurrentPages().pop();

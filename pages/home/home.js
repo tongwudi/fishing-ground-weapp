@@ -1,4 +1,4 @@
-import { groupList } from "@/api/index";
+import { getGroupList } from "@/api/index";
 
 Page({
   /**
@@ -25,7 +25,7 @@ Page({
   },
 
   async getList() {
-    const res = await groupList();
+    const res = await getGroupList();
     this.setData({
       list: res.list,
       total: res.total,

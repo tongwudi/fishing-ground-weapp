@@ -35,7 +35,7 @@ Page({
         text: "我的",
         iconPath: "../assets/images/mine.png",
         selectedIconPath: "../assets/images/mine-active.png",
-        role: "user"
+        role: "fish"
       },
       {
         pagePath: "/pages/mine/mine",
@@ -49,10 +49,10 @@ Page({
         text: "钓场管理",
         iconPath: "../assets/images/mine.png",
         selectedIconPath: "../assets/images/mine-active.png",
-        role: "fish"
+        role: "user"
       },
       {
-        pagePath: "/pages/put/put",
+        pagePath: "/pages/put/details/details",
         text: "放鱼",
         iconPath: "../assets/images/fish.png",
         selectedIconPath: "../assets/images/fish-active.png",

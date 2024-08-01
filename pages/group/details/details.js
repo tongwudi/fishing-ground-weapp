@@ -1,4 +1,4 @@
-import { fishPondList } from "@/api/index";
+import { groupDetails, fishPondList } from "@/api/index";
 
 Page({
   /**
@@ -11,15 +11,19 @@ Page({
           "https://img95.699pic.com/xsj/0w/39/0n.jpg%21/fw/700/watermark/url/L3hzai93YXRlcl9kZXRhaWwyLnBuZw/align/southeast"
       }
     ],
+    info: {},
     tabs: [],
     loading: false,
     active: 1
   },
 
   async getList(id) {
-    const res = await fishPondList({ id });
+    const [info, list] = await Promise.all([groupDetails({ id: "25905b018cb148beb67bcdad0dd93a80" }), fishPondList({ id })])
+    // const info = await groupDetails({ id });
+    // const list = await fishPondList({ id });
     this.setData({
-      tabs: res,
+      info,
+      tabs: list,
       loading: false
     });
   },

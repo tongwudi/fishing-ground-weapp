@@ -11,7 +11,7 @@
   <view class="card">
     <view class="card-head">
       <view class="title">
-        <text>汤姆钓场</text>
+        <text>{{ info.name }}</text>
         <van-tag type="success">已认证</van-tag>
       </view>
       <a class="forum" href="">钓场圈</a>
@@ -20,7 +20,7 @@
       <view class="info">
         <view>
           <text class="label">塘口位置</text>
-          <text class="value">xxxxxx</text>
+          <text class="value">{{ info.address }}</text>
           <text class="iconfont icon-position"></text>
         </view>
         <view>

@@ -11,7 +11,8 @@
     "pages/plan/list/list",
     "pages/plan/detail/detail",
     "pages/forum/settings/settings",
-    "pages/index/index"
+    "pages/index/index",
+    "pages/share/share"
   ],
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",

@@ -22,7 +22,12 @@ npm install
 工具 -> 构建 npm
 ```
 
+---
 
-pond：塘口
-group：钓场
-forum：钓场圈
+## 目录结构
+
+├─forum：钓场圈
+├─group：钓场
+├─plan: 放鱼计划
+├─pond：塘口
+├─put: 放鱼记录

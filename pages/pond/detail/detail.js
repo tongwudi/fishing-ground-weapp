@@ -1,5 +1,5 @@
 // pages/pond/detail/detail.js
-import { fishPondDetails, addFishPond } from "@/api/index";
+import { fishPondDetail, addFishPond } from "@/api/index";
 
 Page({
   /**
@@ -66,7 +66,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    // fishPondDetails({ id: options.id });
+    // fishPondDetail({ id: options.id });
     wx.setNavigationBarTitle({
       title: "" ? "新增塘口" : "编辑塘口"
     });

@@ -1,3 +1,4 @@
+<!--pages/put/add/add.wxml-->
 <view class="container">
   <van-cell-group>
     <van-cell title="鱼种" title-width="5.2em" title-class="cell-title">

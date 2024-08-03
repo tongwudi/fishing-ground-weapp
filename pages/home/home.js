@@ -19,7 +19,6 @@ Page({
           "https://img0.baidu.com/it/u=100080021,1406455647&fm=253&fmt=auto&app=120&f=JPEG?w=756&h=500"
       }
     ],
-    loading: false,
     total: 0,
     list: [{ id: 1 }, { id: 2 }]
   },
@@ -28,14 +27,13 @@ Page({
     const res = await getGroupList();
     this.setData({
       list: res.list,
-      total: res.total,
-      loading: false
+      total: res.total
     });
   },
 
-  goDetails(e) {
+  goDetail(e) {
     const { id } = e.currentTarget.dataset;
-    wx.navigateTo({ url: `/pages/group/details/details?id=${id}` });
+    wx.navigateTo({ url: `/pages/group/detail/detail?id=${id}` });
   },
 
   /**

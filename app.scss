@@ -1,5 +1,5 @@
-/**app.wxss**/
 @import "./assets/font/iconfont.scss";
+@import 'miniprogram_npm/@vant/weapp/common/index.wxss';
 
 page {
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica,
@@ -13,12 +13,43 @@ page {
 .van-tabbar {
   --tabbar-height: 120rpx;
 }
-.cell-title {
-  margin-right: 12px;
-}
 
 a {
   color: #3e74ec;
+}
+.card {
+  padding: global.$gutter-12;
+  margin-bottom: global.$gutter-12;
+  background-color: #fff;
+  .card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: global.$gutter-12 0;
+  }
+  .card-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // font-size: 28rpx;
+    line-height: 2;
+  }
+}
+.info {
+  .info-item {
+    display: flex;
+    align-items: center;
+    .info-item_label::after {
+      content: "：";
+    }
+    .info-item_value {
+      flex: 1;
+    }
+  }
+}
+
+.cell-title {
+  margin-right: 12px;
 }
 .upload-box {
   display: flex;

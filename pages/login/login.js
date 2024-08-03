@@ -52,7 +52,7 @@ Page({
         role: "user"
       },
       {
-        pagePath: "/pages/put/details/details",
+        pagePath: "/pages/put/add/add",
         text: "放鱼",
         iconPath: "../assets/images/fish.png",
         selectedIconPath: "../assets/images/fish-active.png",

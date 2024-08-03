@@ -1,3 +1,4 @@
+// pages/put/add/add.js
 import { getFishList, addPutFish } from "@/api/index";
 
 Page({

@@ -10,9 +10,9 @@
 
 .title {
   line-height: 1.5;
-  padding-left: 36rpx;
+  padding-left: global.$padding-20;
   margin: global.$gutter-12 0;
-  font-size: global.$title-font;
+  font-size: global.$title-size;
   font-weight: 600;
 }
 
@@ -20,31 +20,25 @@
   flex: 1;
   overflow: auto;
 }
-.van-skeleton {
-  margin-top: global.$gutter-12;
-}
 .list {
-  padding: 0 global.$gutter-12 24rpx;
+  padding: 0 global.$gutter-12;
+  padding-bottom: global.$gutter-12;
   .item {
-    height: 240rpx;
+    height: 260rpx;
     display: flex;
     flex-direction: row-reverse;
+    background-color: #fff;
     box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.09);
-    .item-info {
+    .img {
+      width: 260rpx;
+      height: 100%;
+    }
+    .info {
       flex: 1;
-      padding: 16rpx 20rpx;
-      font-size: 28rpx;
+      padding: global.$gutter-8 global.$gutter-12;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      background-color: #fff;
-      .label::after {
-        content: "：";
-      }
-    }
-    .item-img {
-      width: 240rpx;
-      height: 100%;
     }
     & + .item {
       margin-top: global.$gutter-12;

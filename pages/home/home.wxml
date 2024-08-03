@@ -11,43 +11,37 @@
   <view class="title">热门钓场推荐</view>
 
   <scroll-view class="scroll-view" type="list" scroll-y>
-    <block wx:for="{{ 3 }}" wx:key="index">
-      <van-skeleton avatar avatar-shape="square" avatar-size="120px" row="4" loading="{{ loading }}"></van-skeleton>
-    </block>
-
-    <block wx:if="{{ !loading }}">
-      <block wx:if="{{ list.length > 0 }}">
-        <view class="list">
-          <block wx:for="{{ list }}" wx:key="index">
-            <view class="item" bind:tap="goDetails" data-id="{{ item.id }}">
-              <view class="item-info">
-                <view>
-                  <text class="label">钓场名称</text>
-                  <text class="value">{{ item.name }}</text>
-                </view>
-                <view>
-                  <text class="label">位置</text>
-                  <text class="value">{{ item.address }}</text>
-                </view>
-                <view>
-                  <text class="label">塘口数量</text>
-                  <text class="value">1</text>
-                </view>
-                <view>
-                  <text class="label">类型</text>
-                  <text class="value">1</text>
-                </view>
-                <view>
-                  <text class="label">营业时间</text>
-                  <text class="value">随到随钓</text>
-                </view>
+    <block wx:if="{{ list.length > 0 }}">
+      <view class="list">
+        <block wx:for="{{ list }}" wx:key="index">
+          <view class="item" bind:tap="goDetail" data-id="{{ item.id }}">
+            <view class="info">
+              <view class="info-item">
+                <text class="info-item_label">钓场名称</text>
+                <text class="info-item_value van-ellipsis">{{ item.name }}</text>
               </view>
-              <image class="item-img" src="../../assets/images/avatar.jpg" />
+              <view class="info-item">
+                <text class="info-item_label">位置</text>
+                <text class="info-item_value van-ellipsis">{{ item.address }}</text>
+              </view>
+              <view class="info-item">
+                <text class="info-item_label">塘口数量</text>
+                <text class="info-item_value">1</text>
+              </view>
+              <view class="info-item">
+                <text class="info-item_label">类型</text>
+                <text class="info-item_value">1</text>
+              </view>
+              <view class="info-item">
+                <text class="info-item_label">营业时间</text>
+                <text class="info-item_value">随到随钓</text>
+              </view>
             </view>
-          </block>
-        </view>
-      </block>
-      <van-empty wx:else description="暂无数据" />
+            <image class="img" src="../../assets/images/avatar.jpg" />
+          </view>
+        </block>
+      </view>
     </block>
+    <van-empty wx:else description="暂无数据" />
   </scroll-view>
 </view>

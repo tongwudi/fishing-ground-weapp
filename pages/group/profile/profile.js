@@ -1,5 +1,5 @@
 // pages/profile/profile.js
-import { groupDetails, addGroup } from "@/api/index";
+import { groupDetail, addGroup } from "@/api/index";
 import { formatDate } from "@/utils/util";
 
 Page({
@@ -71,8 +71,8 @@ Page({
    */
   async onReady() {
     // const params = { id: "25905b018cb148beb67bcdad0dd93a80" };
-    // const res = await groupDetails(params);
-    // console.log(res, "groupDetails");
+    // const res = await groupDetail(params);
+    // console.log(res, "groupDetail");
   },
 
   /**

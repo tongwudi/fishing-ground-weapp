@@ -1,9 +1,5 @@
-<view class="tab-bar">
-  <view class="tab-bar-border"></view>
+<van-tabbar active="{{ active }}" bind:change="switchTab">
   <block wx:for="{{ tabbar }}" wx:key="index">
-    <view class="tab-bar-item {{ item.isCenter ? 'center-item' : '' }}" data-path="{{ item.pagePath }}" data-index="{{ index }}" bindtap="switchTab">
-      <image src="{{ selected === index ? item.selectedIconPath : item.iconPath }}"></image>
-      <view style="color: {{ selected === index ? selectedColor : color }}">{{ item.text }}</view>
-    </view>
+    <van-tabbar-item icon="home-o" class="{{ item.isCenter ? 'center-item' : '' }}">{{ item.text }}</van-tabbar-item>
   </block>
-</view>
+</van-tabbar>

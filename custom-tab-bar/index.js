@@ -5,10 +5,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-    selected: 0,
-    color: "#646566",
-    selectedColor: "#1989fa",
-    tabbar: []
+    active: 0,
+    tabbar: [],
   },
 
   /**
@@ -22,18 +20,15 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    switchTab(e) {
-      const data = e.currentTarget.dataset;
-      const { path, index } = data;
-      wx.switchTab({ url: path });
-      this.setData({ selected: index });
+    switchTab(event) {
+      const { tabbar } = this.data;
+      this.setData({ active: event.detail });
+      wx.switchTab({ url: tabbar[event.detail].pagePath });
     },
     init() {
       const page = getCurrentPages().pop();
       const { tabbar } = this.data;
-      this.setData({
-        selected: tabbar.findIndex(v => v.pagePath === `/${page.route}`)
-      });
+      this.setData({ active: tabbar.findIndex(v => v.pagePath === `/${page.route}`) });
     }
   }
 });

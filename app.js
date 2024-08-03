@@ -28,8 +28,9 @@ App({
     // });
   },
   globalData: {
+    selected: 0,
     userInfo: null,
     userRole: null, // 用户角色
-    tabbar: []
-  }
+    tabbar: [],
+  },
 });

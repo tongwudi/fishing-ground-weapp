@@ -1,53 +1,10 @@
-.tab-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: global.$tabbar-height;
-  display: flex;
-  flex-direction: row;
-  background-color: global.$bg-white;
-  padding-bottom: env(safe-area-inset-bottom);
-  pointer-events: auto;
-}
-
-.tab-bar-border {
-  width: 100%;
-  height: 1px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  transform: scaleY(0.5);
-  background-color: rgba(0, 0, 0, 0.33);
-}
-
-.tab-bar-item {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-}
-
-.tab-bar-item image {
-  width: 52rpx;
-  height: 52rpx;
-}
-
-.tab-bar-item view {
-  font-size: 24rpx;
-}
-
 .center-item {
-  width: calc(#{global.$tabbar-height} * 1.2);
-  height: calc(#{global.$tabbar-height} * 1.2);
+  width: calc(var(--tabbar-height) * 1.2);
+  height: calc(var(--tabbar-height) * 1.2);
   position: absolute;
   left: 50%;
-  top: calc(-#{global.$tabbar-height} / 1.6);
-  margin-left: calc(-#{global.$tabbar-height} * 1.2 / 2);
-  border-top: 1px solid rgba(0, 0, 0, 0.23);
+  transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: global.$bg-white;
-  box-sizing: border-box;
+  background: #fff;
+  z-index: 1;
 }

@@ -106,11 +106,13 @@ instance.interceptors.response = response => {
     instance.queue.length === 0 && wx.hideLoading();
   }
 
-  // 处理返回状态
+  // 处理请求状态
   if (statusCode != 200) {
     wx.showToast({ title: "网络异常！", icon: "error" });
     return Promise.reject(data.errMsg);
   }
+
+  // 处理服务器返回状态
   switch (data.code) {
     case 0:
       return data.data;

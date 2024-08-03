@@ -12,10 +12,12 @@
     "pages/plan/list/list",
     "pages/plan/detail/detail",
     "pages/forum/settings/settings",
-    "pages/index/index",
-    "pages/share/share"
+    "pages/share/share",
+    "pages/index/index"
   ],
   "usingComponents": {
+    "van-tabbar": "@vant/weapp/tabbar/index",
+    "van-tabbar-item": "@vant/weapp/tabbar-item/index",
     "van-button": "@vant/weapp/button/index",
     "van-cell": "@vant/weapp/cell/index",
     "van-cell-group": "@vant/weapp/cell-group/index",

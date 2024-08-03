@@ -1,6 +1,6 @@
 ## fishing-ground-weapp
 
-## 安装与使用
+### 安装与使用
 
 - 下载代码
 
@@ -24,10 +24,12 @@ npm install
 
 ---
 
-## 目录结构
+### 目录结构
 
+```
 ├─forum：钓场圈
 ├─group：钓场
 ├─plan: 放鱼计划
 ├─pond：塘口
 ├─put: 放鱼记录
+```

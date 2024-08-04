@@ -1,6 +1,8 @@
 import { groupDetail, getFishPondList } from "@/api/index";
+import { groupBehavior } from "@/store/behaviors";
 
 Page({
+  behaviors: [groupBehavior],
   /**
    * 页面的初始数据
    */
@@ -29,7 +31,7 @@ Page({
     });
   },
 
-  onChange(event) {
+  handleChange(event) {
     wx.showToast({
       title: `切换到标签 ${event.detail.name}`,
       icon: "none"
@@ -51,7 +53,11 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {},
+  onShow() {
+    if (typeof this.getTabBar === "function") {
+      this.getTabBar().init();
+    }
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

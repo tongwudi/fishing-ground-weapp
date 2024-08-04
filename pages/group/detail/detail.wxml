@@ -40,7 +40,7 @@
   </view>
 
   <block wx:if="{{ tabs.length > 0 }}">
-    <van-tabs sticky animated swipeable ellipsis="{{ false }}" active="{{ active }}" bind:change="onChange">
+    <van-tabs sticky animated swipeable ellipsis="{{ false }}" active="{{ active }}" bind:change="handleChange">
       <block wx:for="{{ tabs }}" wx:key="id" wx:for-item="tab">
         <van-tab title="{{ tab.name }}" name="{{ tab.id }}">
           <view class="tab-content">

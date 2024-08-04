@@ -15,7 +15,7 @@
     <van-cell title="基本信息" is-link url="/pages/group/profile/profile" />
     <van-cell title="塘口管理" is-link url="/pages/pond/detail/detail" />
     <van-cell title="放鱼计划" is-link url="/pages/plan/detail/detail" />
-    <van-cell title="钓场圈设置" is-link url="/pages/forum/settings/settings" />
-    <van-cell title="退出登录" is-link bind:click="logout" border="{{ false }}" />
+    <van-cell title="钓场圈设置" is-link url="/pages/forum/settings/settings" border="{{ false }}" />
+    <!-- <van-cell title="退出登录" is-link bind:click="logout" /> -->
   </van-cell-group>
 </view>

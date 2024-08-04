@@ -31,8 +31,8 @@ Page({
     });
   },
 
-  goDetail(e) {
-    const { id } = e.currentTarget.dataset;
+  goDetail(event) {
+    const { id } = event.currentTarget.dataset;
     wx.navigateTo({ url: `/pages/group/detail/detail?id=${id}` });
   },
 

@@ -22,6 +22,7 @@ Component({
     fishTabbar: [
       {
         pagePath: "/pages/home/home",
+        // pagePath: "/pages/group/my/my",
         text: "我的钓场",
         iconPath: "../assets/images/home.png",
         selectedIconPath: "../assets/images/home-active.png"

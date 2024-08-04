@@ -3,6 +3,7 @@
     "pages/home/home",
     "pages/mine/mine",
     "pages/login/login",
+    "pages/group/my/my",
     "pages/group/profile/profile",
     "pages/group/detail/detail",
     "pages/pond/list/list",
@@ -48,8 +49,8 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/group/detail/detail",
-        "text": "首页"
+        "pagePath": "pages/group/my/my",
+        "text": "我的钓场"
       },
       {
         "pagePath": "pages/mine/mine",

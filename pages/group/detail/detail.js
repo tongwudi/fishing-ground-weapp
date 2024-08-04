@@ -1,8 +1,6 @@
 import { groupDetail, getFishPondList } from "@/api/index";
-import { groupBehavior } from "@/store/behaviors";
 
 Page({
-  behaviors: [groupBehavior],
   /**
    * 页面的初始数据
    */

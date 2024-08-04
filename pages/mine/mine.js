@@ -1,70 +1,46 @@
 // pages/mine/mine.js
-const app = getApp();
+import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
+import { store } from "@/store/index";
 
-Page({
-
-  /**
-   * 页面的初始数据
-   */
+Component({
+  behaviors: [storeBindingsBehavior],
   data: {
-    userInfo: app.globalData.userInfo
+    defaultUserInfo: {
+      avatar: "https://pic.imgdb.cn/item/64c0cc451ddac507ccd49532.png",
+      nick_name: "登录 / 注册"
+    }
+  },
+  storeBindings: {
+    store,
+    fields: ["isLogin", "userInfo"],
+    actions: ["setToken", "setRole", "setUserInfo"]
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-    if (typeof this.getTabBar === "function") {
-      this.getTabBar().init();
+  pageLifetimes: {
+    show() {
+      if (typeof this.getTabBar === "function") {
+        this.getTabBar().init();
+      }
     }
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+  methods: {
+    goPage() {
+      const { isLogin } = this.data;
+      if (isLogin) {
+        wx.navigateTo({ url: "/pages/group/profile/profile" });
+      } else {
+        wx.navigateTo({ url: "/pages/login/login" });
+      }
+    },
+    async logout() {
+      const res = await wx.showModal({ content: "确定要退出登录吗？" });
+      if (res.confirm) {
+        this.setToken("");
+        this.setRole("");
+        this.setUserInfo("");
+        wx.clearStorageSync();
+      }
+    }
   }
-})
+});

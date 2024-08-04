@@ -1,11 +1,11 @@
 <!--pages/mine/mine.wxml-->
 <view class="container">
   <view class="profile">
-    <image class="avatar" src="{{ userInfo.avatar }}"></image>
+    <image class="avatar" src="{{ userInfo.avatar || defaultUserInfo.avatar }}" bind:tap="goPage"></image>
     <view class="info">
-      <text class="name">{{ userInfo.nick_name || '点击登录' }}</text>
+      <text class="name" bind:tap="goPage">{{ userInfo.nick_name || defaultUserInfo.nick_name }}</text>
+      <image class="btn" src='/assets/images/arrow.png' bind:tap="goPage"></image>
     </view>
-    <image class="btn" src='/assets/images/arrow.png'></image>
   </view>
   <van-cell-group>
     <van-cell title="钓场老板认证" is-link />
@@ -15,6 +15,7 @@
     <van-cell title="基本信息" is-link url="/pages/group/profile/profile" />
     <van-cell title="塘口管理" is-link url="/pages/pond/detail/detail" />
     <van-cell title="放鱼计划" is-link url="/pages/plan/detail/detail" />
-    <van-cell title="钓场圈设置" is-link url="/pages/forum/settings/settings" border="{{ false }}" />
+    <van-cell title="钓场圈设置" is-link url="/pages/forum/settings/settings" />
+    <van-cell title="退出登录" is-link bind:click="logout" border="{{ false }}" />
   </van-cell-group>
 </view>

@@ -14,8 +14,8 @@
   .info {
     flex: 1;
     display: flex;
-    flex-direction: column;
-    margin: 0 30rpx;
+    justify-content: space-between;
+    margin-left: 30rpx;
     .name {
       line-height: 48rpx;
       font-size: 38rpx;

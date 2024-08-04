@@ -56,6 +56,34 @@ Page({
       }
     });
   },
+  async handleRightIconClick() {
+    // await wx.chooseLocation()
+    const { authSetting } = await wx.getSetting();
+    if (authSetting["scope.userLocation"] === false) {
+      wx.showModal({
+        title: "授权提示",
+        content: "需要获取位置信息，请确认授权",
+        complete: async res => {
+          if (res.cancel) {
+            wx.showToast({ title: "您拒绝了授权", icon: "none" });
+            return;
+          }
+
+          const { authSetting } = await wx.openSetting();
+          if (authSetting["scope.userLocation"] === false) {
+            wx.showToast({ title: "您拒绝了授权", icon: "none" });
+          }
+        }
+      });
+    } else {
+      try {
+        const res = await wx.getLocation();
+        console.log(res);
+      } catch (error) {
+        wx.showToast({ title: "您拒绝了授权", icon: "none" });
+      }
+    }
+  },
   async handleSave() {
     const { form } = this.data;
     const res = await addGroup({ ...form });

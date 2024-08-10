@@ -29,7 +29,6 @@ npm install
 ```
 ├─forum：钓场圈
 ├─group：钓场
-├─plan: 放鱼计划
 ├─pond：塘口
 ├─put: 放鱼记录
 ```

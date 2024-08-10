@@ -1,4 +1,4 @@
-// pages/plan/detail/detail.js
+// pages/put/plan/plan.js
 Page({
 
   /**
@@ -12,9 +12,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    wx.setNavigationBarTitle({
-      title: "" ? "新增放鱼计划" : "编辑放鱼计划",
-    });
+
   },
 
   /**

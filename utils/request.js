@@ -118,20 +118,30 @@ instance.interceptors.response = response => {
       return data.data;
     case 200:
       return data.data;
+    case 50000:
+      wx.showModal({
+        title: "提示",
+        content: "用户未登录，是否去登录？",
+        success(res) {
+          if (res.confirm) {
+            wx.clearStorageSync();
+            wx.navigateTo({ url: "/pages/login/login" });
+          }
+        }
+      });
+      break;
     case 50001:
       wx.showModal({
         title: "提示",
         content: "登录授权过期，请重新授权",
         success(res) {
           if (res.confirm) {
-            console.log("用户点击确定");
             wx.clearStorageSync();
             // wx.navigateTo({ url: "/pages/login/login" });
-          } else if (res.cancel) {
-            console.log("用户点击取消");
           }
         }
       });
+      break;
     default:
       wx.showToast({ title: data.msg, icon: "none" });
       return Promise.reject(data.msg);

@@ -2,7 +2,7 @@
 <view class="container">
   <van-cell-group>
     <van-cell title="鱼种" title-width="5.2em" title-class="cell-title">
-      <van-radio-group value="{{ form.status }}">
+      <van-radio-group value="{{ form.status }}" data-field="status" bind:change="handleChange">
         <van-row>
           <block wx:for="{{ fishList }}" wx:key="index">
             <van-col span="12">
@@ -12,22 +12,9 @@
         </van-row>
       </van-radio-group>
     </van-cell>
-    <van-cell title="数量" title-width="5.2em" title-class="cell-title">
-      <van-radio-group value="{{ form.number }}" bind:change="changeRadio">
-        <van-row>
-          <van-col span="12">
-            <van-radio icon-size="18px" name="1">一仓</van-radio>
-          </van-col>
-          <van-col span="12">
-            <van-radio icon-size="18px" name="2">两仓</van-radio>
-          </van-col>
-          <van-col span="12">
-            <van-radio icon-size="18px" name="3">自定义</van-radio>
-          </van-col>
-        </van-row>
-      </van-radio-group>
-    </van-cell>
-    <van-field wx:if="{{ form.number == 3 }}" label=" " value="{{ form.other }}" placeholder="请输入用户名" />
+    <van-field label="数量" type="number" value="{{ form.number }}" data-field="number" bind:change="handleChange" placeholder="请输入数量">
+      <text slot="button">仓</text>
+    </van-field>
     <van-cell title="视频" title-width="5.2em" title-class="cell-title" border="{{ false }}">
       <view class="upload-box">
         <van-uploader file-list="{{ form.fileList }}" max-count="1" bind:after-read="afterRead" />

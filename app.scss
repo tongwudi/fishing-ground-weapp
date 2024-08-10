@@ -1,5 +1,5 @@
 @import "./assets/font/iconfont.scss";
-@import 'miniprogram_npm/@vant/weapp/common/index.wxss';
+@import "miniprogram_npm/@vant/weapp/common/index.wxss";
 
 page {
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica,
@@ -28,13 +28,10 @@ a {
     margin: global.$gutter-12 0;
   }
   .card-body {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    // font-size: 28rpx;
     line-height: 2;
   }
 }
+
 .info {
   .info-item {
     display: flex;

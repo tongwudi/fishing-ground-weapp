@@ -8,14 +8,18 @@
     </view>
   </view>
   <van-cell-group>
-    <van-cell title="钓场老板认证" is-link />
+    <van-cell title="钓场老板认证" is-link data-key="authentication" bind:click="handleClick" />
     <van-cell title="我的钓场" is-link />
-    <van-cell title="我的帖子" is-link />
-    <van-cell title="设置" is-link />
-    <van-cell title="基本信息" is-link url="/pages/group/profile/profile" />
     <van-cell title="塘口管理" is-link url="/pages/pond/detail/detail" />
-    <van-cell title="放鱼计划" is-link url="/pages/plan/detail/detail" />
-    <van-cell title="钓场圈设置" is-link url="/pages/forum/settings/settings" border="{{ false }}" />
-    <!-- <van-cell title="退出登录" is-link bind:click="logout" /> -->
+    <van-cell title="放鱼计划" is-link url="/pages/put/plan/plan" />
+    <!-- <van-cell title="我的帖子" is-link /> -->
+    <!-- <van-cell title="钓场圈设置" is-link url="/pages/forum/settings/settings" border="{{ false }}" /> -->
+    <van-cell title="退出登录" is-link data-key="logout" bind:click="handleClick" />
   </van-cell-group>
+
+  <van-overlay z-index="{{ 99999 }}" show="{{ show }}" bind:click="closeModal">
+    <view class="wrapper">
+      <image class="authentication" src="../../assets/images/authentication.jpg" />
+    </view>
+  </van-overlay>
 </view>

@@ -7,19 +7,22 @@ Page({
    */
   data: {
     fishList: [],
-    form: {},
+    form: {}
   },
   async getFishOption() {
     const fishList = await getFishList();
     this.setData({ fishList });
   },
-  changeRadio(e) {
-    // const { field } = e.currentTarget.dataset;
-    // console.log(field, 1111111111);
-    console.log(this.data, 1111111111);
+  handleChange(event) {
+    const { field } = event.currentTarget.dataset;
+    const value = event.detail;
+    this.setData({ [`form.${field}`]: value });
   },
   async handleSave() {
-    const params = {};
+    const { form } = this.data;
+    const params = { ...form };
+    console.log(params);
+    return;
     const res = await addPutFish(params);
   },
 
@@ -67,5 +70,5 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {},
+  onShareAppMessage() {}
 });

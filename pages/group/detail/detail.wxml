@@ -14,27 +14,24 @@
         <text>{{ info.name }}</text>
         <van-tag type="success">已认证</van-tag>
       </view>
-      <a class="forum" href="">钓场圈</a>
-    </view>
-    <view class="card-body">
-      <view class="info">
-        <view class="info-item">
-          <text class="info-item_label">塘口位置</text>
-          <text class="info-item_value">{{ info.address }}</text>
-          <text class="iconfont icon-position"></text>
-        </view>
-        <view class="info-item">
-          <text class="info-item_label">营业时间</text>
-          <text class="info-item_value">随到随钓</text>
-        </view>
-        <view class="info-item">
-          <text class="info-item_label">放鱼计划</text>
-          <a href="">查看</a>
-        </view>
-      </view>
       <view class="favorite">
         <van-icon name="like-o" size="20" />
         <text>加粉</text>
+      </view>
+    </view>
+    <view class="card-body info">
+      <view class="info-item">
+        <text class="info-item_label">塘口位置</text>
+        <text class="info-item_value">{{ info.address }}</text>
+        <van-icon class-prefix="iconfont" name="position" />
+      </view>
+      <view class="info-item">
+        <text class="info-item_label">营业时间</text>
+        <text class="info-item_value">随到随钓</text>
+      </view>
+      <view class="info-item">
+        <text class="info-item_label">放鱼计划</text>
+        <a href="">查看</a>
       </view>
     </view>
   </view>
@@ -42,9 +39,40 @@
   <block wx:if="{{ tabs.length > 0 }}">
     <van-tabs sticky animated swipeable ellipsis="{{ false }}" active="{{ active }}" bind:change="handleChange">
       <block wx:for="{{ tabs }}" wx:key="id" wx:for-item="tab">
-        <van-tab title="{{ tab.name }}" name="{{ tab.id }}">
+        <van-tab title="{{ tab.name }}">
           <view class="tab-content">
-            {{ tab.description }}
+            <!-- <image src="" mode=""/> -->
+            <view class="card">
+              <view class="card-body info">
+                <view class="info-item">
+                  <text class="info-item_label">塘口大小</text>
+                  <text class="info-item_value">{{ tab.size || 0 }}亩</text>
+                </view>
+                <view class="info-item">
+                  <text class="info-item_label">钓位数</text>
+                  <text class="info-item_value">{{ tab.position_num || 0 }}个</text>
+                </view>
+                <view class="info-item">
+                  <text class="info-item_label">水深</text>
+                  <text class="info-item_value">{{ tab.water_depth || 0 }}米</text>
+                </view>
+                <view class="info-item">
+                  <text class="info-item_label">收费标准</text>
+                  <text class="info-item_value">{{ tab.charge_standard }}</text>
+                </view>
+                <view class="info-item">
+                  <text class="info-item_label">回鱼规则</text>
+                  <text class="info-item_value">{{ tab.return_fish_rule }}</text>
+                </view>
+                <view class="info-item">
+                  <text class="info-item_label">塘口规则</text>
+                  <text class="info-item_value">{{ tab.rule }}</text>
+                </view>
+                <view class="info-item">
+                  <text class="info-item_label">放鱼记录</text>
+                </view>
+              </view>
+            </view>
           </view>
         </van-tab>
       </block>

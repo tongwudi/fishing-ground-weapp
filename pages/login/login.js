@@ -8,7 +8,12 @@ Page({
     password: "123456"
   },
 
-  startLogin: async function () {
+  bindInput(event) {
+    const { field } = event.currentTarget.dataset;
+    const { value } = event.detail;
+    this.setData({ [field]: value });
+  },
+  async login() {
     const { username, password } = this.data;
     if (username.length == 0 || password.length == 0) {
       wx.showModal({
@@ -24,10 +29,5 @@ Page({
     this.setRole(userRole.join());
     this.setUserInfo(res.user);
     wx.navigateBack();
-  },
-  bindInput(event) {
-    const { field } = event.currentTarget.dataset;
-    const { value } = event.detail;
-    this.setData({ [field]: value });
   }
 });

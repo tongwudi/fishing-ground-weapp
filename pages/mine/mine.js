@@ -10,7 +10,8 @@ Page({
     defaultUserInfo: {
       avatar: "https://pic.imgdb.cn/item/64c0cc451ddac507ccd49532.png",
       nick_name: "登录 / 注册"
-    }
+    },
+    show: false
   },
 
   goPage() {
@@ -20,6 +21,23 @@ Page({
     } else {
       wx.navigateTo({ url: "/pages/login/login" });
     }
+  },
+  handleClick(event) {
+    const { key } = event.currentTarget.dataset;
+    switch (key) {
+      case "authentication":
+        this.openModal();
+        break;
+      case "logout":
+        this.logout();
+        break;
+    }
+  },
+  openModal() {
+    this.setData({ show: true });
+  },
+  closeModal() {
+    this.setData({ show: false });
   },
   async logout() {
     const res = await wx.showModal({ content: "确定要退出登录吗？" });

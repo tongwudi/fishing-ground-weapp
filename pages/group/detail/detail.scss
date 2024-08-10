@@ -7,15 +7,8 @@
     font-weight: 600;
   }
 }
-.forum {
-  float: right;
-}
-
-.icon-position {
-  font-size: global.$title-size;
-  margin-left: global.$margin-25;
-}
 .favorite {
+  float: right;
   display: flex;
   gap: global.$gutter-8;
 }

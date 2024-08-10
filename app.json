@@ -10,8 +10,7 @@
     "pages/pond/detail/detail",
     "pages/put/records/records",
     "pages/put/add/add",
-    "pages/plan/list/list",
-    "pages/plan/detail/detail",
+    "pages/put/plan/plan",
     "pages/forum/settings/settings",
     "pages/index/index"
   ],
@@ -21,7 +20,7 @@
     "van-button": "@vant/weapp/button/index",
     "van-cell": "@vant/weapp/cell/index",
     "van-cell-group": "@vant/weapp/cell-group/index",
-    "van-skeleton": "@vant/weapp/skeleton/index",
+    "van-overlay": "@vant/weapp/overlay/index",
     "van-tag": "@vant/weapp/tag/index",
     "van-icon": "@vant/weapp/icon/index",
     "van-tab": "@vant/weapp/tab/index",

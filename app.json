@@ -20,6 +20,7 @@
     "van-button": "@vant/weapp/button/index",
     "van-cell": "@vant/weapp/cell/index",
     "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-empty": "@vant/weapp/empty/index",
     "van-overlay": "@vant/weapp/overlay/index",
     "van-tag": "@vant/weapp/tag/index",
     "van-icon": "@vant/weapp/icon/index",
@@ -32,8 +33,7 @@
     "van-radio": "@vant/weapp/radio/index",
     "van-radio-group": "@vant/weapp/radio-group/index",
     "van-row": "@vant/weapp/row/index",
-    "van-col": "@vant/weapp/col/index",
-    "van-empty": "@vant/weapp/empty/index"
+    "van-col": "@vant/weapp/col/index"
   },
   "window": {
     "navigationBarTextStyle": "black",

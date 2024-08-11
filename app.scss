@@ -32,6 +32,7 @@ a {
   }
 }
 
+// 封装组件
 .info {
   .info-item {
     display: flex;
@@ -41,6 +42,49 @@ a {
     }
     .info-item_value {
       flex: 1;
+    }
+  }
+}
+
+// 封装组件
+.timeline {
+  display: flex;
+  flex-direction: column;
+  padding: 10rpx global.$padding-20 0;
+  background-color: #fff;
+  overflow: hidden;
+  &-item {
+    display: flex;
+    position: relative;
+    &_left {
+      height: 100%;
+      position: absolute;
+      top: 16rpx;
+      .circle {
+        width: 16rpx;
+        height: 16rpx;
+        border-radius: 50%;
+        background-color: #666;
+      }
+      .line {
+        width: 2rpx;
+        height: 100%;
+        margin: auto;
+        background-color: #ccc;
+      }
+    }
+    &_right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding-left: global.$padding-20;
+      padding-bottom: global.$padding-20;
+      text {
+        line-height: 48rpx;
+      }
+    }
+    &:last-child .line {
+      height: 0;
     }
   }
 }

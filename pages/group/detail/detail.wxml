@@ -11,7 +11,7 @@
   <view class="card">
     <view class="card-head">
       <view class="title">
-        <text>{{ info.name }}</text>
+        <text>{{ groupInfo.name }}</text>
         <van-tag type="success">已认证</van-tag>
       </view>
       <view class="favorite">
@@ -22,7 +22,7 @@
     <view class="card-body info">
       <view class="info-item">
         <text class="info-item_label">塘口位置</text>
-        <text class="info-item_value">{{ info.address }}</text>
+        <text class="info-item_value">{{ groupInfo.address }}</text>
         <van-icon class-prefix="iconfont" name="position" />
       </view>
       <view class="info-item">
@@ -36,41 +36,56 @@
     </view>
   </view>
 
-  <block wx:if="{{ tabs.length > 0 }}">
+  <block wx:if="{{ groupInfo.fishes_pond.length > 0 }}">
     <van-tabs sticky animated swipeable ellipsis="{{ false }}" active="{{ active }}" bind:change="handleChange">
-      <block wx:for="{{ tabs }}" wx:key="id" wx:for-item="tab">
-        <van-tab title="{{ tab.name }}">
+      <block wx:for="{{ groupInfo.fishes_pond }}" wx:key="id" wx:for-item="tab">
+        <van-tab title="{{ tab.name }}" name="{{ tab.id }}">
           <view class="tab-content">
             <!-- <image src="" mode=""/> -->
             <view class="card">
               <view class="card-body info">
                 <view class="info-item">
                   <text class="info-item_label">塘口大小</text>
-                  <text class="info-item_value">{{ tab.size || 0 }}亩</text>
+                  <text class="info-item_value">{{ pondInfo.size || 0 }}亩</text>
                 </view>
                 <view class="info-item">
                   <text class="info-item_label">钓位数</text>
-                  <text class="info-item_value">{{ tab.position_num || 0 }}个</text>
+                  <text class="info-item_value">{{ pondInfo.position_num || 0 }}个</text>
                 </view>
                 <view class="info-item">
                   <text class="info-item_label">水深</text>
-                  <text class="info-item_value">{{ tab.water_depth || 0 }}米</text>
+                  <text class="info-item_value">{{ pondInfo.water_depth || 0 }}米</text>
                 </view>
                 <view class="info-item">
                   <text class="info-item_label">收费标准</text>
-                  <text class="info-item_value">{{ tab.charge_standard }}</text>
+                  <text class="info-item_value">{{ pondInfo.charge_standard }}</text>
                 </view>
                 <view class="info-item">
                   <text class="info-item_label">回鱼规则</text>
-                  <text class="info-item_value">{{ tab.return_fish_rule }}</text>
+                  <text class="info-item_value">{{ pondInfo.return_fish_rule }}</text>
                 </view>
                 <view class="info-item">
                   <text class="info-item_label">塘口规则</text>
-                  <text class="info-item_value">{{ tab.rule }}</text>
+                  <text class="info-item_value">{{ pondInfo.rule }}</text>
                 </view>
                 <view class="info-item">
                   <text class="info-item_label">放鱼记录</text>
                 </view>
+              </view>
+              <view class="timeline">
+                <block wx:for="{{ pondInfo.put_fish_records }}" wx:key="index">
+                  <view class="timeline-item">
+                    <view class="timeline-item_left">
+                      <view class="circle"></view>
+                      <view class="line"></view>
+                    </view>
+                    <view class="timeline-item_right">
+                      <text>{{ item.create_time }}</text>
+                      <text>放{{ item.fishes + item.put_num }}仓</text>
+                      <view class="imgs"></view>
+                    </view>
+                  </view>
+                </block>
               </view>
             </view>
           </view>

@@ -15,10 +15,3 @@ export const mineBehavior = BehaviorWithStore({
     actions: ["setToken", "setRole", "setUserInfo"]
   },
 })
-
-export const groupBehavior = BehaviorWithStore({
-  storeBindings: {
-    store,
-    fields: ["userInfo"],
-  },
-})

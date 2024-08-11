@@ -1,1 +1,19 @@
-/* pages/group/my/my.wxss */
+.title {
+  display: flex;
+  align-items: center;
+  gap: global.$gutter-12;
+  > text {
+    font-size: global.$title-size;
+    font-weight: 600;
+  }
+}
+.favorite {
+  float: right;
+  display: flex;
+  gap: global.$gutter-8;
+}
+
+.tab-content {
+  padding: global.$gutter-12;
+  background-color: global.$bg-white;
+}

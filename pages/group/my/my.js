@@ -1,66 +1,78 @@
-// pages/group/my/my.js
-Page({
+import { getMyGroupList, getFishPondList } from "@/api/index";
 
+Page({
   /**
    * 页面的初始数据
    */
   data: {
-
+    banner: [
+      {
+        url:
+          "https://img95.699pic.com/xsj/0w/39/0n.jpg%21/fw/700/watermark/url/L3hzai93YXRlcl9kZXRhaWwyLnBuZw/align/southeast"
+      }
+    ],
+    groupInfo: {},
+    tabs: {},
+    active: 0
+  },
+  async getData() {
+    const groundList = await getMyGroupList();
+    if (groundList.length == 0) return;
+    const groupInfo = groundList[0];
+    const { id } = groupInfo;
+    const tabs = await getFishPondList({ id });
+    this.setData({ groupInfo, tabs });
+  },
+  handleChange(event) {
+    wx.showToast({
+      title: `切换到标签 ${event.detail.name}`,
+      icon: "none"
+    });
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    this.getData();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-
-  },
+  onReady() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    if (typeof this.getTabBar === "function") {
+      this.getTabBar().init();
+    }
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {
-
-  },
+  onHide() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload() {
-
-  },
+  onUnload() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh() {
-
-  },
+  onPullDownRefresh() {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom() {
-
-  },
+  onReachBottom() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
-
-  }
-})
+  onShareAppMessage() {}
+});

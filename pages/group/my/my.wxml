@@ -1,2 +1,97 @@
 <!--pages/group/my/my.wxml-->
-<text>pages/group/my/my.wxml</text>
+<view class="container">
+  <!--轮播图-->
+  <swiper indicator-dots='true' autoplay='true' interval='5000' duration='1000'>
+    <block wx:for="{{ banner }}" wx:key="index">
+      <swiper-item>
+        <image src='{{ item.url }}' style="width: 100%;height: 100%"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view class="card">
+    <view class="card-head">
+      <view class="title">
+        <text>{{ groupInfo.name }}</text>
+        <van-tag type="success">已认证</van-tag>
+      </view>
+      <view class="favorite">
+        <van-icon name="like-o" size="20" />
+        <text>收款码</text>
+      </view>
+    </view>
+    <view class="card-body info">
+      <view class="info-item">
+        <text class="info-item_label">塘口位置</text>
+        <text class="info-item_value">{{ groupInfo.address }}</text>
+        <van-icon class-prefix="iconfont" name="position" />
+      </view>
+      <view class="info-item">
+        <text class="info-item_label">营业时间</text>
+        <text class="info-item_value">随到随钓</text>
+      </view>
+      <view class="info-item">
+        <text class="info-item_label">放鱼计划</text>
+        <a href="">查看</a>
+      </view>
+    </view>
+  </view>
+
+  <block wx:if="{{ tabs.fishes_pond.length > 0 }}">
+    <van-tabs sticky animated swipeable ellipsis="{{ false }}" active="{{ active }}" bind:change="handleChange">
+      <block wx:for="{{ tabs.fishes_pond }}" wx:key="id" wx:for-item="tab">
+        <van-tab title="{{ tab.name }}">
+          <view class="tab-content">
+            <!-- <image src="" mode=""/> -->
+            <view class="card">
+              <view class="card-body info">
+                <view class="info-item">
+                  <text class="info-item_label">塘口大小</text>
+                  <text class="info-item_value">{{ tab.size || 0 }}亩</text>
+                </view>
+                <view class="info-item">
+                  <text class="info-item_label">钓位数</text>
+                  <text class="info-item_value">{{ tab.position_num || 0 }}个</text>
+                </view>
+                <view class="info-item">
+                  <text class="info-item_label">水深</text>
+                  <text class="info-item_value">{{ tab.water_depth || 0 }}米</text>
+                </view>
+                <view class="info-item">
+                  <text class="info-item_label">收费标准</text>
+                  <text class="info-item_value">{{ tab.charge_standard }}</text>
+                </view>
+                <view class="info-item">
+                  <text class="info-item_label">回鱼规则</text>
+                  <text class="info-item_value">{{ tab.return_fish_rule }}</text>
+                </view>
+                <view class="info-item">
+                  <text class="info-item_label">塘口规则</text>
+                  <text class="info-item_value">{{ tab.rule }}</text>
+                </view>
+                <view class="info-item">
+                  <text class="info-item_label">放鱼记录</text>
+                </view>
+              </view>
+              <view class="timeline">
+                <block wx:for="{{ tab.put_fish_records }}" wx:key="index">
+                  <view class="timeline-item">
+                    <view class="timeline-item_left">
+                      <view class="circle"></view>
+                      <view class="line"></view>
+                    </view>
+                    <view class="timeline-item_right">
+                      <text>{{ item.create_time }}</text>
+                      <text>放{{ item.fishes + item.put_num }}仓</text>
+                      <view class="imgs"></view>
+                    </view>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </view>
+        </van-tab>
+      </block>
+    </van-tabs>
+  </block>
+</view>

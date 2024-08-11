@@ -2,6 +2,10 @@
   <view class="card">
     <view class="card-body info">
       <view class="info-item">
+        <text class="info-item_label">塘口名称</text>
+        <text class="info-item_value">{{ info.name }}</text>
+      </view>
+      <view class="info-item">
         <text class="info-item_label">塘口大小</text>
         <text class="info-item_value">{{ info.size || 0 }}亩</text>
       </view>
@@ -36,6 +40,21 @@
       <view class="info-item">
         <text class="info-item_label">放鱼记录</text>
       </view>
+    </view>
+    <view class="timeline">
+      <block wx:for="{{ info.put_fish_records }}" wx:key="index">
+        <view class="timeline-item">
+          <view class="timeline-item_left">
+            <view class="circle"></view>
+            <view class="line"></view>
+          </view>
+          <view class="timeline-item_right">
+            <text>{{ item.create_time }}</text>
+            <text>放{{ item.fishes + item.put_num }}仓</text>
+            <view class="imgs"></view>
+          </view>
+        </view>
+      </block>
     </view>
   </view>
 </view>

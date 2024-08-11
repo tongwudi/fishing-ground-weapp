@@ -4,16 +4,18 @@ import http from "@/utils/request";
 export const authorize = params => http.get("/base/system/wx/openid", params);
 // 账号登录
 export const login = params => http.post("/base/system/login", params);
-// 获取钓场列表
+// 获取钓场列表(用户)
 export const getGroupList = () => http.get("/public/fish/list");
 // 获取钓场信息
 export const groupDetail = params => http.get("/public/fish/grounds", params);
-// 新增钓场
-export const addGroup = params => http.post("/private/fish/admin/add", params);
-// 获取塘口列表
-export const getFishPondList = params => http.get("/private/fish/admin/pond/list", params);
 // 获取塘口信息
 export const fishPondDetail = params => http.get("/public/fish/pond", params);
+// 获取钓场列表(钓场)
+export const getMyGroupList = () => http.get("/private/fish/admin/list");
+// 获取塘口列表
+export const getFishPondList = params => http.get("/private/fish/admin/pond/list", params);
+// 新增钓场
+export const addGroup = params => http.post("/private/fish/admin/add", params);
 // 新增塘口
 export const addFishPond = params => http.post("/private/fish/admin/pond/add", params);
 // 获取鱼种列表

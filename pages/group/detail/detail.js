@@ -1,4 +1,4 @@
-import { groupDetail, getFishPondList } from "@/api/index";
+import { groupDetail, fishPondDetail } from "@/api/index";
 
 Page({
   /**
@@ -11,29 +11,25 @@ Page({
           "https://img95.699pic.com/xsj/0w/39/0n.jpg%21/fw/700/watermark/url/L3hzai93YXRlcl9kZXRhaWwyLnBuZw/align/southeast"
       }
     ],
-    info: {},
-    tabs: [],
-    active: 0
+    groupInfo: {},
+    pondInfo: {},
+    active: ''
   },
 
   async getData(id) {
-    const [info, list] = await Promise.all([
-      groupDetail({ id }),
-      getFishPondList({ id })
-    ]);
-    // const info = await groupDetail({ id });
-    // const list = await getFishPondList({ id });
-    this.setData({
-      info,
-      tabs: list
-    });
+    const groupInfo = await groupDetail({ id });
+    this.setData({ groupInfo });
+    if (groupInfo.fishes_pond.length == 0) return;
+    const pondId = groupInfo.fishes_pond[0].id;
+    this.getPondInfo(pondId);
   },
-
   handleChange(event) {
-    wx.showToast({
-      title: `切换到标签 ${event.detail.name}`,
-      icon: "none"
-    });
+    const id = event.detail.name;
+    this.getPondInfo(id);
+  },
+  async getPondInfo(id) {
+    const pondInfo = await fishPondDetail({ id });
+    this.setData({ pondInfo, active: id });
   },
 
   /**

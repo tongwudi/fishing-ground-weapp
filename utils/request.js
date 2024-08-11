@@ -89,8 +89,8 @@ instance.interceptors.request = config => {
   }
 
   // 设置 token
-  const token = wx.getStorageSync("token");
-  token && (config.header["x-token"] = token);
+  const token = wx.getStorageSync("token") || "";
+  config.header["x-token"] = token;
   return config;
 };
 

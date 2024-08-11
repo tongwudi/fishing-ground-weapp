@@ -1,5 +1,5 @@
-// pages/pond/list/list.js
-import { getMyGroupList, getFishPondList } from "@/api/index";
+// pages/species/list/list.js
+import { getMyGroupList, getFishList } from "@/api/index";
 
 Page({
   /**
@@ -15,14 +15,13 @@ Page({
     if (groundList.length == 0) return;
     const groupInfo = groundList[0];
     const { id } = groupInfo;
-    const list = await getFishPondList({ id });
+    const list = await getFishList({ id });
     this.setData({ groupId: groupInfo.id, list });
   },
   goPage(event) {
-    const { id } = event.currentTarget.dataset;
     const { groupId } = this.data;
-    const url = `/pages/pond/detail/detail?groupId=${groupId}`;
-    wx.navigateTo({ url: id ? `${url}&id=${id}` : url });
+    const url = `/pages/fish/add/add?groupId=${groupId}`;
+    wx.navigateTo({ url });
   },
 
   /**

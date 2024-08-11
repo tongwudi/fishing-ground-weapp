@@ -12,7 +12,7 @@
         </van-row>
       </van-radio-group>
     </van-cell>
-    <van-field label="数量" type="number" value="{{ form.number }}" data-field="number" bind:change="handleChange" placeholder="请输入数量">
+    <van-field label="数量" type="digit" pattern="[0-9]*" value="{{ form.number }}" data-field="number" bind:change="handleChange" placeholder="请输入数量">
       <text slot="button">仓</text>
     </van-field>
     <van-cell title="视频" title-width="5.2em" title-class="cell-title" border="{{ false }}">
@@ -22,7 +22,7 @@
     </van-cell>
   </van-cell-group>
 
-  <view class="save-btn">
+  <view class="operate-btn">
     <van-button type="primary" block bind:click="handleSave">保存</van-button>
   </view>
 </view>

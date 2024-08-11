@@ -3,7 +3,6 @@
 
 App({
   async onLaunch() {
-    console.log(111);
     // // 微信登陆
     // wx.login({
     //   async success({ code }) {

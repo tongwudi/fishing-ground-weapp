@@ -17,10 +17,10 @@ Page({
   goPage() {
     const { isLogin } = this.data;
     if (isLogin) {
-      wx.navigateTo({ url: "/pages/group/profile/profile" });
-    } else {
-      wx.navigateTo({ url: "/pages/login/login" });
+      // wx.navigateTo({ url: "/pages/group/profile/profile" });
+      return;
     }
+    wx.navigateTo({ url: "/pages/login/login" });
   },
   handleClick(event) {
     const { key } = event.currentTarget.dataset;

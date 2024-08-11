@@ -21,7 +21,7 @@
     </view>
     <view class="card-body info">
       <view class="info-item">
-        <text class="info-item_label">塘口位置</text>
+        <text class="info-item_label">钓场位置</text>
         <text class="info-item_value">{{ groupInfo.address }}</text>
         <van-icon class-prefix="iconfont" name="position" />
       </view>

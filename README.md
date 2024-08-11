@@ -30,5 +30,6 @@ npm install
 ├─forum：钓场圈
 ├─group：钓场
 ├─pond：塘口
-├─put: 放鱼记录
+├─put: 放鱼
+├─fish: 鱼种
 ```

@@ -14,14 +14,14 @@
     <block wx:if="{{ list.length > 0 }}">
       <view class="list">
         <block wx:for="{{ list }}" wx:key="index">
-          <view class="item" bind:tap="goDetail" data-id="{{ item.id }}">
+          <view class="item" data-id="{{ item.id }}" bind:tap="goDetail">
             <view class="info">
               <view class="info-item">
                 <text class="info-item_label">钓场名称</text>
                 <text class="info-item_value van-ellipsis">{{ item.name }}</text>
               </view>
               <view class="info-item">
-                <text class="info-item_label">位置</text>
+                <text class="info-item_label">钓场位置</text>
                 <text class="info-item_value van-ellipsis">{{ item.address }}</text>
               </view>
               <view class="info-item">

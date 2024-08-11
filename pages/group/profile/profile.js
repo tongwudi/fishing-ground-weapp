@@ -86,6 +86,7 @@ Page({
   },
   async handleSave() {
     const { form } = this.data;
+    // 不传钓场名称、位置会新增失败
     const res = await addGroup({ ...form });
   },
 

@@ -89,6 +89,10 @@ a {
   }
 }
 
+.scroll-view {
+  flex: 1;
+  overflow: auto;
+}
 .cell-title {
   margin-right: 12px;
 }
@@ -98,6 +102,6 @@ a {
     margin: 0 !important;
   }
 }
-.save-btn {
+.operate-btn {
   margin: 40rpx 20%;
 }

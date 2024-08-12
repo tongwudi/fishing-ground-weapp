@@ -7,9 +7,11 @@ page {
     "Microsoft Yahei", sans-serif;
   background-color: #f7f8fa !important;
 }
+
 page {
   --radio-size: 24px;
 }
+
 .van-tabbar {
   --tabbar-height: 120rpx;
 }
@@ -17,16 +19,19 @@ page {
 a {
   color: #3e74ec;
 }
+
 .card {
   padding: global.$gutter-12;
   margin-bottom: global.$gutter-12;
   background-color: #fff;
+
   .card-head {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: global.$gutter-12 0;
   }
+
   .card-body {
     line-height: 2;
   }
@@ -37,9 +42,19 @@ a {
   .info-item {
     display: flex;
     align-items: center;
+
+    .detail_label {
+      width: 90px;
+      text-align: right;
+    }
+    .info-item_label{
+      color: rgb(92, 88, 88);
+    }
+
     .info-item_label::after {
       content: "：";
     }
+
     .info-item_value {
       flex: 1;
     }
@@ -53,19 +68,23 @@ a {
   padding: 10rpx global.$padding-20 0;
   background-color: #fff;
   overflow: hidden;
+
   &-item {
     display: flex;
     position: relative;
+
     &_left {
       height: 100%;
       position: absolute;
       top: 16rpx;
+
       .circle {
         width: 16rpx;
         height: 16rpx;
         border-radius: 50%;
         background-color: #666;
       }
+
       .line {
         width: 2rpx;
         height: 100%;
@@ -73,16 +92,19 @@ a {
         background-color: #ccc;
       }
     }
+
     &_right {
       flex: 1;
       display: flex;
       flex-direction: column;
       padding-left: global.$padding-20;
       padding-bottom: global.$padding-20;
+
       text {
         line-height: 48rpx;
       }
     }
+
     &:last-child .line {
       height: 0;
     }
@@ -93,15 +115,19 @@ a {
   flex: 1;
   overflow: auto;
 }
+
 .cell-title {
   margin-right: 12px;
 }
+
 .upload-box {
   display: flex;
+
   .van-uploader__upload {
     margin: 0 !important;
   }
 }
+
 .operate-btn {
   margin: 40rpx 20%;
 }

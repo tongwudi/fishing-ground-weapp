@@ -6,7 +6,7 @@
       <van-icon slot="right-icon" class-prefix="iconfont" name="position" />
     </van-field>
     <van-field label="营业时间" value="{{ form.business_hours }}" data-field="business_hours" bind:click-input="openPicker" readonly placeholder="请选择营业时间" />
-    <van-field label="联系电话" type="tel" value="{{ form.phone }}" data-field="phone" bind:change="handleChange" placeholder="请输入联系电话" />
+    <!-- <van-field label="联系电话" type="tel" value="{{ form.phone }}" data-field="phone" bind:change="handleChange" placeholder="请输入联系电话" /> -->
     <!-- <van-cell title="支付宝收款码" title-width="6.2em" title-class="cell-title">
       <view class="upload-box">
         <van-uploader file-list="{{ form.fileList }}" max-count="1" bind:after-read="afterRead" />

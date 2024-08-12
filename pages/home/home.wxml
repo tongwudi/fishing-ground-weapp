@@ -15,7 +15,7 @@
       <view class="list">
         <block wx:for="{{ list }}" wx:key="index">
           <view class="item" data-id="{{ item.id }}" bind:tap="goPage">
-            <view class="info">
+            <view class="item-info info">
               <view class="info-item">
                 <text class="info-item_label">钓场名称</text>
                 <text class="info-item_value van-ellipsis">{{ item.name }}</text>
@@ -37,7 +37,7 @@
                 <text class="info-item_value van-ellipsis">{{ item.business_hours || '随到随钓' }}</text>
               </view>
             </view>
-            <image class="img" src="https://pic.imgdb.cn/item/66b9a438d9c307b7e99a980c.jpg" />
+            <image class="item-img" src="https://pic.imgdb.cn/item/66b9a438d9c307b7e99a980c.jpg" />
           </view>
         </block>
       </view>

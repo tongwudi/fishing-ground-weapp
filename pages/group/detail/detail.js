@@ -13,7 +13,7 @@ Page({
     ],
     groupInfo: {},
     pondInfo: {},
-    active: ''
+    active: ""
   },
 
   async getData(id) {
@@ -30,6 +30,9 @@ Page({
   async getPondInfo(id) {
     const pondInfo = await fishPondDetail({ id });
     this.setData({ pondInfo, active: id });
+  },
+  goPage() {
+    wx.navigateTo({ url: "/pages/put/records/records" });
   },
 
   /**

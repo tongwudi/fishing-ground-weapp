@@ -16,10 +16,6 @@ page {
   --tabbar-height: 120rpx;
 }
 
-a {
-  color: #3e74ec;
-}
-
 .card {
   padding: global.$gutter-12;
   margin-bottom: global.$gutter-12;
@@ -43,16 +39,18 @@ a {
     display: flex;
     align-items: center;
 
-    .detail_label {
-      width: 90px;
+    .info-item_label {
+      width: 5em;
       text-align: right;
-    }
-    .info-item_label{
       color: rgb(92, 88, 88);
     }
 
     .info-item_label::after {
       content: "：";
+    }
+
+    .info-item_btn {
+      color: #3e74ec;
     }
 
     .info-item_value {

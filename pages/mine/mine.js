@@ -45,6 +45,7 @@ Page({
       this.setToken("");
       this.setRole("");
       this.setUserInfo("");
+      this.setGroupId("");
       wx.clearStorageSync();
     }
   },

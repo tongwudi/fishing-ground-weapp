@@ -1,24 +1,22 @@
 // pages/species/list/list.js
 import { getMyGroupList, getFishList } from "@/api/index";
+import { groupIdBehavior } from "@/store/behaviors";
 
 Page({
+  behaviors: [groupIdBehavior],
   /**
    * 页面的初始数据
    */
   data: {
-    groupId: "",
     list: []
   },
 
   async getData() {
-    const groundList = await getMyGroupList();
-    if (groundList.length == 0) return;
-    const groupInfo = groundList[0];
-    const { id } = groupInfo;
+    const id = this.data.groupId;
     const list = await getFishList({ id });
-    this.setData({ groupId: groupInfo.id, list });
+    this.setData({ list });
   },
-  goPage(event) {
+  goPage() {
     const { groupId } = this.data;
     const url = `/pages/fish/add/add?groupId=${groupId}`;
     wx.navigateTo({ url });

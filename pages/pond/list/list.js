@@ -21,6 +21,7 @@ Page({
     const res = await getPrivateFishAdminPondList({
       id
     });
+    console.log("222",res.data)
     this.setData({
       list: res.data
     });

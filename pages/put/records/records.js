@@ -1,4 +1,4 @@
-import { fishPondDetail } from "@/api/index";
+import { getPublicFishRecord } from "@/api/index";
 
 Page({
   /**
@@ -9,8 +9,8 @@ Page({
   },
 
   async getData(id) {
-    const info = await fishPondDetail({ id });
-    this.setData({ info });
+    const info = await getPublicFishRecord({ id });
+    this.setData({ info:info.data });
   },
 
   /**

@@ -3,11 +3,11 @@
   <scroll-view class="scroll-view" type="list" scroll-y>
     <block wx:if="{{ list.length > 0 }}">
       <view class="list">
-        <block wx:for="{{ list }}" wx:key="index">
+        <view wx:for="{{ list }}" wx:key="index">
           <!-- 没有修改接口不可点击 -->
-          <!-- <view class="item" data-id="{{ item.id }}" bind:tap="goPage"> -->
-          <view class="item">{{ item.name }}</view>
-        </block>
+          <view class="item" data-id="{{ item.id }}" bind:tap="goPage">
+          </view>
+        </view>
       </view>
     </block>
     <van-empty wx:else description="暂无数据" />

@@ -1,6 +1,8 @@
-import { getMyGroupList, getFishPondList } from "@/api/index";
+import { groupDetail } from "@/api/index";
+import { groupIdBehavior } from "@/store/behaviors";
 
 Page({
+  behaviors: [groupIdBehavior],
   /**
    * 页面的初始数据
    */
@@ -16,18 +18,18 @@ Page({
     active: 0
   },
   async getData() {
-    const groundList = await getMyGroupList();
-    if (groundList.length == 0) return;
-    const groupInfo = groundList[0];
-    const { id } = groupInfo;
-    const tabs = await getFishPondList({ id });
-    this.setData({ groupInfo, tabs });
+    const id = this.data.groupId;
+    const groupInfo = await groupDetail({ id });
+    this.setData({ groupInfo });
   },
   handleChange(event) {
     wx.showToast({
       title: `切换到标签 ${event.detail.name}`,
       icon: "none"
     });
+  },
+  goPage() {
+    wx.navigateTo({ url: "/pages/put/records/records" });
   },
 
   /**

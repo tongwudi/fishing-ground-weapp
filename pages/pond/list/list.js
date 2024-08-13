@@ -1,22 +1,20 @@
 // pages/pond/list/list.js
-import { getMyGroupList, getFishPondList } from "@/api/index";
+import { getFishPondList } from "@/api/index";
+import { groupIdBehavior } from "@/store/behaviors";
 
 Page({
+  behaviors: [groupIdBehavior],
   /**
    * 页面的初始数据
    */
   data: {
-    groupId: "",
     list: []
   },
 
   async getData() {
-    const groundList = await getMyGroupList();
-    if (groundList.length == 0) return;
-    const groupInfo = groundList[0];
-    const { id } = groupInfo;
+    const id = this.data.groupId;
     const list = await getFishPondList({ id });
-    this.setData({ groupId: groupInfo.id, list });
+    this.setData({ list });
   },
   goPage(event) {
     const { id } = event.currentTarget.dataset;

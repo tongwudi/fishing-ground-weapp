@@ -4,14 +4,21 @@ import { store } from "@/store/index";
 export const loginBehavior = BehaviorWithStore({
   storeBindings: {
     store,
-    actions: ["setToken", "setRole", "setUserInfo"]
-  },
-})
+    actions: ["setToken", "setRole", "setUserInfo", "setGroupId"]
+  }
+});
 
 export const mineBehavior = BehaviorWithStore({
   storeBindings: {
     store,
     fields: ["isLogin", "userInfo"],
-    actions: ["setToken", "setRole", "setUserInfo"]
-  },
-})
+    actions: ["setToken", "setRole", "setUserInfo", "setGroupId"]
+  }
+});
+
+export const groupIdBehavior = BehaviorWithStore({
+  storeBindings: {
+    store,
+    fields: ["groupId"]
+  }
+});

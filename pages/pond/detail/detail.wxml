@@ -17,10 +17,6 @@
     <van-field label="塘口大小" type="digit" value="{{ form.size }}" data-field="size" bind:change="handleChange" placeholder="请输入塘口大小">
       <text slot="button">亩</text>
     </van-field>
-    <view class="info-item">
-      <text class="info-item_label detail_label">放鱼记录</text>
-      <a href="">点击查看</a>
-    </view>
     <van-field label="钓位数" type="digit" value="{{ form.position_num }}" data-field="position_num" bind:change="handleChange" placeholder="请输入钓位数">
       <text slot="button">个</text>
     </van-field>

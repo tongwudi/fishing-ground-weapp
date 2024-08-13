@@ -1,4 +1,4 @@
-import { login } from "@/api/index";
+import { login, getMyGroupList } from "@/api/index";
 import { loginBehavior } from "@/store/behaviors";
 
 Page({
@@ -28,6 +28,12 @@ Page({
     this.setToken(res.token);
     this.setRole(userRole.join());
     this.setUserInfo(res.user);
+    // 默认每个钓场身份的账号只有一个钓场，所以把请求钓场列表接口放到登录来做
+    if (userRole.includes("fish")) {
+      const groundList = await getMyGroupList();
+      if (groundList.length == 0) return;
+      this.setGroupId(groundList[0].id);
+    }
     wx.navigateBack();
   }
 });

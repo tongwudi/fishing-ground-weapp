@@ -5,6 +5,7 @@ export const store = observable({
   token: wx.getStorageSync("token") || "",
   role: wx.getStorageSync("role") || "",
   userInfo: wx.getStorageSync("userInfo") || {},
+  groupId: wx.getStorageSync("groupId") || "",
 
   // 计算属性
   get isLogin() {
@@ -25,5 +26,11 @@ export const store = observable({
     userInfo
       ? wx.setStorageSync("userInfo", userInfo)
       : wx.removeStorageSync("userInfo");
+  }),
+  setGroupId: action(function (groupId) {
+    this.groupId = groupId;
+    groupId
+      ? wx.setStorageSync("groupId", groupId)
+      : wx.removeStorageSync("groupId");
   })
 });

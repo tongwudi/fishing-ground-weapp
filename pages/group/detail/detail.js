@@ -1,28 +1,24 @@
-import {
-  getPublicFishGrounds,
-  getPublicFishPond
-} from "@/api/index";
+import { getPublicFishGrounds, getPublicFishPond } from "@/api/index";
 
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    banner: [{
-      url: "https://img95.699pic.com/xsj/0w/39/0n.jpg%21/fw/700/watermark/url/L3hzai93YXRlcl9kZXRhaWwyLnBuZw/align/southeast"
-    }],
+    banner: [
+      {
+        url:
+          "https://img95.699pic.com/xsj/0w/39/0n.jpg%21/fw/700/watermark/url/L3hzai93YXRlcl9kZXRhaWwyLnBuZw/align/southeast"
+      }
+    ],
     groupInfo: {},
     pondInfo: {},
     active: ""
   },
 
   async getData(id) {
-    const groupInfo = (await getPublicFishGrounds({
-      id
-    })).data;
-    this.setData({
-      groupInfo
-    });
+    const { data: groupInfo } = await getPublicFishGrounds({ id });
+    this.setData({ groupInfo });
     if (groupInfo.fishes_pond.length == 0) return;
     const pondId = groupInfo.fishes_pond[0].id;
     this.getPondInfo(pondId);
@@ -32,18 +28,14 @@ Page({
     this.getPondInfo(id);
   },
   async getPondInfo(id) {
-    const pondInfo = (await getPublicFishPond({
-      id
-    })).data;
+    const { data: pondInfo } = await getPublicFishPond({ id });
     this.setData({
       pondInfo,
       active: id
     });
   },
   goPage() {
-    wx.navigateTo({
-      url: "/pages/put/records/records"
-    });
+    wx.navigateTo({ url: "/pages/put/records/records" });
   },
 
   /**

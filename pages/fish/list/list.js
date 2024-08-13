@@ -1,10 +1,6 @@
 // pages/species/list/list.js
-import {
-  getPrivateFishAdminFishList
-} from "@/api/index";
-import {
-  groupIdBehavior
-} from "@/store/behaviors";
+import { getPrivateFishAdminFishList } from "@/api/index";
+import { groupIdBehavior } from "@/store/behaviors";
 
 Page({
   behaviors: [groupIdBehavior],
@@ -17,21 +13,12 @@ Page({
 
   async getData() {
     const id = this.data.groupId;
-    const list = await getPrivateFishAdminFishList({
-      id
-    });
-    this.setData({
-      list: list.data
-    });
+    const { data: list } = await getPrivateFishAdminFishList({ id });
+    this.setData({ list });
   },
   goPage() {
-    const {
-      groupId
-    } = this.data;
-    const url = `/pages/fish/add/add?groupId=${groupId}`;
-    wx.navigateTo({
-      url
-    });
+    const { groupId } = this.data;
+    wx.navigateTo({ url: `/pages/fish/add/add?groupId=${groupId}` });
   },
 
   /**

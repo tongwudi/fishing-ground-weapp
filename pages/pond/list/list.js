@@ -1,10 +1,6 @@
 // pages/pond/list/list.js
-import {
-  getPrivateFishAdminPondList
-} from "@/api/index";
-import {
-  groupIdBehavior
-} from "@/store/behaviors";
+import { getPrivateFishAdminPondList } from "@/api/index";
+import { groupIdBehavior } from "@/store/behaviors";
 
 Page({
   behaviors: [groupIdBehavior],
@@ -17,26 +13,14 @@ Page({
 
   async getData() {
     const id = this.data.groupId;
-    console.log(this.data);
-    const res = await getPrivateFishAdminPondList({
-      id
-    });
-    console.log("222",res.data)
-    this.setData({
-      list: res.data
-    });
+    const { data: list } = await getPrivateFishAdminPondList({ id });
+    this.setData({ list });
   },
   goPage(event) {
-    const {
-      id
-    } = event.currentTarget.dataset;
-    const {
-      groupId
-    } = this.data;
+    const { id } = event.currentTarget.dataset;
+    const { groupId } = this.data;
     const url = `/pages/pond/detail/detail?groupId=${groupId}`;
-    wx.navigateTo({
-      url: id ? `${url}&id=${id}` : url
-    });
+    wx.navigateTo({ url: id ? `${url}&id=${id}` : url });
   },
 
   /**

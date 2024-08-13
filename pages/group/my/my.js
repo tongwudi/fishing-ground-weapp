@@ -1,9 +1,5 @@
-import {
-  getPublicFishGrounds
-} from "@/api/index";
-import {
-  groupIdBehavior
-} from "@/store/behaviors";
+import { getPublicFishGrounds } from "@/api/index";
+import { groupIdBehavior } from "@/store/behaviors";
 
 Page({
   behaviors: [groupIdBehavior],
@@ -11,40 +7,35 @@ Page({
    * 页面的初始数据
    */
   data: {
-    banner: [{
-      url: "https://img95.699pic.com/xsj/0w/39/0n.jpg%21/fw/700/watermark/url/L3hzai93YXRlcl9kZXRhaWwyLnBuZw/align/southeast"
-    }],
+    banner: [
+      {
+        url:
+          "https://img95.699pic.com/xsj/0w/39/0n.jpg%21/fw/700/watermark/url/L3hzai93YXRlcl9kZXRhaWwyLnBuZw/align/southeast"
+      }
+    ],
     groupInfo: {},
     tabs: {},
     active: 0
   },
   async getData() {
     const id = this.data.groupId;
-    const groupInfo = await getPublicFishGrounds({
-      id
-    });
-    this.setData({
-      groupInfo: groupInfo.data
-    });
+    const { data: groupInfo } = await getPublicFishGrounds({ id });
+    this.setData({ groupInfo });
   },
-  handleChange(event) {
-    wx.showToast({
-      title: `切换到标签 ${event.detail.name}`,
-      icon: "none"
-    });
-  },
+  // handleChange(event) {
+  //   wx.showToast({
+  //     title: `切换到标签 ${event.detail.name}`,
+  //     icon: "none"
+  //   });
+  // },
   goPage() {
-    wx.navigateTo({
-      url: "/pages/put/records/records"
-    });
+    wx.navigateTo({ url: "/pages/put/records/records" });
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-    this.getData();
-  },
+  onLoad(options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -58,6 +49,7 @@ Page({
     if (typeof this.getTabBar === "function") {
       this.getTabBar().init();
     }
+    this.getData();
   },
 
   /**

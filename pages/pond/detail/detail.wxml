@@ -14,13 +14,13 @@
         </van-row>
       </van-radio-group>
     </van-cell>
-    <van-field label="塘口大小" type="number" value="{{ form.size }}" data-field="size" bind:change="handleChange" placeholder="请输入塘口大小">
+    <van-field label="塘口大小" type="digit" value="{{ form.size }}" data-field="size" bind:change="handleChange" placeholder="请输入塘口大小">
       <text slot="button">亩</text>
     </van-field>
-    <van-field label="钓位数" type="number" value="{{ form.position_num }}" data-field="position_num" bind:change="handleChange" placeholder="请输入钓位数">
+    <van-field label="钓位数" type="digit" value="{{ form.position_num }}" data-field="position_num" bind:change="handleChange" placeholder="请输入钓位数">
       <text slot="button">个</text>
     </van-field>
-    <van-field label="水深" type="number" value="{{ form.water_depth }}" data-field="water_depth" bind:change="handleChange" placeholder="请输入水深">
+    <van-field label="水深" type="digit" value="{{ form.water_depth }}" data-field="water_depth" bind:change="handleChange" placeholder="请输入水深">
       <text slot="button">米</text>
     </van-field>
     <van-cell title="塘口图片" title-width="6.2em" title-class="cell-title">

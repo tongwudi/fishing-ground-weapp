@@ -1,4 +1,5 @@
 import { env } from "./env";
+import { store } from "@/store/index";
 
 class Request {
   constructor(params = {}) {
@@ -15,9 +16,9 @@ class Request {
     // 定义拦截器对象，方便在请求前或响应后进行处理。
     this.interceptors = {
       // 请求拦截器
-      request: config => config,
+      request: null,
       // 响应拦截器
-      response: response => response
+      response: null
     };
     // 初始化 queue 数组，用于存储请求队列
     this.queue = [];
@@ -89,8 +90,8 @@ instance.interceptors.request = config => {
   }
 
   // 设置 token
-  const token = wx.getStorageSync("token") || "";
-  config.header["x-token"] = token;
+  config.header["x-token"] = store.token;
+
   return config;
 };
 
@@ -124,7 +125,7 @@ instance.interceptors.response = response => {
         content: "用户未登录，是否去登录？",
         success(res) {
           if (res.confirm) {
-            wx.clearStorageSync();
+            store.resetStore();
             wx.navigateTo({ url: "/pages/login/login" });
           }
         }
@@ -136,8 +137,8 @@ instance.interceptors.response = response => {
         content: "登录授权过期，请重新授权",
         success(res) {
           if (res.confirm) {
-            wx.clearStorageSync();
-            // wx.navigateTo({ url: "/pages/login/login" });
+            store.resetStore();
+            wx.navigateTo({ url: "/pages/login/login" });
           }
         }
       });

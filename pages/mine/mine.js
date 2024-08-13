@@ -7,11 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    defaultUserInfo: {
-      avatar: "https://pic.imgdb.cn/item/64c0cc451ddac507ccd49532.png",
-      nick_name: "登录 / 注册"
-    },
-    show: false
+    overlayShow: false
   },
 
   goPage() {
@@ -34,19 +30,15 @@ Page({
     }
   },
   openModal() {
-    this.setData({ show: true });
+    this.setData({ overlayShow: true });
   },
   closeModal() {
-    this.setData({ show: false });
+    this.setData({ overlayShow: false });
   },
   async logout() {
     const res = await wx.showModal({ content: "确定要退出登录吗？" });
     if (res.confirm) {
-      this.setToken("");
-      this.setRole("");
-      this.setUserInfo("");
-      this.setGroupId("");
-      wx.clearStorageSync();
+      this.resetStore();
     }
   },
 

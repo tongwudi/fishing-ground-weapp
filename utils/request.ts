@@ -8,6 +8,7 @@
  */
 
 import { env } from './env'
+import { store } from "@/store/index";
 
 function responseInterceptors<T>(response: any) {
   const { statusCode, data, config } = response;
@@ -30,7 +31,7 @@ function responseInterceptors<T>(response: any) {
         content: "用户未登录，是否去登录？",
         success(res) {
           if (res.confirm) {
-            wx.clearStorageSync();
+            store.resetStore();
             wx.navigateTo({ url: "/pages/login/login" });
           }
         }
@@ -42,8 +43,8 @@ function responseInterceptors<T>(response: any) {
         content: "登录授权过期，请重新授权",
         success(res) {
           if (res.confirm) {
-            wx.clearStorageSync();
-            // wx.navigateTo({ url: "/pages/login/login" });
+            store.resetStore();
+            wx.navigateTo({ url: "/pages/login/login" });
           }
         }
       });
@@ -55,11 +56,10 @@ function responseInterceptors<T>(response: any) {
 }
 
 function requestInterceptors(config: any) {
-  const token = wx.getStorageSync("token") || "";
   if (!config.header) {
     config.header = {}
   }
-  config.header["x-token"] = token;
+  config.header["x-token"] = store.token;
   return config;
 }
 

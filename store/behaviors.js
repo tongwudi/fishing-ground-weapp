@@ -12,7 +12,7 @@ export const mineBehavior = BehaviorWithStore({
   storeBindings: {
     store,
     fields: ["isLogin", "userInfo"],
-    actions: ["setToken", "setRole", "setUserInfo", "setGroupId"]
+    actions: ["resetStore"]
   }
 });
 

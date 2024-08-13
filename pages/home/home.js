@@ -20,14 +20,14 @@ Page({
       }
     ],
     total: 0,
-    list: [{ id: 1 }, { id: 2 }]
+    list: []
   },
 
   async getList() {
-    const res = await getPublicFishList();
+    const { data } = await getPublicFishList();
     this.setData({
-      list: res.data.list,
-      total: res.data.total
+      list: data.list,
+      total: data.total
     });
   },
 

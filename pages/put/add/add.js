@@ -13,27 +13,36 @@ Page({
     form: {}
   },
   async getFishOption() {
-    const fishList = await getPrivateFishAdminFishList();
-    this.setData({
-      fishList: fishList.data
-    });
+    const { data: fishList } = await getPrivateFishAdminFishList();
+    this.setData({ fishList });
   },
   handleChange(event) {
-    const {
-      field
-    } = event.currentTarget.dataset;
+    const { field } = event.currentTarget.dataset;
     const value = event.detail;
-    this.setData({
-      [`form.${field}`]: value
+    this.setData({ [`form.${field}`]: value });
+  },
+  afterRead(event) {
+    const { file } = event.detail;
+    const { fileList } = this.data;
+    // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
+    wx.uploadFile({
+      url: env.baseURL + "/private/fish/admin/photo/add", // 仅为示例，非真实的接口地址
+      filePath: file.url,
+      name: "file",
+      header: { "x-token": wx.getStorageSync("token") },
+      success(res) {
+        const { data } = JSON.parse(res.data);
+        fileList.push({ url: `https://${data.url}`, id: data.id });
+        this.setData({
+          "form.photo_ids": fileList.map(item => item.id),
+          fileList: fileList
+        });
+      }
     });
   },
   async handleSave() {
-    const {
-      form
-    } = this.data;
-    const params = {
-      ...form
-    };
+    const { form } = this.data;
+    const params = { ...form };
     console.log(params);
     return;
     const res = await postPrivateFishAdminFishAdd(params);

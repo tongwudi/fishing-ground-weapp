@@ -1,10 +1,14 @@
 import { observable, action } from "mobx-miniprogram";
 
+const defaultUserInfo = {
+  avatar: "https://pic.imgdb.cn/item/64c0cc451ddac507ccd49532.png",
+  nick_name: "登录 / 注册"
+};
 export const store = observable({
   // 数据字段
   token: wx.getStorageSync("token") || "",
   role: wx.getStorageSync("role") || "",
-  userInfo: wx.getStorageSync("userInfo") || {},
+  userInfo: wx.getStorageSync("userInfo") || defaultUserInfo,
   groupId: wx.getStorageSync("groupId") || "",
 
   // 计算属性
@@ -13,24 +17,27 @@ export const store = observable({
   },
 
   // actions
+  resetStore: action(function () {
+    this.token = "";
+    this.role = "";
+    this.userInfo = defaultUserInfo;
+    this.groupId = "";
+    wx.clearStorageSync();
+  }),
   setToken: action(function (token) {
     this.token = token;
-    token ? wx.setStorageSync("token", token) : wx.removeStorageSync("token");
+    wx.setStorageSync("token", token);
   }),
   setRole: action(function (role) {
     this.role = role;
-    role ? wx.setStorageSync("role", role) : wx.removeStorageSync("role");
+    wx.setStorageSync("role", role);
   }),
   setUserInfo: action(function (userInfo) {
     this.userInfo = userInfo;
-    userInfo
-      ? wx.setStorageSync("userInfo", userInfo)
-      : wx.removeStorageSync("userInfo");
+    wx.setStorageSync("userInfo", userInfo);
   }),
   setGroupId: action(function (groupId) {
     this.groupId = groupId;
-    groupId
-      ? wx.setStorageSync("groupId", groupId)
-      : wx.removeStorageSync("groupId");
+    wx.setStorageSync("groupId", groupId);
   })
 });

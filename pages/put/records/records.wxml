@@ -34,10 +34,6 @@
         <text class="info-item_value">{{ info.rule }}</text>
       </view>
       <view class="info-item">
-        <text class="info-item_label">放鱼计划</text>
-        <text class="info-item_btn">查看</text>
-      </view>
-      <view class="info-item">
         <text class="info-item_label">放鱼记录</text>
       </view>
     </view>

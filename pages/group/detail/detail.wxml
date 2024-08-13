@@ -36,42 +36,44 @@
     <van-tabs sticky animated swipeable ellipsis="{{ false }}" active="{{ active }}" bind:change="handleChange">
       <block wx:for="{{ groupInfo.fishes_pond }}" wx:key="id" wx:for-item="tab">
         <van-tab title="{{ tab.name }}" name="{{ tab.id }}">
-          <view class="tab-content">
+          <view class="card tab-content">
             <!-- <image src="" mode=""/> -->
-            <view class="card">
-              <view class="card-body info">
-                <view class="info-item">
-                  <text class="info-item_label">塘口名称</text>
-                  <text class="info-item_value">{{ pondInfo.name }}</text>
-                </view>
-                <view class="info-item">
-                  <text class="info-item_label">放鱼记录</text>
-                  <text class="info-item_btn" bind:tap="goPage">查看</text>
-                </view>
-                <view class="info-item">
-                  <text class="info-item_label">塘口大小</text>
-                  <text class="info-item_value">{{ pondInfo.size || 0 }}亩</text>
-                </view>
-                <view class="info-item">
-                  <text class="info-item_label">钓位数</text>
-                  <text class="info-item_value">{{ pondInfo.position_num || 0 }}个</text>
-                </view>
-                <view class="info-item">
-                  <text class="info-item_label">水深</text>
-                  <text class="info-item_value">{{ pondInfo.water_depth || 0 }}米</text>
-                </view>
-                <view class="info-item">
-                  <text class="info-item_label">收费标准</text>
-                  <text class="info-item_value">{{ pondInfo.charge_standard }}</text>
-                </view>
-                <view class="info-item">
-                  <text class="info-item_label">回鱼规则</text>
-                  <text class="info-item_value">{{ pondInfo.return_fish_rule }}</text>
-                </view>
-                <view class="info-item">
-                  <text class="info-item_label">塘口规则</text>
-                  <text class="info-item_value">{{ pondInfo.rule }}</text>
-                </view>
+            <view class="card-body info">
+              <view class="info-item">
+                <text class="info-item_label">塘口名称</text>
+                <text class="info-item_value">{{ pondInfo.name }}</text>
+              </view>
+              <view class="info-item">
+                <text class="info-item_label">放鱼记录</text>
+                <text class="info-item_btn" bind:tap="goPage">查看</text>
+              </view>
+              <view class="info-item">
+                <text class="info-item_label">放鱼计划</text>
+                <text class="info-item_btn" bind:tap="goPage">查看</text>
+              </view>
+              <view class="info-item">
+                <text class="info-item_label">塘口大小</text>
+                <text class="info-item_value">{{ pondInfo.size || 0 }}亩</text>
+              </view>
+              <view class="info-item">
+                <text class="info-item_label">钓位数</text>
+                <text class="info-item_value">{{ pondInfo.position_num || 0 }}个</text>
+              </view>
+              <view class="info-item">
+                <text class="info-item_label">水深</text>
+                <text class="info-item_value">{{ pondInfo.water_depth || 0 }}米</text>
+              </view>
+              <view class="info-item">
+                <text class="info-item_label">收费标准</text>
+                <text class="info-item_value">{{ pondInfo.charge_standard }}</text>
+              </view>
+              <view class="info-item">
+                <text class="info-item_label">回鱼规则</text>
+                <text class="info-item_value">{{ pondInfo.return_fish_rule }}</text>
+              </view>
+              <view class="info-item">
+                <text class="info-item_label">塘口规则</text>
+                <text class="info-item_value">{{ pondInfo.rule }}</text>
               </view>
             </view>
           </view>

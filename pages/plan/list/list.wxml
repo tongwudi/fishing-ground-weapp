@@ -1,0 +1,9 @@
+<!--pages/plan/list/list.wxml-->
+<view class="plan-container">
+  <van-cell bind:click="onSelectAreaOpen">
+    <van-field value="{{ selectArea }}" readonly placeholder="选择渔场" is-link></van-field>
+  </van-cell>
+  <van-popup show="{{ selectAreaVisible }}" position="bottom" bind:close="onSelectAreaClose">
+    <van-picker show-toolbar title="选择渔场" columns="{{areas}}" bind:cancel="onSelectAreaClose" bind:confirm="onAreaSelect"></van-picker>
+  </van-popup>
+</view>

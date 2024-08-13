@@ -3,5 +3,8 @@
     "@vant/weapp": "^1.11.6",
     "mobx-miniprogram": "^6.12.3",
     "mobx-miniprogram-bindings": "^3.0.1"
+  },
+  "devDependencies": {
+    "miniprogram-api-typings": "^3.12.2"
   }
 }

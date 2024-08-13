@@ -6,63 +6,95 @@
  * @Description:
  * @Email: UvDream@163.com
  */
-import axios from "axios";
-import {message} from "antd";
+
+import { env } from './env'
+
+function responseInterceptors<T>(response: any) {
+  const { statusCode, data, config } = response;
+
+  // 处理请求状态
+  if (statusCode != 200) {
+    wx.showToast({ title: "网络异常！", icon: "error" });
+    return Promise.reject(data.errMsg);
+  }
+
+  // 处理服务器返回状态
+  switch (data.code) {
+    case 0:
+      return Promise.resolve(data as T);
+    case 200:
+      return Promise.resolve(data as T);
+    case 50000:
+      wx.showModal({
+        title: "提示",
+        content: "用户未登录，是否去登录？",
+        success(res) {
+          if (res.confirm) {
+            wx.clearStorageSync();
+            wx.navigateTo({ url: "/pages/login/login" });
+          }
+        }
+      });
+      return Promise.reject()
+    case 50001:
+      wx.showModal({
+        title: "提示",
+        content: "登录授权过期，请重新授权",
+        success(res) {
+          if (res.confirm) {
+            wx.clearStorageSync();
+            // wx.navigateTo({ url: "/pages/login/login" });
+          }
+        }
+      });
+      return Promise.reject()
+    default:
+      wx.showToast({ title: data.msg, icon: "none" });
+      return Promise.reject(data.msg);
+  }
+}
+
+function requestInterceptors(config: any) {
+  const token = wx.getStorageSync("token") || "";
+  if (!config.header) {
+    config.header = {}
+  }
+  config.header["x-token"] = token;
+  return config;
+}
 
 export async function request<T>(
-    url: string,
-    config: {
-        method: string;
-        params?: any;
-        data?: any;
-        [key: string]: any
-    }
+  url: string,
+  config: {
+    method: string;
+    params?: any;
+    data?: any;
+    [key: string]: any
+  }
 ): Promise<T> {
-    const {method, params, data, ...options} = config;
+  const defaultOptions = {
+    baseURL: env.baseURL,
+    timeout: 60000,
+    header: { "Content-type": "application/json" },
+    isLoading: true,
+  }
+  const options = requestInterceptors(config);
+  console.log(options);
 
-    const instance = axios.create({
-        // baseURL: "http://88.22.24.24:8989",
-        baseURL: "http://localhost:8989",
-        timeout: 60000,
-        headers: {
-            "x-token": localStorage.getItem("token")
-        }
-    });
-    instance.interceptors.request.use(
-        (config) => {
-            return config;
-        },
-        (error) => {
-            return Promise.reject(error);
-        }
-    );
-    instance.interceptors.response.use(
-        (response) => {
-            if (response.data.code === 50000) {
-                message.error("登录过期，请重新登录")
-                localStorage.removeItem("token");
-                localStorage.removeItem("role");
-                localStorage.removeItem("user");
-                //     退出登录页面
-                window.location.href = "/login"
-            }
-            if (response.data.code !== 200) {
-                message.error(response.data.msg)
-                return Promise.reject(response.data.msg);
-            }
-
-            return response.data;
-        },
-        (error) => {
-            return Promise.reject(error);
-        }
-    );
-
-    return instance.request({
-        url,
-        method,
-        params,
-        data,
-        ...options,
-    });
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: defaultOptions.baseURL + url,
+      ...options,
+      data: options.params || options.data || {},
+      success: res => {
+        const mergeRes = { ...res, config: options };
+        resolve(responseInterceptors(mergeRes));
+      },
+      fail: err => {
+        const mergeErr = { ...err, config: options };
+        reject(responseInterceptors(mergeErr));
+      }
+    })
+  })
 }
+

@@ -17,11 +17,18 @@ importers:
       mobx-miniprogram-bindings:
         specifier: ^3.0.1
         version: 3.0.1(mobx-miniprogram@6.12.3)
+    devDependencies:
+      miniprogram-api-typings:
+        specifier: ^3.12.2
+        version: 3.12.3
 
 packages:
 
   '@vant/weapp@1.11.6':
     resolution: {integrity: sha512-a3heReWYT2gNdsyj6x1hBwsM8V8NrjcPAmle86NH2CD2V/i/h0le75piW6KntSfOPCwekVWMBKhysNrBpJeKdw==}
+
+  miniprogram-api-typings@3.12.3:
+    resolution: {integrity: sha512-o7bOfrU28MEMCBWo83nXv0ROQSBFxJcfCl4f2wTYqah64ipC5RGqLJfvWJTWhlQt2ECVwspSzM8LgvnfMo7TEQ==}
 
   mobx-miniprogram-bindings@3.0.1:
     resolution: {integrity: sha512-pS/l/9LBDThxMEW/AqNQzr1D/NrNRwMqBkgn6HSkIx4LuHiM6GhlJlOY5pygqj4XOreDwnPU1bxiC+6yLFsmiw==}
@@ -34,6 +41,8 @@ packages:
 snapshots:
 
   '@vant/weapp@1.11.6': {}
+
+  miniprogram-api-typings@3.12.3: {}
 
   mobx-miniprogram-bindings@3.0.1(mobx-miniprogram@6.12.3):
     dependencies:

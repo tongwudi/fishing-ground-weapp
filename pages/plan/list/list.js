@@ -1,11 +1,11 @@
 import {
   getPrivateFishAdminPondList
-} from "@/api/index";
+} from "@/api/fishAdmin";
 import {
-  mineBehavior
+  groupIdBehavior
 } from "@/store/behaviors";
 Page({
-  behaviors: [mineBehavior],
+  behaviors: [groupIdBehavior],
   /**
    * 页面的初始数据
    */
@@ -29,26 +29,27 @@ Page({
       },
     ]
   },
-  onLoad(options) {
-  },
+  onLoad(options) {},
   onReady() {
     this.getAreaList()
   },
-  onShow() {
-  },
-  onHide() {
-  },
-  onUnload() {
-  },
-  onPullDownRefresh() {
-  },
-
-  onReachBottom() {
-  },
+  onShow() {},
+  onHide() {},
+  onUnload() {},
+  onPullDownRefresh() {},
+  onReachBottom() {},
   getAreaList() {
     getPrivateFishAdminPondList({
-      id: this.data.userInfo.id
+      id: this.data.groupId
     }).then(res => {
+      this.setData({
+        areas: res.data.map(item => {
+          return {
+            text: item.name,
+            ...item
+          }
+        })
+      })
       console.log(res);
     })
   },
@@ -64,7 +65,6 @@ Page({
     })
   },
   onSelectAreaClose() {
-    console.log(1111111);
     this.setData({
       selectAreaVisible: false
     })

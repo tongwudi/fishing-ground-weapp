@@ -25,7 +25,8 @@
       }
     ],
     "useCompilerPlugins": [
-      "sass"
+      "sass",
+      "typescript"
     ]
   },
   "condition": {},

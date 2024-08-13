@@ -1,4 +1,4 @@
-import { getGroupList } from "@/api/index";
+import { getPublicFishList } from "@/api/index";
 
 Page({
   /**
@@ -24,10 +24,10 @@ Page({
   },
 
   async getList() {
-    const res = await getGroupList();
+    const res = await getPublicFishList();
     this.setData({
-      list: res.list,
-      total: res.total
+      list: res.data.list,
+      total: res.data.total
     });
   },
 

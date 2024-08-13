@@ -1,5 +1,7 @@
+// @ts-ignore
+/* eslint-disable */
 import { request } from '../utils/request';
-import API from "./typings"
+
 /** 登陆 登陆 POST /base/system/login */
 export async function postBaseSystemLogin(body: API.User, options?: { [key: string]: any }) {
   return request<

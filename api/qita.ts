@@ -1,5 +1,7 @@
+// @ts-ignore
+/* eslint-disable */
 import { request } from '../utils/request';
-import API from "./typings"
+
 /** 存储视频路径到数据库 存储视频路径到数据库 POST /base/system/save/video */
 export async function postBaseSystemSaveVideo(
   body: API.VideoConfig,

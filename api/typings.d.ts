@@ -71,14 +71,27 @@ declare namespace API {
     name?: string;
     /** 文件路径 */
     path?: string;
+    /** 存储地方 */
+    position?: string;
     /** 文件大小 */
     size?: number;
+    /** 来源 */
+    source?: string;
     /** 文件类型 */
     type?: string;
     update_time?: string;
     user?: User;
     /** 上传者 */
     user_id?: string;
+  };
+
+  type FishedConfig = {
+    create_time?: string;
+    delete_time?: DeletedAt;
+    id?: string;
+    /** 是否上线 */
+    is_online?: boolean;
+    update_time?: string;
   };
 
   type FishesPond = {
@@ -115,6 +128,19 @@ declare namespace API {
     update_time?: string;
     /** 水深 */
     water_depth?: number;
+    /** 根据塘口设置视频水印还是钓场 */
+    where_watermark?: number;
+  };
+
+  type FishesPondFish = {
+    /** 钓场id */
+    angling_site_id?: string;
+    create_time?: string;
+    delete_time?: DeletedAt;
+    id?: string;
+    /** 鱼种 */
+    name?: string;
+    update_time?: string;
   };
 
   type FishesPondPhoto = {
@@ -134,6 +160,10 @@ declare namespace API {
   };
 
   type getPrivateFishAdminBlackListParams = {
+    /** 页码 */
+    page: number;
+    /** 每页数量 */
+    page_size: number;
     /** 名称 */
     name?: string;
     /** 地址 */
@@ -228,7 +258,17 @@ declare namespace API {
     name?: string;
   };
 
+  type getPublicFishPlanParams = {
+    /** 塘口id */
+    id: string;
+  };
+
   type getPublicFishPondParams = {
+    /** 塘口id */
+    id: string;
+  };
+
+  type getPublicFishRecordParams = {
     /** 塘口id */
     id: string;
   };
@@ -248,6 +288,16 @@ declare namespace API {
     name?: string;
     remark?: string;
     update_time?: string;
+  };
+
+  type postPrivateFishAdminFishType_openAPI_deleteParams = {
+    /** id */
+    id: string;
+  };
+
+  type postPrivateFishAdminPond_openAPI_deleteParams = {
+    /** id */
+    id: string;
   };
 
   type PutFishPlan = {
@@ -277,6 +327,8 @@ declare namespace API {
     put_fish_videos?: PutFishVideo[];
     /** 放鱼数量 */
     put_num?: string;
+    /** 备注 */
+    remark?: string;
     update_time?: string;
     video_ids?: string[];
     videos?: string[];
@@ -317,6 +369,14 @@ declare namespace API {
     update_time?: string;
   };
 
+  type TransferFishingGroundRequest = {
+    /** 钓场ID */
+    angling_site_id?: string;
+    /** 目标用户ID */
+    target_user_id?: string;
+    user_id?: string;
+  };
+
   type User = {
     /** 头像 */
     avatar?: string;
@@ -337,6 +397,9 @@ declare namespace API {
     recommend_code?: string;
     /** 个人简介 */
     remark?: string;
+    roles?: Role[];
+    /** 来源 */
+    source?: string;
     update_time?: string;
     /** 用户名 */
     user_name?: string;
@@ -361,7 +424,8 @@ declare namespace API {
     remark?: string;
     /** 角色ID */
     role_ids?: string[];
-    roles?: Role[];
+    /** 来源 */
+    source?: string;
     /** 用户名 */
     user_name?: string;
   };
@@ -375,4 +439,3 @@ declare namespace API {
     path?: string;
   };
 }
-export default API;

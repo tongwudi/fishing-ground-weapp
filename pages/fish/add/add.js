@@ -1,13 +1,16 @@
 // pages/species/add/add.js
-import { addFish } from "@/api/index";
+import { postPrivateFishAdminFishTypeAdd } from "@/api/index";
+import { groupIdBehavior } from "@/store/behaviors";
 
 Page({
+  behaviors: [groupIdBehavior],
   /**
    * 页面的初始数据
    */
   data: {
     fields: [{ key: "name" }],
-    form: {}
+    form: {},
+    count: 0
   },
 
   handleChange(event) {
@@ -17,16 +20,36 @@ Page({
     this.setData({ form: { ...form, [field]: value } });
   },
   addField() {
+    let { fields, count } = this.data;
+    count++;
+    this.setData({
+      fields: [...fields, { key: "name" + count }],
+      count
+    });
+  },
+  delField(event) {
+    const { field } = event.currentTarget.dataset;
     const { fields } = this.data;
-    this.setData({ fields: [...fields, { key: "name" + fields.length }] });
+    const idx = fields.findIndex(v => v.key == field);
+    fields.splice(idx, 1);
+    this.setData({ fields });
   },
   async handleSave() {
-    const { fields, form } = this.data;
+    const { fields, form, groupId } = this.data;
+    const values = Object.values(form);
+    if (fields.length == 0 || values.length == 0) {
+      wx.showToast({
+        title: "至少需要填写一条数据！",
+        icon: "none"
+      });
+      return;
+    }
     const params = fields.reduce((a, n) => {
-      a.push({ name: form[n.key], angling_site_id: form.angling_site_id });
+      const name = form[n.key];
+      name && a.push({ name, angling_site_id: groupId });
       return a;
     }, []);
-    await addFish(params);
+    await postPrivateFishAdminFishTypeAdd(params);
     wx.showToast({
       title: "新增成功",
       success() {
@@ -40,9 +63,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-    this.setData({ ["form.angling_site_id"]: options.groupId });
-  },
+  onLoad(options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成

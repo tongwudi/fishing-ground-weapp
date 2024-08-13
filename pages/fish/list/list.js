@@ -17,8 +17,7 @@ Page({
     this.setData({ list });
   },
   goPage() {
-    const { groupId } = this.data;
-    wx.navigateTo({ url: `/pages/fish/add/add?groupId=${groupId}` });
+    wx.navigateTo({ url: "/pages/fish/add/add" });
   },
 
   /**

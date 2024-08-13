@@ -2,7 +2,9 @@
 <view class="container">
   <van-cell-group>
     <block wx:for="{{ fields }}" wx:key="index">
-      <van-field value="{{ form[item.key] }}" data-field="{{ item.key }}" bind:change="handleChange" clearable placeholder="请输入鱼种名称" />
+      <van-field value="{{ form[item.key] }}" data-field="{{ item.key }}" bind:change="handleChange" bind:click-icon="delField" clearable placeholder="请输入鱼种名称">
+        <van-icon wx:if="{{ fields.length > 1 }}" slot="right-icon" name="delete-o" />
+      </van-field>
     </block>
   </van-cell-group>
 

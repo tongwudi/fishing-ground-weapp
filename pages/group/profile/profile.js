@@ -23,9 +23,10 @@ Page({
   },
   openPicker(event) {
     const { field } = event.currentTarget.dataset;
-    const { pickerConfig } = this.data;
-    pickerConfig.show = true;
-    pickerConfig.activeKey = field;
+    const pickerConfig = {
+      show: true,
+      activeKey: field
+    };
     this.setData({ pickerConfig });
   },
   closePicker() {

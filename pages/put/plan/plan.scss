@@ -1,1 +1,11 @@
 /* pages/put/plan/plan.wxss */
+.cell-row {
+  padding: global.$gutter-12;
+  display: flex;
+  justify-content: space-between;
+}
+.add-btn {
+  padding: global.$padding-20 0;
+  text-align: center;
+  background-color: #fff;
+}

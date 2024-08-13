@@ -1,5 +1,8 @@
 // pages/pond/list/list.js
-import { getPrivateFishAdminPondList } from "@/api/index";
+import {
+  getPrivateFishAdminPondList,
+  postPrivateFishAdminPondOpenApiDelete
+} from "@/api/index";
 import { groupIdBehavior } from "@/store/behaviors";
 
 Page({
@@ -19,17 +22,20 @@ Page({
   async handleClose(event) {
     const { position, instance } = event.detail;
     const { id } = event.currentTarget.dataset;
-    if (position == "right ") {
+    if (position == "right") {
       const res = await wx.showModal({ content: "确定要删除该塘口吗？" });
-      res.confirm && wx.showToast({ title: "删除成功" });
+      if (res.confirm) {
+        await postPrivateFishAdminPondOpenApiDelete({ id });
+        this.getData();
+        wx.showToast({ title: "删除成功" });
+      }
       instance.close();
     }
   },
   goPage(event) {
     const { id } = event.currentTarget.dataset;
-    const { groupId } = this.data;
     if (!id) {
-      wx.navigateTo({ url: `/pages/pond/detail/detail?groupId=${groupId}` });
+      wx.navigateTo({ url: "/pages/pond/detail/detail" });
     } else {
       wx.navigateTo({ url: "/pages/put/plan/plan" });
     }

@@ -7,9 +7,7 @@
           <van-cell title="{{ item.name }}">
             <van-button slot="right-icon" size="small" type="primary" plain data-id="{{ item.id }}" bind:tap="goPage">放鱼计划</van-button>
           </van-cell>
-          <view slot="right" class="van-swipe-cell__right">
-            <van-button type="danger">删除</van-button>
-          </view>
+          <van-button slot="right" type="danger">删除</van-button>
         </van-swipe-cell>
       </block>
     </block>

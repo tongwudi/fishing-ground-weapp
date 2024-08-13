@@ -16,11 +16,23 @@ Page({
     const { data: list } = await getPrivateFishAdminPondList({ id });
     this.setData({ list });
   },
+  async handleClose(event) {
+    const { position, instance } = event.detail;
+    const { id } = event.currentTarget.dataset;
+    if (position == "right ") {
+      const res = await wx.showModal({ content: "确定要删除该塘口吗？" });
+      res.confirm && wx.showToast({ title: "删除成功" });
+      instance.close();
+    }
+  },
   goPage(event) {
     const { id } = event.currentTarget.dataset;
     const { groupId } = this.data;
-    const url = `/pages/pond/detail/detail?groupId=${groupId}`;
-    wx.navigateTo({ url: id ? `${url}&id=${id}` : url });
+    if (!id) {
+      wx.navigateTo({ url: `/pages/pond/detail/detail?groupId=${groupId}` });
+    } else {
+      wx.navigateTo({ url: "/pages/put/plan/plan" });
+    }
   },
 
   /**

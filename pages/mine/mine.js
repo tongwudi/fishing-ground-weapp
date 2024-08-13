@@ -37,9 +37,7 @@ Page({
   },
   async logout() {
     const res = await wx.showModal({ content: "确定要退出登录吗？" });
-    if (res.confirm) {
-      this.resetStore();
-    }
+    res.confirm && this.resetStore();
   },
 
   /**

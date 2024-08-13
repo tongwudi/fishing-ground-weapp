@@ -1,8 +1,10 @@
 // pages/pond/detail/detail.js
 import { getPublicFishPond, postPrivateFishAdminPondAdd } from "@/api/index";
 import { env } from "@/utils/env";
+import { groupIdBehavior } from "@/store/behaviors";
 
 Page({
+  behaviors: [groupIdBehavior],
   /**
    * 页面的初始数据
    */
@@ -64,9 +66,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.setData({ ["form.angling_site_id"]: options.groupId });
-    options.id && this.getData(options.id);
-    wx.setNavigationBarTitle({ title: options.id ? "修改塘口" : "新增塘口" });
+    if (options.id) {
+      this.getData(options.id);
+      wx.setNavigationBarTitle({ title: "修改塘口" });
+    } else {
+      const { groupId } = this.data;
+      this.setData({ ["form.angling_site_id"]: groupId });
+      wx.setNavigationBarTitle({ title: "新增塘口" });
+    }
   },
 
   /**

@@ -27,12 +27,7 @@
       </view>
       <view class="info-item">
         <text class="info-item_label">营业时间</text>
-        <text class="info-item_value">随到随钓</text>
-      </view>
-
-      <view class="info-item">
-        <text class="info-item_label">放鱼计划</text>
-        <text class="info-item_btn">查看</text>
+        <text class="info-item_value">{{ groupInfo.business_hours || '随到随钓' }}</text>
       </view>
     </view>
   </view>
@@ -45,6 +40,10 @@
             <!-- <image src="" mode=""/> -->
             <view class="card">
               <view class="card-body info">
+                <view class="info-item">
+                  <text class="info-item_label">塘口名称</text>
+                  <text class="info-item_value">{{ pondInfo.name }}</text>
+                </view>
                 <view class="info-item">
                   <text class="info-item_label">放鱼记录</text>
                   <text class="info-item_btn" bind:tap="goPage">查看</text>

@@ -12,14 +12,13 @@
     <!-- 目前按每个账号只有一个钓场来，现缺少修改接口暂不放开 -->
     <!-- <van-cell title="我的钓场" is-link url="/pages/group/list/list" /> -->
     <van-cell title="塘口管理" is-link url="/pages/pond/list/list" />
-    <van-cell title="放鱼计划" is-link url="/pages/plan/list/list" />
     <van-cell title="鱼种管理" is-link url="/pages/fish/list/list" />
     <!-- <van-cell title="我的帖子" is-link /> -->
     <!-- <van-cell title="钓场圈设置" is-link url="/pages/forum/settings/settings" border="{{ false }}" /> -->
     <van-cell title="退出登录" is-link data-key="logout" bind:click="handleClick" />
   </van-cell-group>
 
-  <van-overlay z-index="{{ 99999 }}" show="{{ show }}" bind:click="closeModal">
+  <van-overlay show="{{ overlayShow }}" z-index="{{ 99999 }}" bind:click="closeModal">
     <view class="wrapper">
       <image class="authentication" src="../../assets/images/authentication.jpg" />
     </view>

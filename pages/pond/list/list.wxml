@@ -6,6 +6,7 @@
         <view wx:for="{{ list }}" wx:key="index">
           <!-- 没有修改接口不可点击 -->
           <view class="item" data-id="{{ item.id }}" bind:tap="goPage">
+            {{item.name}}
           </view>
         </view>
       </view>

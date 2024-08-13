@@ -1,5 +1,9 @@
-import { groupDetail } from "@/api/index";
-import { groupIdBehavior } from "@/store/behaviors";
+import {
+  getPublicFishGrounds
+} from "@/api/index";
+import {
+  groupIdBehavior
+} from "@/store/behaviors";
 
 Page({
   behaviors: [groupIdBehavior],
@@ -7,20 +11,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-    banner: [
-      {
-        url:
-          "https://img95.699pic.com/xsj/0w/39/0n.jpg%21/fw/700/watermark/url/L3hzai93YXRlcl9kZXRhaWwyLnBuZw/align/southeast"
-      }
-    ],
+    banner: [{
+      url: "https://img95.699pic.com/xsj/0w/39/0n.jpg%21/fw/700/watermark/url/L3hzai93YXRlcl9kZXRhaWwyLnBuZw/align/southeast"
+    }],
     groupInfo: {},
     tabs: {},
     active: 0
   },
   async getData() {
     const id = this.data.groupId;
-    const groupInfo = await groupDetail({ id });
-    this.setData({ groupInfo });
+    const groupInfo = await getPublicFishGrounds({
+      id
+    });
+    this.setData({
+      groupInfo: groupInfo.data
+    });
   },
   handleChange(event) {
     wx.showToast({
@@ -29,7 +34,9 @@ Page({
     });
   },
   goPage() {
-    wx.navigateTo({ url: "/pages/put/records/records" });
+    wx.navigateTo({
+      url: "/pages/put/records/records"
+    });
   },
 
   /**

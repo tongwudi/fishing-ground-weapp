@@ -1,5 +1,8 @@
 // pages/put/add/add.js
-import { getFishList, addPutFish } from "@/api/index";
+import {
+  getPrivateFishAdminFishList,
+  postPrivateFishAdminFishAdd
+} from "@/api/index";
 
 Page({
   /**
@@ -10,20 +13,30 @@ Page({
     form: {}
   },
   async getFishOption() {
-    const fishList = await getFishList();
-    this.setData({ fishList });
+    const fishList = await getPrivateFishAdminFishList();
+    this.setData({
+      fishList: fishList.data
+    });
   },
   handleChange(event) {
-    const { field } = event.currentTarget.dataset;
+    const {
+      field
+    } = event.currentTarget.dataset;
     const value = event.detail;
-    this.setData({ [`form.${field}`]: value });
+    this.setData({
+      [`form.${field}`]: value
+    });
   },
   async handleSave() {
-    const { form } = this.data;
-    const params = { ...form };
+    const {
+      form
+    } = this.data;
+    const params = {
+      ...form
+    };
     console.log(params);
     return;
-    const res = await addPutFish(params);
+    const res = await postPrivateFishAdminFishAdd(params);
   },
 
   /**

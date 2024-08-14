@@ -10,6 +10,7 @@ export const store = observable({
   role: wx.getStorageSync("role") || "",
   userInfo: wx.getStorageSync("userInfo") || defaultUserInfo,
   groupId: wx.getStorageSync("groupId") || "",
+  
 
   // 计算属性
   get isLogin() {

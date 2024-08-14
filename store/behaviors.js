@@ -4,7 +4,7 @@ import { store } from "@/store/index";
 export const loginBehavior = BehaviorWithStore({
   storeBindings: {
     store,
-    actions: ["setToken", "setRole", "setUserInfo", "setGroupId"]
+    actions: ["setToken", "setRole", "setUserInfo", "setGroupId","setAnglingSiteName"]
   }
 });
 

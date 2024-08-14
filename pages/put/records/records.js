@@ -1,6 +1,8 @@
-import { getPublicFishPond, getPublicFishRecord } from "@/api/index";
+import { getPublicFishPond } from "@/api/index";
+import { loginBehavior } from "@/store/behaviors";
 
 Page({
+  behaviors: [loginBehavior],
   /**
    * 页面的初始数据
    */
@@ -11,6 +13,7 @@ Page({
   async getData(id) {
     const { data: info } = await getPublicFishPond({ id });
     // const { data: info } = await getPublicFishRecord({ id });
+    console.log(info,"放鱼记录")
     this.setData({ info });
   },
 
@@ -18,6 +21,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    console.log(this.data,"记录")
     this.getData("173e89b178554429a75d948d1a66c44c");
   },
 
@@ -54,5 +58,11 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {}
+  onShareAppMessage() {
+    return {
+      title:"放鱼记录",
+      path:"/pages/put/records/records",
+      imageUrl:"https://pic.imgdb.cn/item/66bc08e8d9c307b7e9008959.jpg"
+    }
+  }
 });

@@ -1,5 +1,9 @@
-import { getPublicFishPond } from "@/api/index";
-import { mainBehavior } from "@/store/behaviors";
+import {
+  getPublicFishPond
+} from "@/api/index";
+import {
+  mainBehavior
+} from "@/store/behaviors";
 
 Page({
   behaviors: [mainBehavior],
@@ -7,21 +11,30 @@ Page({
    * 页面的初始数据
    */
   data: {
-    info: {}
+    info: {},
+    id: ""
   },
 
   async getData(id) {
-    const { data: info } = await getPublicFishPond({ id });
+    const {
+      data: info
+    } = await getPublicFishPond({
+      id
+    });
     // const { data: info } = await getPublicFishRecord({ id });
-    console.log(info,"放鱼记录")
-    this.setData({ info });
+    console.log(info, "放鱼记录")
+    this.setData({
+      info
+    });
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log(options);
+    this.setData({
+      id: options.id
+    })
     this.getData(options.id);
   },
 
@@ -60,9 +73,9 @@ Page({
    */
   onShareAppMessage() {
     return {
-      title:this.data.anglingSiteName+"钓场"+this.data.info.name,
-      path:"/pages/put/records/records",
-      imageUrl:"https://pic.imgdb.cn/item/66bc08e8d9c307b7e9008959.jpg"
+      title: this.data.anglingSiteName + "钓场" + this.data.info.name,
+      path: `/pages/put/records/records?id=${this.data.id}`,
+      imageUrl: "https://pic.imgdb.cn/item/66bc08e8d9c307b7e9008959.jpg"
     }
   }
 });

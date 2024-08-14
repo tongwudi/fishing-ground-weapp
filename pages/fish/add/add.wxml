@@ -1,5 +1,5 @@
 <!--pages/species/add/add.wxml-->
-<view class="container">
+<view class="container" wx:if="{{ isOnline }}">
   <van-cell-group>
     <block wx:for="{{ fields }}" wx:key="index">
       <van-field value="{{ form[item.key] }}" data-field="{{ item.key }}" bind:change="handleChange" bind:click-icon="delField" clearable placeholder="请输入鱼种名称">

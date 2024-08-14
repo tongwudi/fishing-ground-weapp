@@ -1,5 +1,5 @@
 <!--pages/pond/detail/detail.wxml-->
-<view class="container">
+<view class="container" wx:if="{{ isOnline }}">
   <van-cell-group>
     <van-field label="塘口名称" value="{{ form.name }}" data-field="name" bind:change="handleChange" clearable placeholder="请输入塘口名称" />
     <van-cell title="状态" title-width="6.2em" title-class="cell-title">

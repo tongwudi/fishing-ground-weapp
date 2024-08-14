@@ -4,8 +4,12 @@ import {
   postPrivateFishAdminFishAdd
 } from "@/api/index";
 import { formatDate } from "@/utils/util";
-
+import {
+  mainBehavior
+} from "@/store/behaviors";
 Page({
+  behaviors: [mainBehavior],
+
   /**
    * 页面的初始数据
    */

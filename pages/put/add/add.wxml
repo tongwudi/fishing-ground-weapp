@@ -1,5 +1,5 @@
 <!--pages/put/add/add.wxml-->
-<view class="container">
+<view class="container"  wx:if="{{ isOnline }}">
   <van-cell-group>
     <van-cell title="鱼种" title-width="6.2em" title-class="cell-title">
       <van-radio-group value="{{ form.status }}" data-field="status" bind:change="handleChange">

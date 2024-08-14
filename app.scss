@@ -37,25 +37,23 @@ page {
 .info {
   .info-item {
     display: flex;
-    align-items: center;
     font-size: 32rpx;
 
     .info-item_label {
       width: 5em;
       text-align: right;
       color: rgb(92, 88, 88);
-    }
-
-    .info-item_label::after {
-      content: "：";
-    }
-
-    .info-item_btn {
-      color: #3e74ec;
+      &::after {
+        content: "：";
+      }
     }
 
     .info-item_value {
       flex: 1;
+    }
+
+    .info-item_btn {
+      color: #3e74ec;
     }
   }
 }

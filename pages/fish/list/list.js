@@ -1,6 +1,11 @@
 // pages/species/list/list.js
-import { getPrivateFishAdminFishList } from "@/api/index";
-import { groupIdBehavior } from "@/store/behaviors";
+import {
+  getPrivateFishAdminFishList,
+  postPrivateFishAdminFishTypeOpenApiDelete
+} from "@/api/index";
+import {
+  groupIdBehavior
+} from "@/store/behaviors";
 
 Page({
   behaviors: [groupIdBehavior],
@@ -13,13 +18,44 @@ Page({
 
   async getData() {
     const id = this.data.groupId;
-    const { data: list } = await getPrivateFishAdminFishList({ id });
-    this.setData({ list });
+    const {
+      data: list
+    } = await getPrivateFishAdminFishList({
+      id
+    });
+    this.setData({
+      list
+    });
   },
   goPage() {
-    wx.navigateTo({ url: "/pages/fish/add/add" });
+    wx.navigateTo({
+      url: "/pages/fish/add/add"
+    });
   },
-
+  async handleClose(event) {
+    const {
+      position,
+      instance
+    } = event.detail;
+    const {
+      id
+    } = event.currentTarget.dataset;
+    if (position == "right") {
+      const res = await wx.showModal({
+        content: "确定要删除该鱼种吗？"
+      });
+      if (res.confirm) {
+        await postPrivateFishAdminFishTypeOpenApiDelete({
+          id
+        });
+        this.getData();
+        wx.showToast({
+          title: "删除成功"
+        });
+      }
+      instance.close();
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */

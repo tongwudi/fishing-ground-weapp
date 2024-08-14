@@ -1,4 +1,15 @@
-import { observable, action } from "mobx-miniprogram";
+/*
+ * @Author: wangzhongjie
+ * @Date: 2024-08-14 10:02:35
+ * @LastEditors: wangzhongjie
+ * @LastEditTime: 2024-08-14 10:02:52
+ * @Description: 
+ * @Email: shutdown0630@163.com
+ */
+import {
+  observable,
+  action
+} from "mobx-miniprogram";
 
 const defaultUserInfo = {
   avatar: "https://pic.imgdb.cn/item/64c0cc451ddac507ccd49532.png",
@@ -10,8 +21,7 @@ export const store = observable({
   role: wx.getStorageSync("role") || "",
   userInfo: wx.getStorageSync("userInfo") || defaultUserInfo,
   groupId: wx.getStorageSync("groupId") || "",
-  
-
+  isOnline: wx.getStorageSync('isOnline') || false,
   // 计算属性
   get isLogin() {
     return this.token != "";
@@ -23,6 +33,7 @@ export const store = observable({
     this.role = "";
     this.userInfo = defaultUserInfo;
     this.groupId = "";
+    this.isOnline = false
     wx.clearStorageSync();
   }),
   setToken: action(function (token) {
@@ -40,5 +51,9 @@ export const store = observable({
   setGroupId: action(function (groupId) {
     this.groupId = groupId;
     wx.setStorageSync("groupId", groupId);
+  }),
+  setIsOnline: action(function (isOnline) {
+    this.isOnline = isOnline
+    wx.setStorageSync("isOnline", isOnline)
   })
 });

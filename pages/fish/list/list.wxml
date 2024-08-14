@@ -4,7 +4,7 @@
     <block wx:if="{{ list.length > 0 }}">
       <block wx:for="{{ list }}" wx:key="index">
         <van-cell title="{{ item.name }}">
-          <van-button data-id="{{ item.id }}" size="small" plain slot="right-icon" type="danger" bind:click="onDelete">删除</van-button>
+          <van-button slot="right-icon" size="small" plain type="danger" data-id="{{ item.id }}" bind:click="handleDelete">删除</van-button>
         </van-cell>
       </block>
     </block>

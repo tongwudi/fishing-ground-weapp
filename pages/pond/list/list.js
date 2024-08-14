@@ -3,9 +3,7 @@ import {
   getPrivateFishAdminPondList,
   deletePrivateFishAdminPondOpenApiDelete
 } from "@/api/index";
-import {
-  mainBehavior,
-} from "@/store/behaviors";
+import { mainBehavior } from "@/store/behaviors";
 
 Page({
   behaviors: [mainBehavior],
@@ -18,53 +16,24 @@ Page({
 
   async getData() {
     const id = this.data.groupId;
-    const {
-      data: list
-    } = await getPrivateFishAdminPondList({
-      id
-    });
-    this.setData({
-      list
-    });
-  },
-  async onDelete(event) {
-    const {
-      id
-    } = event.currentTarget.dataset;
-    const res = await wx.showModal({
-      content: "确定要删除该塘口吗？"
-    });
-    if (res.confirm) {
-      await deletePrivateFishAdminPondOpenApiDelete({
-        id
-      });
-      this.getData();
-      wx.showToast({
-        title: "删除成功"
-      });
-      if (res.confirm) {
-        await deletePrivateFishAdminPondOpenApiDelete({
-          id
-        });
-        this.getData();
-        wx.showToast({
-          title: "删除成功"
-        });
-      }
-    }
+    const { data: list } = await getPrivateFishAdminPondList({ id });
+    this.setData({ list });
   },
   goPage(event) {
-    const {
-      id
-    } = event.currentTarget.dataset;
+    const { id } = event.currentTarget.dataset;
     if (!id) {
-      wx.navigateTo({
-        url: "/pages/pond/detail/detail"
-      });
+      wx.navigateTo({ url: "/pages/pond/detail/detail" });
     } else {
-      wx.navigateTo({
-        url: "/pages/put/plan/plan"
-      });
+      wx.navigateTo({ url: "/pages/put/plan/plan" });
+    }
+  },
+  async handleDelete(event) {
+    const { id } = event.currentTarget.dataset;
+    const res = await wx.showModal({ content: "确定要删除该塘口吗？" });
+    if (res.confirm) {
+      await deletePrivateFishAdminPondOpenApiDelete({ id });
+      this.getData();
+      wx.showToast({ title: "删除成功" });
     }
   },
 

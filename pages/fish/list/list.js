@@ -3,9 +3,7 @@ import {
   getPrivateFishAdminFishList,
   deletePrivateFishAdminFishTypeOpenApiDelete
 } from "@/api/index";
-import {
-  mainBehavior
-} from "@/store/behaviors";
+import { mainBehavior } from "@/store/behaviors";
 
 Page({
   behaviors: [mainBehavior],
@@ -18,35 +16,19 @@ Page({
 
   async getData() {
     const id = this.data.groupId;
-    const {
-      data: list
-    } = await getPrivateFishAdminFishList({
-      id
-    });
-    this.setData({
-      list
-    });
+    const { data: list } = await getPrivateFishAdminFishList({ id });
+    this.setData({ list });
   },
   goPage() {
-    wx.navigateTo({
-      url: "/pages/fish/add/add"
-    });
+    wx.navigateTo({ url: "/pages/fish/add/add" });
   },
-  async onDelete(event) {
-    const {
-      id
-    } = event.currentTarget.dataset;
-    const res = await wx.showModal({
-      content: "确定要删除该鱼种吗？"
-    });
+  async handleDelete(event) {
+    const { id } = event.currentTarget.dataset;
+    const res = await wx.showModal({ content: "确定要删除该鱼种吗？" });
     if (res.confirm) {
-      await deletePrivateFishAdminFishTypeOpenApiDelete({
-        id
-      });
+      await deletePrivateFishAdminFishTypeOpenApiDelete({ id });
       this.getData();
-      wx.showToast({
-        title: "删除成功"
-      });
+      wx.showToast({ title: "删除成功" });
     }
   },
   /**

@@ -30,6 +30,7 @@
     </van-cell>
     <van-field label="收费标准" type="textarea" autosize="{{ { maxHeight: 100, minHeight: 50 } }}" value="{{ form.charge_standard }}" data-field="charge_standard" bind:change="handleChange" placeholder="请输入收费标准" />
     <van-field label="回鱼规则" type="textarea" autosize="{{ { maxHeight: 100, minHeight: 50 } }}" value="{{ form.return_fish_rule }}" data-field="return_fish_rule" bind:change="handleChange" placeholder="请输入回鱼规则" />
+    <!-- <van-field label="限杆规则" type="textarea" autosize="{{ { maxHeight: 100, minHeight: 50 } }}" value="{{ form.rod_limit }}" data-field="rod_limit" bind:change="handleChange" placeholder="请输入限杆规则" /> -->
     <van-field label="塘口规则" type="textarea" autosize="{{ { maxHeight: 100, minHeight: 50 } }}" value="{{ form.rule }}" data-field="rule" bind:change="handleChange" placeholder="请输入塘口规则" border="{{ false }}" />
   </van-cell-group>
 

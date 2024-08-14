@@ -51,7 +51,6 @@ Page({
           title: "删除成功"
         });
       }
-      instance.close();
     }
   },
   goPage(event) {

@@ -26,3 +26,4 @@
     <van-button type="primary" block bind:click="handleSave">保存</van-button>
   </view>
 </view>
+<van-empty wx:else description="暂无数据" />

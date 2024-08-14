@@ -1,5 +1,5 @@
 <!--pages/profile/profile.wxml-->
-<view class="container">
+<view class="container" wx:if="{{isOnline}}">
   <van-cell-group>
     <van-field label="钓场名称" value="{{ form.name }}" data-field="name" bind:change="handleChange" clearable placeholder="请输入钓场名称" />
     <van-field label="钓场位置" value="{{ form.address }}" data-field="address" bind:change="handleChange" bind:click-icon="handleRightIconClick" placeholder="请输入钓场位置">

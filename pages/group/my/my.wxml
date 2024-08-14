@@ -16,8 +16,8 @@
         <van-tag type="success">已认证</van-tag>
       </view>
       <view class="favorite">
-        <van-icon name="like-o" size="20" />
-        <text>收款码</text>
+        <!-- <van-icon name="like-o" size="20" />
+        <text>收款码</text> -->
       </view>
     </view>
     <view class="card-body info">

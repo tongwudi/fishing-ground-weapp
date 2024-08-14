@@ -1,3 +1,11 @@
+/*
+ * @Author: wangzhongjie
+ * @Date: 2024-08-14 11:10:51
+ * @LastEditors: wangzhongjie
+ * @LastEditTime: 2024-08-14 16:16:47
+ * @Description: 
+ * @Email: shutdown0630@163.com
+ */
 import {
   getPublicFishPond
 } from "@/api/index";
@@ -75,7 +83,7 @@ Page({
     return {
       title: this.data.anglingSiteName + "钓场" + this.data.info.name,
       path: `/pages/put/records/records?id=${this.data.id}`,
-      imageUrl: "https://pic.imgdb.cn/item/66bc08e8d9c307b7e9008959.jpg"
+      imageUrl: "https://pic.imgdb.cn/item/66bc67d9d9c307b7e9878f2d.jpg"
     }
   }
 });

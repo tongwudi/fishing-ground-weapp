@@ -1,7 +1,7 @@
 // pages/pond/list/list.js
 import {
   getPrivateFishAdminPondList,
-  postPrivateFishAdminPondOpenApiDelete
+  deletePrivateFishAdminPondOpenApiDelete
 } from "@/api/index";
 import {
   mainBehavior,
@@ -27,28 +27,21 @@ Page({
       list
     });
   },
-  async handleClose(event) {
-    const {
-      position,
-      instance
-    } = event.detail;
+  async onDelete(event) {
     const {
       id
     } = event.currentTarget.dataset;
-    if (position == "right") {
-      const res = await wx.showModal({
-        content: "确定要删除该塘口吗？"
+    const res = await wx.showModal({
+      content: "确定要删除该塘口吗？"
+    });
+    if (res.confirm) {
+      await deletePrivateFishAdminPondOpenApiDelete({
+        id
       });
-      if (res.confirm) {
-        await postPrivateFishAdminPondOpenApiDelete({
-          id
-        });
-        this.getData();
-        wx.showToast({
-          title: "删除成功"
-        });
-      }
-      instance.close();
+      this.getData();
+      wx.showToast({
+        title: "删除成功"
+      });
     }
   },
   goPage(event) {

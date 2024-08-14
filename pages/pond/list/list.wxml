@@ -3,12 +3,12 @@
   <scroll-view class="scroll-view" type="list" scroll-y>
     <block wx:if="{{ list.length > 0 }}">
       <block wx:for="{{ list }}" wx:key="index">
-        <van-swipe-cell async-close right-width="{{ 65 }}" data-id="{{ item.id }}" bind:close="handleClose">
-          <van-cell title="{{ item.name }}">
-            <van-button slot="right-icon" size="small" type="primary" plain data-id="{{ item.id }}" bind:tap="goPage">放鱼计划</van-button>
-          </van-cell>
-          <van-button slot="right" type="danger">删除</van-button>
-        </van-swipe-cell>
+        <van-cell title="{{ item.name }}">
+          <view slot="right-icon">
+            <van-button style="margin-right: 6px;" size="small" type="primary" plain data-id="{{ item.id }}" bind:tap="goPage">放鱼计划</van-button>
+            <van-button size="small" plain data-id="{{ item.id }}" type="danger" bind:tap="onDelete">删除</van-button>
+          </view>
+        </van-cell>
       </block>
     </block>
     <van-empty wx:else description="暂无数据" />

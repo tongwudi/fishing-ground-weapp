@@ -3,11 +3,9 @@
   <scroll-view class="scroll-view" type="list" scroll-y>
     <block wx:if="{{ list.length > 0 }}">
       <block wx:for="{{ list }}" wx:key="index">
-        <van-swipe-cell async-close right-width="{{ 65 }}" data-id="{{ item.id }}" bind:close="handleClose">
-          <van-cell title="{{ item.name }}">
-          </van-cell>
-          <van-button slot="right" type="danger">删除</van-button>
-        </van-swipe-cell>
+        <van-cell title="{{ item.name }}">
+          <van-button data-id="{{ item.id }}" size="small" plain slot="right-icon" type="danger" bind:click="onDelete">删除</van-button>
+        </van-cell>
       </block>
     </block>
     <van-empty wx:else description="暂无数据" />

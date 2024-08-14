@@ -2,10 +2,10 @@ import {
   getPrivateFishAdminPondList
 } from "@/api/fishAdmin";
 import {
-  groupIdBehavior
+  mainBehavior
 } from "@/store/behaviors";
 Page({
-  behaviors: [groupIdBehavior],
+  behaviors: [mainBehavior],
   /**
    * 页面的初始数据
    */

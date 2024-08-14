@@ -1,9 +1,9 @@
 // pages/species/add/add.js
 import { postPrivateFishAdminFishTypeAdd } from "@/api/index";
-import { groupIdBehavior } from "@/store/behaviors";
+import { mainBehavior } from "@/store/behaviors";
 
 Page({
-  behaviors: [groupIdBehavior],
+  behaviors: [mainBehavior],
   /**
    * 页面的初始数据
    */

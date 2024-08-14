@@ -4,11 +4,11 @@ import {
   getPublicFishSetting
 } from "@/api/index";
 import {
-  loginBehavior
+  mainBehavior
 } from "@/store/behaviors";
 
 Page({
-  behaviors: [loginBehavior],
+  behaviors: [mainBehavior],
   data: {
     user_name: "wzj1",
     password: "123456"

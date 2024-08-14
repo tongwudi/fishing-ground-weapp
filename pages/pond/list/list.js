@@ -4,11 +4,11 @@ import {
   postPrivateFishAdminPondOpenApiDelete
 } from "@/api/index";
 import {
-  groupIdBehavior,
+  mainBehavior,
 } from "@/store/behaviors";
 
 Page({
-  behaviors: [groupIdBehavior],
+  behaviors: [mainBehavior],
   /**
    * 页面的初始数据
    */

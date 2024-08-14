@@ -30,3 +30,4 @@
 
   <van-calendar show="{{ pickerConfig.show }}" type="range" bind:close="closePicker" bind:confirm="confirmPicker" />
 </view>
+<van-empty wx:else description="暂无数据" />

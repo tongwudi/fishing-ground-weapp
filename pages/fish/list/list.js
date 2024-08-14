@@ -1,7 +1,7 @@
 // pages/species/list/list.js
 import {
   getPrivateFishAdminFishList,
-  postPrivateFishAdminFishTypeOpenApiDelete
+  deletePrivateFishAdminFishTypeOpenApiDelete
 } from "@/api/index";
 import {
   mainBehavior
@@ -45,7 +45,7 @@ Page({
         content: "确定要删除该鱼种吗？"
       });
       if (res.confirm) {
-        await postPrivateFishAdminFishTypeOpenApiDelete({
+        await deletePrivateFishAdminFishTypeOpenApiDelete({
           id
         });
         this.getData();

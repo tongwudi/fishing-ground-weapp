@@ -10,8 +10,8 @@ import {
 Page({
   behaviors: [mainBehavior],
   data: {
-    user_name: "wzj1",
-    password: "123456"
+    // user_name: "wzj1",
+    // password: "123456"
   },
 
   bindInput(event) {

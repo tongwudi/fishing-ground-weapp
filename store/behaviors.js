@@ -1,25 +1,14 @@
-import { BehaviorWithStore } from "mobx-miniprogram-bindings";
-import { store } from "@/store/index";
+import {
+  BehaviorWithStore
+} from "mobx-miniprogram-bindings";
+import {
+  store
+} from "@/store/index";
 
-export const loginBehavior = BehaviorWithStore({
+export const mainBehavior = BehaviorWithStore({
   storeBindings: {
     store,
-    fields:["anglingSiteName"],
-    actions: ["setToken", "setRole", "setUserInfo", "setGroupId", "setIsOnline","setAnglingSiteName"]
-  }
-});
-
-export const mineBehavior = BehaviorWithStore({
-  storeBindings: {
-    store,
-    fields: ["isLogin", "userInfo", "isOnline"],
-    actions: ["resetStore"]
-  }
-});
-
-export const groupIdBehavior = BehaviorWithStore({
-  storeBindings: {
-    store,
-    fields: ["groupId","isOnline"]
+    fields: ["anglingSiteName", "isLogin", "userInfo", "isOnline", "groupId", "token", "role"],
+    actions: ["setToken", "setRole", "setUserInfo", "setGroupId", "setIsOnline", "setAnglingSiteName", "resetStore"]
   }
 });

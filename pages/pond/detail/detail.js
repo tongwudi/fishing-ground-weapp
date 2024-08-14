@@ -1,10 +1,10 @@
 // pages/pond/detail/detail.js
 import { getPublicFishPond, postPrivateFishAdminPondAdd } from "@/api/index";
 import { env } from "@/utils/env";
-import { groupIdBehavior } from "@/store/behaviors";
+import { mainBehavior } from "@/store/behaviors";
 
 Page({
-  behaviors: [groupIdBehavior],
+  behaviors: [mainBehavior],
   /**
    * 页面的初始数据
    */

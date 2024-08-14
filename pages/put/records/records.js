@@ -1,8 +1,8 @@
 import { getPublicFishPond } from "@/api/index";
-import { loginBehavior } from "@/store/behaviors";
+import { mainBehavior } from "@/store/behaviors";
 
 Page({
-  behaviors: [loginBehavior],
+  behaviors: [mainBehavior],
   /**
    * 页面的初始数据
    */

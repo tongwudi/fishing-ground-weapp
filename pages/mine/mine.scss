@@ -1,9 +1,9 @@
 /* pages/mine/mine.wxss */
 .profile {
-  height: 280rpx;
+  height: 300rpx;
   display: flex;
   align-items: center;
-  padding: 0 32rpx;
+  padding: 0 global.$padding-20;
   background: #333;
   .avatar {
     height: 140rpx;

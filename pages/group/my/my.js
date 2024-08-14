@@ -22,16 +22,8 @@ Page({
     const { data: groupInfo } = await getPublicFishGrounds({ id });
     this.setData({ groupInfo });
   },
-  // handleChange(event) {
-  //   wx.showToast({
-  //     title: `切换到标签 ${event.detail.name}`,
-  //     icon: "none"
-  //   });
-  // },
   goPage(event) {
-    const {
-      id
-    } = event.currentTarget.dataset;
+    const { id } = event.currentTarget.dataset;
     wx.navigateTo({ url: `/pages/put/records/records?id=${id}` });
   },
 

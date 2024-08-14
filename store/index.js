@@ -1,15 +1,4 @@
-/*
- * @Author: wangzhongjie
- * @Date: 2024-08-14 10:02:35
- * @LastEditors: wangzhongjie
- * @LastEditTime: 2024-08-14 10:02:52
- * @Description: 
- * @Email: shutdown0630@163.com
- */
-import {
-  observable,
-  action
-} from "mobx-miniprogram";
+import { observable, action } from "mobx-miniprogram";
 
 const defaultUserInfo = {
   avatar: "https://pic.imgdb.cn/item/64c0cc451ddac507ccd49532.png",
@@ -21,8 +10,9 @@ export const store = observable({
   role: wx.getStorageSync("role") || "",
   userInfo: wx.getStorageSync("userInfo") || defaultUserInfo,
   groupId: wx.getStorageSync("groupId") || "",
-  anglingSiteName:wx.getStorageSync("anglingSiteName") || "",
-  isOnline: wx.getStorageSync('isOnline') || false,
+  anglingSiteName: wx.getStorageSync("anglingSiteName") || "",
+  isOnline: wx.getStorageSync("isOnline") || false,
+
   // 计算属性
   get isLogin() {
     return this.token != "";
@@ -34,7 +24,7 @@ export const store = observable({
     this.role = "";
     this.userInfo = defaultUserInfo;
     this.groupId = "";
-    this.isOnline = false
+    this.isOnline = false;
     wx.clearStorageSync();
   }),
   setToken: action(function (token) {
@@ -54,11 +44,11 @@ export const store = observable({
     wx.setStorageSync("groupId", groupId);
   }),
   setIsOnline: action(function (isOnline) {
-    this.isOnline = isOnline
-    wx.setStorageSync("isOnline", isOnline)
+    this.isOnline = isOnline;
+    wx.setStorageSync("isOnline", isOnline);
   }),
-  setAnglingSiteName:action(function(val){
-    this.anglingSiteName=val
-    wx.setStorageSync("anglingSiteName", val)
+  setAnglingSiteName: action(function (val) {
+    this.anglingSiteName = val;
+    wx.setStorageSync("anglingSiteName", val);
   })
 });

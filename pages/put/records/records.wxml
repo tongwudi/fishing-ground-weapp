@@ -37,20 +37,23 @@
         <text class="info-item_label">放鱼记录</text>
       </view>
     </view>
-    <view class="timeline">
-      <block wx:for="{{ info.put_fish_records }}" wx:key="index">
-        <view class="timeline-item">
-          <view class="timeline-item_left">
-            <view class="circle"></view>
-            <view class="line"></view>
+    <block wx:if="{{ info.put_fish_records.length > 0 }}">
+      <view class="timeline">
+        <block wx:for="{{ info.put_fish_records }}" wx:key="index">
+          <view class="timeline-item">
+            <view class="timeline-item_left">
+              <view class="circle"></view>
+              <view class="line"></view>
+            </view>
+            <view class="timeline-item_right">
+              <text>{{ item.create_time }}</text>
+              <text>放{{ item.fishes + item.put_num }}仓</text>
+              <view class="imgs"></view>
+            </view>
           </view>
-          <view class="timeline-item_right">
-            <text>{{ item.create_time }}</text>
-            <text>放{{ item.fishes + item.put_num }}仓</text>
-            <view class="imgs"></view>
-          </view>
-        </view>
-      </block>
-    </view>
+        </block>
+      </view>
+    </block>
+    <van-empty wx:else description="暂无数据" />
   </view>
 </view>

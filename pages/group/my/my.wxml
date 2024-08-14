@@ -46,11 +46,11 @@
               </view>
               <view class="info-item">
                 <text class="info-item_label">放鱼记录</text>
-                <text class="info-item_btn" bind:tap="goPage">查看</text>
+                <text data-id="{{tab.id}}" class="info-item_btn" bind:tap="goPage">查看</text>
               </view>
               <view class="info-item">
                 <text class="info-item_label">放鱼计划</text>
-                <text class="info-item_btn" bind:tap="goPage">查看</text>
+                <text data-id="{{tab.id}}" class="info-item_btn" bind:tap="goPage">查看</text>
               </view>
               <view class="info-item">
                 <text class="info-item_label">塘口大小</text>

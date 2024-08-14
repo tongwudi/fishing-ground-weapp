@@ -28,8 +28,11 @@ Page({
   //     icon: "none"
   //   });
   // },
-  goPage() {
-    wx.navigateTo({ url: "/pages/put/records/records" });
+  goPage(event) {
+    const {
+      id
+    } = event.currentTarget.dataset;
+    wx.navigateTo({ url: `/pages/put/records/records?id=${id}` });
   },
 
   /**

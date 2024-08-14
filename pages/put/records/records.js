@@ -21,8 +21,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log(this.data,"记录")
-    this.getData("173e89b178554429a75d948d1a66c44c");
+    console.log(options);
+    this.getData(options.id);
   },
 
   /**

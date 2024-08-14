@@ -21,7 +21,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log(this.data,"记录")
+    console.log(this.data.anglingSiteName,"记录")
     this.getData("173e89b178554429a75d948d1a66c44c");
   },
 
@@ -60,7 +60,7 @@ Page({
    */
   onShareAppMessage() {
     return {
-      title:"放鱼记录",
+      title:this.data.info.name+"放鱼记录",
       path:"/pages/put/records/records",
       imageUrl:"https://pic.imgdb.cn/item/66bc08e8d9c307b7e9008959.jpg"
     }

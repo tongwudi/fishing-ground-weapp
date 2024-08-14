@@ -56,6 +56,7 @@ Page({
       } = await getPrivateFishAdminList();
       if (groundList.length == 0) return;
       this.setGroupId(groundList[0].id);
+      console.log(groundList[0].name)
       this.setAnglingSiteName(groundList[0].name)
     }
     wx.navigateBack();

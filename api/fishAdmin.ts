@@ -105,17 +105,17 @@ export async function postPrivateFishAdminFishTypeAdd(
 
 /** 删除鱼种 DELETE /private/fish/admin/fish/type/delete */
 export async function deletePrivateFishAdminFishTypeOpenApiDelete(
-  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.deletePrivateFishAdminFishType_openAPI_deleteParams,
+  body: API.FishesCommonRequest,
   options?: { [key: string]: any },
 ) {
   return request<API.Response & { code?: number; data?: string; message?: string }>(
     '/private/fish/admin/fish/type/delete',
     {
       method: 'DELETE',
-      params: {
-        ...params,
+      headers: {
+        'Content-Type': 'application/json',
       },
+      data: body,
       ...(options || {}),
     },
   );
@@ -173,17 +173,17 @@ export async function postPrivateFishAdminPondAdd(
 
 /** 删除鱼塘 DELETE /private/fish/admin/pond/delete */
 export async function deletePrivateFishAdminPondOpenApiDelete(
-  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.deletePrivateFishAdminPond_openAPI_deleteParams,
+  body: API.FishesCommonRequest,
   options?: { [key: string]: any },
 ) {
   return request<API.Response & { code?: number; data?: string; message?: string }>(
     '/private/fish/admin/pond/delete',
     {
       method: 'DELETE',
-      params: {
-        ...params,
+      headers: {
+        'Content-Type': 'application/json',
       },
+      data: body,
       ...(options || {}),
     },
   );

@@ -1,4 +1,4 @@
-<!--pages/species/add/add.wxml-->
+<!--pages/fish/add/add.wxml-->
 <view class="container" wx:if="{{ isOnline }}">
   <van-cell-group>
     <block wx:for="{{ fields }}" wx:key="index">

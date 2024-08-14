@@ -1,12 +1,11 @@
 // pages/put/plan/plan.js
 import {
+  getPublicFishPlan,
   getPrivateFishAdminFishList,
-  postPrivateFishAdminFishAdd
+  postPrivateFishAdminFishPlan
 } from "@/api/index";
 import { formatDate } from "@/utils/util";
-import {
-  mainBehavior
-} from "@/store/behaviors";
+import { mainBehavior } from "@/store/behaviors";
 Page({
   behaviors: [mainBehavior],
 
@@ -14,75 +13,88 @@ Page({
    * 页面的初始数据
    */
   data: {
-    pickerShow: false,
-    calendarShow: false,
+    pondId: "",
+    pickerConfig: {
+      show: false,
+      index: 0,
+      selectIdx: 0
+    },
+    showCalendar: false,
     fishList: [],
-    form: [],
-    count: 0
+    form: []
   },
 
+  async getData(id) {
+    const { data: form } = await getPublicFishPlan({ id });
+    this.setData({ form });
+  },
   async getFishOption() {
     const { data: fishList } = await getPrivateFishAdminFishList();
     this.setData({ fishList });
   },
   openCalendar() {
-    this.setData({ calendarShow: true });
+    this.setData({ showCalendar: true });
   },
   closeCalendar() {
-    this.setData({ calendarShow: false });
+    this.setData({ showCalendar: false });
+  },
+  addField(event) {
+    const date = formatDate(event.detail);
+    let { form } = this.data;
+    this.setData({
+      showCalendar: false,
+      form: [...form, { put_time: date }]
+    });
+  },
+  delField(event) {
+    const { index } = event.currentTarget.dataset;
+    const { form } = this.data;
+    form.splice(index, 1);
+    this.setData({ form });
   },
   handleChange(event) {
     const { index, field } = event.currentTarget.dataset;
     const value = event.detail;
     this.setData({ [`form[${index}].${field}`]: value });
-    const { form } = this.data;
-    console.log(form);
   },
-  openPicker() {
-    this.setData({ pickerShow: true });
+  openPicker(event) {
+    const { index } = event.currentTarget.dataset;
+    const { fishList, form } = this.data;
+    const selectIdx = fishList.findIndex(v => form[index].fishes == v.name);
+    const pickerConfig = {
+      show: true,
+      index,
+      selectIdx
+    };
+    this.setData({ pickerConfig });
   },
   closePicker() {
-    this.setData({ pickerShow: false });
+    this.setData({ ["pickerConfig.show"]: false });
   },
-  addField(event) {
-    const date = formatDate(event.detail);
-    let { form, count } = this.data;
-    count++;
-    const formItem = {
-      key: "name" + count,
-      put_time: date
-    };
+  confirmPicker(event) {
+    const { value } = event.detail;
+    const { index } = this.data.pickerConfig;
     this.setData({
-      calendarShow: false,
-      form: [...form, formItem],
-      count
+      [`form[${index}].fishes`]: value.name,
+      ["pickerConfig.show"]: false
     });
   },
-  delField(event) {
-    const { field } = event.currentTarget.dataset;
-    const { fields } = this.data;
-    const idx = fields.findIndex(v => v.key == field);
-    fields.splice(idx, 1);
-    this.setData({ fields });
-  },
   async handleSave() {
-    const { fields, form, groupId } = this.data;
-    const values = Object.values(form);
-    if (fields.length == 0 || values.length == 0) {
+    const { form, pondId } = this.data;
+    if (form.length == 0) {
       wx.showToast({
         title: "至少需要填写一条数据！",
         icon: "none"
       });
       return;
     }
-    const params = fields.reduce((a, n) => {
-      const name = form[n.key];
-      name && a.push({ name, angling_site_id: groupId });
-      return a;
-    }, []);
-    await postPrivateFishAdminFishTypeAdd(params);
+    const params = form.map(v => {
+      v.fishes_pond_id = pondId;
+      return v;
+    });
+    await postPrivateFishAdminFishPlan(params);
     wx.showToast({
-      title: "新增成功",
+      title: "保存成功",
       success() {
         setTimeout(() => {
           wx.navigateBack();
@@ -95,7 +107,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.setData({ pondId: options.pondId });
     this.getFishOption();
+    this.getData(options.pondId);
   },
 
   /**

@@ -1,4 +1,4 @@
-<!--pages/species/list/list.wxml-->
+<!--pages/fish/list/list.wxml-->
 <view class="container">
   <scroll-view class="scroll-view" type="list" scroll-y>
     <block wx:if="{{ list.length > 0 }}">

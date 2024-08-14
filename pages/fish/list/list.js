@@ -1,4 +1,4 @@
-// pages/species/list/list.js
+// pages/fish/list/list.js
 import {
   getPrivateFishAdminFishList,
   deletePrivateFishAdminFishTypeOpenApiDelete

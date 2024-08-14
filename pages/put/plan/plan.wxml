@@ -2,7 +2,7 @@
   <block wx:for="{{ form }}" wx:key="index">
     <view class="cell-row">
       <text>{{ item.put_time }}</text>
-      <van-icon wx:if="{{ form.length > 1 }}" name="delete-o" />
+      <van-icon wx:if="{{ form.length > 1 }}" name="delete-o" data-index="{{ index }}" bind:tap="delField" />
     </view>
     <van-cell-group>
       <!-- <van-cell title="鱼种" title-width="6.2em" title-class="cell-title">
@@ -31,10 +31,9 @@
     <van-button type="primary" block bind:click="handleSave">保存</van-button>
   </view>
 
-  <van-popup show="{{ pickerShow }}" position="bottom">
-    <van-picker show-toolbar title="选择鱼种" value-key="name" columns="{{ fishList }}" />
-  </van-popup>
+  <van-calendar show="{{ showCalendar }}" bind:close="closeCalendar" bind:confirm="addField" />
 
-  <van-calendar show="{{ calendarShow }}" bind:close="closeCalendar" bind:confirm="addField" />
+  <van-popup show="{{ pickerConfig.show }}" position="bottom" bind:close="closePicker">
+    <van-picker show-toolbar title="选择鱼种" value-key="name" default-index="{{ pickerConfig.selectIdx }}" columns="{{ fishList }}" bind:cancel="closePicker" bind:confirm="confirmPicker" />
+  </van-popup>
 </view>
-<van-empty wx:else description="暂无数据" />

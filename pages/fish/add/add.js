@@ -1,4 +1,4 @@
-// pages/species/add/add.js
+// pages/fish/add/add.js
 import { postPrivateFishAdminFishTypeAdd } from "@/api/index";
 import { mainBehavior } from "@/store/behaviors";
 

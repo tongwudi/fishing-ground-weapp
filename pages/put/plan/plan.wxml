@@ -37,3 +37,4 @@
 
   <van-calendar show="{{ calendarShow }}" bind:close="closeCalendar" bind:confirm="addField" />
 </view>
+<van-empty wx:else description="暂无数据" />

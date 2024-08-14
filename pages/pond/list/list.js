@@ -42,6 +42,16 @@ Page({
       wx.showToast({
         title: "删除成功"
       });
+      if (res.confirm) {
+        await deletePrivateFishAdminPondOpenApiDelete({
+          id
+        });
+        this.getData();
+        wx.showToast({
+          title: "删除成功"
+        });
+      }
+      instance.close();
     }
   },
   goPage(event) {

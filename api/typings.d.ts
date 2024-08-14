@@ -48,16 +48,6 @@ declare namespace API {
     valid?: boolean;
   };
 
-  type deletePrivateFishAdminFishType_openAPI_deleteParams = {
-    /** id */
-    id: string;
-  };
-
-  type deletePrivateFishAdminPond_openAPI_deleteParams = {
-    /** id */
-    id: string;
-  };
-
   type deletePrivateOtherFile_openAPI_deleteParams = {
     /** 文件id */
     id: string;
@@ -102,6 +92,10 @@ declare namespace API {
     /** 是否上线 */
     is_online?: boolean;
     update_time?: string;
+  };
+
+  type FishesCommonRequest = {
+    id?: string;
   };
 
   type FishesPond = {

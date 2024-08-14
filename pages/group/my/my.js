@@ -20,7 +20,7 @@ Page({
   async getData() {
     const id = this.data.groupId;
     const { data: groupInfo } = await getPublicFishGrounds({ id });
-    this.setData({ groupInfo });
+    this.setData({ groupInfo, active: 0 });
   },
   goPage(event) {
     const { id } = event.currentTarget.dataset;

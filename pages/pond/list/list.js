@@ -1,7 +1,7 @@
 // pages/pond/list/list.js
 import {
   getPrivateFishAdminPondList,
-  postPrivateFishAdminPondOpenApiDelete
+  deletePrivateFishAdminPondOpenApiDelete
 } from "@/api/index";
 import {
   mainBehavior,
@@ -40,7 +40,7 @@ Page({
         content: "确定要删除该塘口吗？"
       });
       if (res.confirm) {
-        await postPrivateFishAdminPondOpenApiDelete({
+        await deletePrivateFishAdminPondOpenApiDelete({
           id
         });
         this.getData();

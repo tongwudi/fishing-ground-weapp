@@ -5,17 +5,6 @@
       <van-icon wx:if="{{ form.length > 1 }}" name="delete-o" data-index="{{ index }}" bind:tap="delField" />
     </view>
     <van-cell-group>
-      <!-- <van-cell title="鱼种" title-width="6.2em" title-class="cell-title">
-        <van-radio-group value="{{ item.fishes }}" data-index="{{ index }}" data-field="fishes" bind:change="handleChange">
-          <van-row>
-            <block wx:for="{{ fishList }}" wx:key="index">
-              <van-col span="12">
-                <van-radio icon-size="18px" name="{{ item.id }}">{{ item.name }}</van-radio>
-              </van-col>
-            </block>
-          </van-row>
-        </van-radio-group>
-      </van-cell> -->
       <van-field label="鱼种" readonly value="{{ item.fishes }}" data-index="{{ index }}" data-field="fishes" bind:click-input="openPicker" placeholder="请选择鱼种" />
       <van-field label="数量" type="digit" value="{{ item.num }}" data-index="{{ index }}" data-field="num" bind:change="handleChange" placeholder="请输入数量">
         <text slot="button">仓</text>

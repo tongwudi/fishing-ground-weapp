@@ -17,7 +17,7 @@ Page({
     pickerConfig: {
       show: false,
       index: 0,
-      selectIdx: 0
+      selectIndex: 0
     },
     showCalendar: false,
     fishList: [],
@@ -60,11 +60,11 @@ Page({
   openPicker(event) {
     const { index } = event.currentTarget.dataset;
     const { fishList, form } = this.data;
-    const selectIdx = fishList.findIndex(v => form[index].fishes == v.name);
+    const selectIndex = fishList.findIndex(v => form[index].fishes == v.name);
     const pickerConfig = {
       show: true,
       index,
-      selectIdx
+      selectIndex
     };
     this.setData({ pickerConfig });
   },

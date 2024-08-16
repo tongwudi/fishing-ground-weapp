@@ -37,3 +37,4 @@
     <van-picker show-toolbar title="选择鱼种" value-key="name" default-index="{{ pickerConfig.selectIdx }}" columns="{{ fishList }}" bind:cancel="closePicker" bind:confirm="confirmPicker" />
   </van-popup>
 </view>
+<van-empty wx:else description="暂无数据" />

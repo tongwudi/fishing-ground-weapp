@@ -81,16 +81,30 @@ Page({
   },
   async afterRead(event) {
     const { file } = event.detail;
-    const params = {
-      file: file.url,
-      name: "测试新增"
-    };
-    // const option = { header: { "Content-Type": "multipart/form-data" } };
-    const option = {
-      header: { "Content-Type": "application/x-www-form-urlencoded" }
-    };
-    const { data } = await postPrivateFishAdminVideoAdd(params, option);
-    this.setData({ "form.put_fish_videos": [{ url: data.url }] });
+    const { anglingSiteName } = this.data;
+    const that = this;
+    wx.uploadFile({
+      url: env.baseURL + "/private/fish/admin/video/add", // 仅为示例，非真实的接口地址
+      filePath: file.url,
+      name: "file",
+      formData: { name: `${anglingSiteName}_${Date.now()}` },
+      header: { "x-token": wx.getStorageSync("token") },
+      success(res) {
+        const { data, code } = JSON.parse(res.data);
+        if (code != 200) {
+          wx.showToast({
+            title: "上传失败请重试",
+            icon: "none"
+          });
+          return;
+        }
+        const videos = [{ id: data.id, url: "https://" + data.url }];
+        that.setData({ "form.put_fish_videos": videos });
+      }
+    });
+  },
+  handleDelete(event) {
+    this.setData({ "form.put_fish_videos": [] });
   },
   async handleSave() {
     const { form } = this.data;

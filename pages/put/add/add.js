@@ -81,12 +81,13 @@ Page({
   },
   async afterRead(event) {
     const { file } = event.detail;
+    const { anglingSiteName } = this.data;
     const that = this;
     wx.uploadFile({
       url: env.baseURL + "/private/fish/admin/video/add", // 仅为示例，非真实的接口地址
       filePath: file.url,
       name: "file",
-      formData: { name: "测试新增" },
+      formData: { name: `${anglingSiteName}_${Date.now()}` },
       header: { "x-token": wx.getStorageSync("token") },
       success(res) {
         const { data, code } = JSON.parse(res.data);

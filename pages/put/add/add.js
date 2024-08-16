@@ -1,62 +1,107 @@
 // pages/put/add/add.js
 import {
+  getPrivateFishAdminPondList,
   getPrivateFishAdminFishList,
+  postPrivateFishAdminVideoAdd,
   postPrivateFishAdminFishAdd
 } from "@/api/index";
-import {
-  mainBehavior
-} from "@/store/behaviors";
+import { env } from "@/utils/env";
+import { mainBehavior } from "@/store/behaviors";
+
 Page({
   behaviors: [mainBehavior],
   /**
    * 页面的初始数据
    */
   data: {
+    pondPicker: {
+      show: false,
+      selectIndex: 0
+    },
+    fishesPicker: {
+      show: false,
+      selectIndex: 0
+    },
+    pondList: [],
     fishList: [],
     form: {}
   },
-  async getFishOption() {
-    const { data: fishList } = await getPrivateFishAdminFishList();
-    this.setData({ fishList });
+
+  async getData() {
+    const id = this.data.groupId;
+    const [{ data: pondList }, { data: fishList }] = await Promise.all([
+      getPrivateFishAdminPondList({ id }),
+      getPrivateFishAdminFishList()
+    ]);
+    this.setData({ pondList, fishList });
   },
   handleChange(event) {
     const { field } = event.currentTarget.dataset;
     const value = event.detail;
     this.setData({ [`form.${field}`]: value });
   },
-  afterRead(event) {
-    const { file } = event.detail;
-    const { fileList } = this.data;
-    // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
-    wx.uploadFile({
-      url: env.baseURL + "/private/fish/admin/photo/add", // 仅为示例，非真实的接口地址
-      filePath: file.url,
-      name: "file",
-      header: { "x-token": wx.getStorageSync("token") },
-      success(res) {
-        const { data } = JSON.parse(res.data);
-        fileList.push({ url: `https://${data.url}`, id: data.id });
-        this.setData({
-          "form.photo_ids": fileList.map(item => item.id),
-          fileList: fileList
-        });
-      }
+  openPondPicker() {
+    const { fishList, form } = this.data;
+    const selectIndex = fishList.findIndex(v => form.fishes == v.name);
+    const pondPicker = {
+      show: true,
+      selectIndex
+    };
+    this.setData({ pondPicker });
+  },
+  closePondPicker() {
+    this.setData({ ["pondPicker.show"]: false });
+  },
+  confirmPondPicker(event) {
+    const { value } = event.detail;
+    this.setData({
+      "form.pond": value.name,
+      "form.fishes_pond_id": value.id,
+      "pondPicker.show": false
     });
+  },
+  openFishesPicker() {
+    const { fishList, form } = this.data;
+    const selectIndex = fishList.findIndex(v => form.fishes == v.name);
+    const fishesPicker = {
+      show: true,
+      selectIndex
+    };
+    this.setData({ fishesPicker });
+  },
+  closeFishesPicker() {
+    this.setData({ ["fishesPicker.show"]: false });
+  },
+  confirmFishesPicker(event) {
+    const { value } = event.detail;
+    this.setData({
+      [`form.fishes`]: value.name,
+      ["fishesPicker.show"]: false
+    });
+  },
+  async afterRead(event) {
+    const { file } = event.detail;
+    const params = {
+      file: file.url,
+      name: "测试新增"
+    };
+    // const option = { header: { "Content-Type": "multipart/form-data" } };
+    const option = {
+      header: { "Content-Type": "application/x-www-form-urlencoded" }
+    };
+    const { data } = await postPrivateFishAdminVideoAdd(params, option);
+    this.setData({ "form.put_fish_videos": [{ url: data.url }] });
   },
   async handleSave() {
     const { form } = this.data;
-    const params = { ...form };
-    console.log(params);
-    return;
-    const res = await postPrivateFishAdminFishAdd(params);
+    await postPrivateFishAdminFishAdd(form);
+    wx.showToast({ title: "放鱼成功" });
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-    this.getFishOption();
-  },
+  onLoad(options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -70,6 +115,7 @@ Page({
     if (typeof this.getTabBar === "function") {
       this.getTabBar().init();
     }
+    this.getData();
   },
 
   /**

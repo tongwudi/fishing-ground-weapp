@@ -1,5 +1,9 @@
 <van-tabbar active="{{ active }}" bind:change="switchTab">
   <block wx:for="{{ tabbar }}" wx:key="index">
-    <van-tabbar-item icon="home-o" class="{{ item.isCenter ? 'center-item' : '' }}">{{ item.text }}</van-tabbar-item>
+    <van-tabbar-item class="{{ item.isCenter ? 'center-item' : '' }}">
+      <image slot="icon" src="{{ item.iconPath }}" mode="aspectFit" style="width: 30px; height: 18px;" />
+      <image slot="icon-active" src="{{ item.selectedIconPath }}" mode="aspectFit" style="width: 30px; height: 18px;" />
+      {{ item.text }}
+    </van-tabbar-item>
   </block>
 </van-tabbar>

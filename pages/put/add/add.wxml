@@ -2,17 +2,15 @@
 <view class="container" wx:if="{{ isOnline }}">
   <van-cell-group>
     <van-field label="塘口" readonly value="{{ form.pond }}" data-field="pond" bind:click-input="openPondPicker" placeholder="请选择塘口" />
-    <block wx:if="{{ form.pond }}">
-      <van-field label="鱼种" readonly value="{{ form.fishes }}" data-field="fishes" bind:click-input="openFishesPicker" placeholder="请选择鱼种" />
-      <van-field label="数量" type="digit" value="{{ form.put_num }}" data-field="put_num" bind:change="handleChange" placeholder="请输入数量">
-        <text slot="button">仓</text>
-      </van-field>
-      <van-cell title="视频" title-width="6.2em" title-class="cell-title" border="{{ false }}">
-        <view class="upload-box">
-          <van-uploader accept="video" media-type="video" camera="back" max-count="1" file-list="{{ form.put_fish_videos }}" bind:delete="handleDelete" bind:after-read="afterRead" />
-        </view>
-      </van-cell>
-    </block>
+    <van-field label="鱼种" readonly value="{{ form.fishes }}" data-field="fishes" bind:click-input="openFishesPicker" placeholder="请选择鱼种" />
+    <van-field label="数量" type="digit" value="{{ form.put_num }}" data-field="put_num" bind:change="handleChange" placeholder="请输入数量">
+      <text slot="button">仓</text>
+    </van-field>
+    <van-cell title="视频" title-width="6.2em" title-class="cell-title" border="{{ false }}">
+      <view class="upload-box">
+        <van-uploader accept="video" media-type="video" camera="back" max-count="1" file-list="{{ form.put_fish_videos }}" bind:delete="handleDelete" bind:after-read="afterRead" />
+      </view>
+    </van-cell>
   </van-cell-group>
 
   <view class="operate-btn">

@@ -24,7 +24,7 @@ Page({
     if (!id) {
       wx.navigateTo({ url: "/pages/pond/detail/detail" });
     } else {
-      wx.navigateTo({ url: `/pages/put/plan/plan?pondId=${id}` });
+      wx.navigateTo({ url: `/pages/plan/detail/detail?pondId=${id}` });
     }
   },
   async handleDelete(event) {

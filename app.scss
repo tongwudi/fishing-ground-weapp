@@ -12,6 +12,20 @@ page {
   --radio-size: 24px;
 }
 
+.van-nav-bar {
+  // --nav-bar-arrow-size: 22px;
+  // --nav-bar-icon-color: #000;
+  .van-nav-bar__left {
+    left: 3px !important;
+    font-size: 22px !important;
+    color: #000000 !important;
+  }
+  .van-nav-bar__title {
+    font-size: 13px !important;
+    color: #000000 !important;
+  }
+}
+
 .van-tabbar {
   --tabbar-height: 120rpx;
 }

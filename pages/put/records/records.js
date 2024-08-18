@@ -15,6 +15,11 @@ Page({
     const { data: info } = await getPublicFishPond({ id });
     this.setData({ info });
   },
+  onClickLeft() {
+    const { role } = this.data;
+    const isFish = role.split(",").includes("fish");
+    wx.switchTab({ url: isFish ? "/pages/group/my/my" : "/pages/home/home" });
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -32,7 +37,9 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {},
+  onShow() {
+    wx.hideHomeButton();
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

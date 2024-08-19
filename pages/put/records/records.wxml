@@ -43,9 +43,9 @@
         <text class="info-item_label">放鱼记录</text>
       </view>
     </view>
-    <block wx:if="{{ info.put_fish_records.length > 0 }}">
+    <block wx:if="{{ recordList.length > 0 }}">
       <view class="timeline">
-        <block wx:for="{{ info.put_fish_records }}" wx:key="index">
+        <block wx:for="{{ recordList }}" wx:key="index">
           <view class="timeline-item">
             <view class="timeline-item_left">
               <view class="circle"></view>
@@ -54,7 +54,11 @@
             <view class="timeline-item_right">
               <text>{{ item.create_time }}</text>
               <text>放{{ item.fishes + (item.put_num || 0) }}仓</text>
-              <view class="imgs"></view>
+              <view class="videos">
+                <block wx:for="{{ item.files }}" wx:for-item="v" wx:for-index="idx" wx:key="idx">
+                  <video src="{{ v.path }}" />
+                </block>
+              </view>
             </view>
           </view>
         </block>

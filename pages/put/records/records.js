@@ -1,4 +1,4 @@
-import { getPublicFishPond } from "@/api/index";
+import { getPublicFishPond, getPublicFishRecord } from "@/api/index";
 import { mainBehavior } from "@/store/behaviors";
 
 Page({
@@ -8,12 +8,16 @@ Page({
    */
   data: {
     info: {},
+    recordList: [],
     pondId: ""
   },
 
   async getData(id) {
-    const { data: info } = await getPublicFishPond({ id });
-    this.setData({ info });
+    const [{ data: info }, { data: recordList }] = await Promise.all([
+      getPublicFishPond({ id }),
+      getPublicFishRecord({ id })
+    ]);
+    this.setData({ info, recordList });
   },
   onClickLeft() {
     const { role } = this.data;

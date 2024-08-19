@@ -20,6 +20,8 @@ Page({
   },
   handleChange(event) {
     const { id, name } = event.currentTarget.dataset;
+    const { groupId } = this.data;
+    if (id === groupId) return;
     this.setGroupId(id);
     this.setAnglingSiteName(name);
   },

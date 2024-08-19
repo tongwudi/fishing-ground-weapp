@@ -25,15 +25,6 @@ Page({
     this.setGroupId(id);
     this.setAnglingSiteName(name);
   },
-  async handleDelete(event) {
-    const { id } = event.currentTarget.dataset;
-    const res = await wx.showModal({ content: "确定要删除该鱼种吗？" });
-    if (res.confirm) {
-      await deletePrivateFishAdminFishTypeOpenApiDelete({ id });
-      this.getData();
-      wx.showToast({ title: "删除成功" });
-    }
-  },
   /**
    * 生命周期函数--监听页面加载
    */

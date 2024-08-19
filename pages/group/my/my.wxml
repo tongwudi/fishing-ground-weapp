@@ -73,6 +73,10 @@
                 <text class="info-item_value">{{ tab.charge_standard }}</text>
               </view>
               <view class="info-item">
+                <text class="info-item_label">限竿规则</text>
+                <text class="info-item_value">{{ tab.rod_limit }}</text>
+              </view>
+              <view class="info-item">
                 <text class="info-item_label">回鱼规则</text>
                 <text class="info-item_value">{{ tab.return_fish_rule }}</text>
               </view>

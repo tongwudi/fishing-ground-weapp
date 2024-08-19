@@ -27,10 +27,10 @@
         <text class="info-item_label">收费标准</text>
         <text class="info-item_value">{{ info.charge_standard }}</text>
       </view>
-      <!-- <view>
+      <view>
           <text class="info-item_label">限杆规则</text>
           <text class="info-item_value">{{ info.address }}</text>
-        </view> -->
+        </view>
       <view class="info-item">
         <text class="info-item_label">回鱼规则</text>
         <text class="info-item_value">{{ info.return_fish_rule }}</text>

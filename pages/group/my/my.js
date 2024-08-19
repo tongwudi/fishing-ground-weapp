@@ -14,7 +14,6 @@ Page({
       }
     ],
     groupInfo: {},
-    tabs: {},
     active: 0
   },
   async getData() {

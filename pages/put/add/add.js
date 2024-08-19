@@ -23,11 +23,12 @@ Page({
     },
     pondList: [],
     fishList: [],
-    form: {}
+    form: {},
+    fileList: []
   },
 
   async getData() {
-    const id = this.data.groupId;
+    const { groupId: id } = this.data;
     const [{ data: pondList }, { data: fishList }] = await Promise.all([
       getPrivateFishAdminPondList({ id }),
       getPrivateFishAdminFishList()
@@ -40,8 +41,8 @@ Page({
     this.setData({ [`form.${field}`]: value });
   },
   openPondPicker() {
-    const { fishList, form } = this.data;
-    const selectIndex = fishList.findIndex(v => form.fishes == v.name);
+    const { pondList, form } = this.data;
+    const selectIndex = pondList.findIndex(v => form.fishes_pond_id == v.id);
     const pondPicker = {
       show: true,
       selectIndex
@@ -80,7 +81,7 @@ Page({
   },
   async afterRead(event) {
     const { file } = event.detail;
-    const { anglingSiteName } = this.data;
+    const { fileList, anglingSiteName } = this.data;
     const that = this;
     wx.uploadFile({
       url: env.baseURL + "/private/fish/admin/video/add", // 仅为示例，非真实的接口地址
@@ -97,17 +98,25 @@ Page({
           });
           return;
         }
-        const videos = [{ id: data.id, url: "https://" + data.url }];
-        that.setData({ "form.put_fish_videos": videos });
+        fileList.push({ id: data.id, url: data.url });
+        that.setData({ fileList });
       }
     });
   },
-  handleDelete() {
-    this.setData({ "form.put_fish_videos": [] });
+  handleDelete(event) {
+    const { index } = event.detail;
+    const { fileList } = this.data;
+    fileList.splice(index, 1);
+    this.setData({ fileList });
   },
   async handleSave() {
-    const { form } = this.data;
-    await postPrivateFishAdminFishAdd(form);
+    const { form, fileList } = this.data;
+    const video_ids = fileList.map(v => v.id);
+    const params = {
+      ...form,
+      video_ids
+    };
+    await postPrivateFishAdminFishAdd(params);
     wx.showToast({ title: "放鱼成功" });
   },
 

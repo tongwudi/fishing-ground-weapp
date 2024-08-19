@@ -2,7 +2,6 @@
 import {
   getPrivateFishAdminPondList,
   getPrivateFishAdminFishList,
-  postPrivateFishAdminVideoAdd,
   postPrivateFishAdminFishAdd
 } from "@/api/index";
 import { env } from "@/utils/env";
@@ -103,7 +102,7 @@ Page({
       }
     });
   },
-  handleDelete(event) {
+  handleDelete() {
     this.setData({ "form.put_fish_videos": [] });
   },
   async handleSave() {

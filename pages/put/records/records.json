@@ -1,4 +1,5 @@
 {
   "navigationBarTitleText" : "近期放鱼记录",
+  "navigationStyle": "custom",
   "usingComponents": {}
 }

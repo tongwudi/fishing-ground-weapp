@@ -1,2 +1,28 @@
-<!--pages/plan/detail/detail.wxml-->
-<text>pages/plan/detail/detail.wxml</text>
+<view class="container" wx:if="{{ isOnline }}">
+  <block wx:for="{{ form }}" wx:key="index">
+    <view class="cell-row">
+      <text>{{ item.put_time }}</text>
+      <van-icon wx:if="{{ form.length > 1 }}" name="delete-o" data-index="{{ index }}" bind:tap="delField" />
+    </view>
+    <van-cell-group>
+      <van-field label="鱼种" readonly value="{{ item.fishes }}" data-index="{{ index }}" data-field="fishes" bind:click-input="openPicker" placeholder="请选择鱼种" />
+      <van-field label="数量" type="digit" value="{{ item.num }}" data-index="{{ index }}" data-field="num" bind:change="handleChange" placeholder="请输入数量">
+        <text slot="button">仓</text>
+      </van-field>
+    </van-cell-group>
+  </block>
+
+  <view class="add-btn">
+    <van-button type="primary" bind:click="openCalendar">添加</van-button>
+  </view>
+
+  <view class="operate-btn">
+    <van-button type="primary" block bind:click="handleSave">保存</van-button>
+  </view>
+
+  <van-calendar show="{{ showCalendar }}" bind:close="closeCalendar" bind:confirm="addField" />
+
+  <van-popup show="{{ pickerConfig.show }}" position="bottom" bind:close="closePicker">
+    <van-picker show-toolbar title="选择鱼种" value-key="name" default-index="{{ pickerConfig.selectIdx }}" columns="{{ fishList }}" bind:cancel="closePicker" bind:confirm="confirmPicker" />
+  </van-popup>
+</view>

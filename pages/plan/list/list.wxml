@@ -1,9 +1,28 @@
 <!--pages/plan/list/list.wxml-->
-<view class="plan-container">
-  <van-cell bind:click="onSelectAreaOpen">
-    <van-field value="{{ selectArea }}" readonly placeholder="选择渔场" is-link></van-field>
-  </van-cell>
-  <van-popup show="{{ selectAreaVisible }}" position="bottom" bind:close="onSelectAreaClose">
-    <van-picker show-toolbar title="选择渔场" columns="{{areas}}" bind:cancel="onSelectAreaClose" bind:confirm="onAreaSelect"></van-picker>
-  </van-popup>
+<view class="container">
+  <van-nav-bar title="放鱼计划" fixed placeholder bind:click-left="onClickLeft">
+    <view slot="left">
+      <van-icon name="arrow-left" />
+      <!-- <van-icon name="wap-home-o" /> -->
+    </view>
+  </van-nav-bar>
+
+  <block wx:if="{{ info.put_fish_plans.length > 0 }}">
+    <view class="timeline">
+      <block wx:for="{{ info.put_fish_plans }}" wx:key="index">
+        <view class="timeline-item">
+          <view class="timeline-item_left">
+            <view class="circle"></view>
+            <view class="line"></view>
+          </view>
+          <view class="timeline-item_right">
+            <text>{{ item.create_time }}</text>
+            <text>放{{ item.fishes + (item.put_num || 0) }}仓</text>
+            <view class="imgs"></view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </block>
+  <van-empty wx:else description="暂无数据" />
 </view>

@@ -23,8 +23,12 @@ Page({
     this.setData({ groupInfo, active: 0 });
   },
   goPage(event) {
-    const { id } = event.currentTarget.dataset;
-    wx.navigateTo({ url: `/pages/put/records/records?id=${id}` });
+    const { id, type } = event.currentTarget.dataset;
+    if (type == "plan") {
+      wx.navigateTo({ url: `/pages/plan/list/list?id=${id}` });
+    } else {
+      wx.navigateTo({ url: `/pages/put/records/records?id=${id}` });
+    }
   },
 
   /**

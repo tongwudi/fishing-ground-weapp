@@ -69,7 +69,7 @@ Page({
     return {
       title: anglingSiteName + "钓场" + info.name,
       path: `/pages/put/records/records?id=${pondId}`,
-      imageUrl: "https://pic.imgdb.cn/item/66bc67d9d9c307b7e9878f2d.jpg"
+      imageUrl: "https://pic.imgdb.cn/item/66c2f945d9c307b7e9c67324.jpg"
     };
   }
 });

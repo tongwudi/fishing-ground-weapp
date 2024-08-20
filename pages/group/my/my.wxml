@@ -38,7 +38,7 @@
   </view>
 
   <block wx:if="{{ groupInfo.fishes_pond.length > 0 }}">
-    <van-tabs sticky animated swipeable ellipsis="{{ false }}" active="{{ active }}">
+    <van-tabs sticky animated swipeable color="#2f85da" ellipsis="{{ false }}" active="{{ active }}">
       <block wx:for="{{ groupInfo.fishes_pond }}" wx:key="id" wx:for-item="tab">
         <van-tab title="{{ tab.name }}">
           <view class="card tab-content">
@@ -79,6 +79,10 @@
               <view class="info-item">
                 <text class="info-item_label">回鱼规则</text>
                 <text class="info-item_value">{{ tab.return_fish_rule }}</text>
+              </view>
+              <view class="info-item">
+                <text class="info-item_label">限杆规则</text>
+                <text class="info-item_value">{{ tab.rod_limit }}</text>
               </view>
               <view class="info-item">
                 <text class="info-item_label">塘口规则</text>

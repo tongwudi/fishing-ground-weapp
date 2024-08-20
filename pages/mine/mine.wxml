@@ -9,8 +9,7 @@
   </view>
   <van-cell-group>
     <van-cell title="钓场认证" is-link data-key="authentication" bind:click="handleClick" />
-    <!-- 目前按每个账号只有一个钓场来，现缺少修改接口暂不放开 -->
-    <!-- <van-cell title="我的钓场" is-link url="/pages/group/list/list" /> -->
+    <van-cell title="我的钓场" is-link url="/pages/group/profile/profile" />
     <van-cell title="塘口管理" is-link url="/pages/pond/list/list" />
     <van-cell title="鱼种管理" is-link url="/pages/fish/list/list" />
     <!-- <van-cell title="我的帖子" is-link /> -->

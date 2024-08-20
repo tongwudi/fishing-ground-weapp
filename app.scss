@@ -12,9 +12,12 @@ page {
   --radio-size: 24px;
 }
 
+.van-tabbar {
+  --tabbar-height: 120rpx;
+}
+
+// 封装组件
 .van-nav-bar {
-  // --nav-bar-arrow-size: 22px;
-  // --nav-bar-icon-color: #000;
   .van-nav-bar__left {
     left: 3px !important;
     font-size: 22px !important;
@@ -24,10 +27,6 @@ page {
     font-size: 13px !important;
     color: #000000 !important;
   }
-}
-
-.van-tabbar {
-  --tabbar-height: 120rpx;
 }
 
 .card {
@@ -67,7 +66,7 @@ page {
     }
 
     .info-item_btn {
-      color: #3e74ec;
+      color: #2f85da;
     }
   }
 }

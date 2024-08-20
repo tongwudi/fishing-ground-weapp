@@ -87,7 +87,7 @@ Page({
       url: env.baseURL + "/private/fish/admin/video/add", // 仅为示例，非真实的接口地址
       filePath: file.url,
       name: "file",
-      formData: { name: `${anglingSiteName}_${Date.now()}` },
+      formData: { name: anglingSiteName },
       header: { "x-token": wx.getStorageSync("token") },
       success(res) {
         const { data, code } = JSON.parse(res.data);

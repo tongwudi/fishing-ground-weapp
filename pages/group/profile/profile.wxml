@@ -19,7 +19,7 @@
     </van-cell> -->
     <van-cell title="塘口宣传图" title-width="6.2em" title-class="cell-title" border="{{ false }}">
       <view class="upload-box">
-        <van-uploader file-list="{{ form.fileList }}" max-count="1" bind:after-read="afterRead" />
+        <van-uploader file-list="{{ fileList }}" max-count="4" bind:after-read="afterRead" />
       </view>
     </van-cell>
   </van-cell-group>

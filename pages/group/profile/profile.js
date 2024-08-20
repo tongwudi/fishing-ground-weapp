@@ -1,12 +1,11 @@
 // pages/profile/profile.js
-import { groupDetail, addGroup } from "@/api/index";
+import { postPrivateFishAdminAdd } from "@/api/index";
+import { env } from "@/utils/env";
 import { formatDate } from "@/utils/util";
-import {
-  mainBehavior
-} from "@/store/behaviors";
+import { mainBehavior } from "@/store/behaviors";
+
 Page({
   behaviors: [mainBehavior],
-  
   /**
    * 页面的初始数据
    */
@@ -15,9 +14,8 @@ Page({
       show: false,
       activeKey: ""
     },
-    form: {
-      fileList: []
-    }
+    form: {},
+    fileList: []
   },
 
   handleChange(event) {
@@ -43,22 +41,6 @@ Page({
     this.setData({
       "pickerConfig.show": false,
       [`form.${pickerConfig.activeKey}`]: dateStr
-    });
-  },
-  afterRead(event) {
-    const { file } = event.detail;
-    // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
-    wx.uploadFile({
-      url: "https://example.weixin.qq.com/upload", // 仅为示例，非真实的接口地址
-      filePath: file.url,
-      name: "file",
-      formData: { user: "test" },
-      success(res) {
-        // 上传完成需要更新 fileList
-        const { form } = this.data;
-        form.fileList.push({ ...file, url: res.data });
-        this.setData({ "form.fileList": fileList });
-      }
     });
   },
   async handleRightIconClick() {
@@ -89,10 +71,41 @@ Page({
       }
     }
   },
+  afterRead(event) {
+    const { file } = event.detail;
+    wx.uploadFile({
+      url: env.baseURL + "/private/fish/admin/photo/add",
+      filePath: file.url,
+      name: "file",
+      header: { "x-token": wx.getStorageSync("token") },
+      success(res) {
+        const { data, code } = JSON.parse(res.data);
+        if (code != 200) {
+          wx.showToast({
+            title: "上传失败请重试",
+            icon: "none"
+          });
+          return;
+        }
+        // 上传完成需要更新 fileList
+        const { fileList } = this.data;
+        fileList.push({ id: data.id, url: data.url });
+        that.setData({ fileList });
+      }
+    });
+  },
   async handleSave() {
     const { form } = this.data;
     // 不传钓场名称、位置会新增失败
-    const res = await addGroup({ ...form });
+    await postPrivateFishAdminAdd({ ...form });
+    wx.showToast({
+      title: "新增成功",
+      success() {
+        setTimeout(() => {
+          wx.navigateBack();
+        }, 1000);
+      }
+    });
   },
 
   /**

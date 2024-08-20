@@ -7,22 +7,60 @@
     </view>
   </van-nav-bar>
 
-  <block wx:if="{{ info.put_fish_plans.length > 0 }}">
-    <view class="timeline">
-      <block wx:for="{{ info.put_fish_plans }}" wx:key="index">
-        <view class="timeline-item">
-          <view class="timeline-item_left">
-            <view class="circle"></view>
-            <view class="line"></view>
-          </view>
-          <view class="timeline-item_right">
-            <text>{{ item.create_time }}</text>
-            <text>放{{ item.fishes + (item.put_num || 0) }}仓</text>
-            <view class="imgs"></view>
-          </view>
-        </view>
-      </block>
+  <view class="card">
+    <view class="card-body info">
+      <view class="info-item">
+        <text class="info-item_label">塘口名称</text>
+        <text class="info-item_value">{{ info.name }}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-item_label">塘口大小</text>
+        <text class="info-item_value">{{ info.size || 0 }}亩</text>
+      </view>
+      <view class="info-item">
+        <text class="info-item_label">钓位数</text>
+        <text class="info-item_value">{{ info.position_num || 0 }}个</text>
+      </view>
+      <view class="info-item">
+        <text class="info-item_label">水深</text>
+        <text class="info-item_value">{{ info.water_depth || 0 }}米</text>
+      </view>
+      <view class="info-item">
+        <text class="info-item_label">收费标准</text>
+        <text class="info-item_value">{{ info.charge_standard }}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-item_label">回鱼规则</text>
+        <text class="info-item_value">{{ info.return_fish_rule }}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-item_label">限杆规则</text>
+        <text class="info-item_value">{{ info.rod_limit }}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-item_label">塘口规则</text>
+        <text class="info-item_value">{{ info.rule }}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-item_label">放鱼计划</text>
+      </view>
     </view>
-  </block>
-  <van-empty wx:else description="暂无数据" />
+    <block wx:if="{{ info.put_fish_plans.length > 0 }}">
+      <view class="timeline">
+        <block wx:for="{{ info.put_fish_plans }}" wx:key="index">
+          <view class="timeline-item">
+            <view class="timeline-item_left">
+              <view class="circle"></view>
+              <view class="line"></view>
+            </view>
+            <view class="timeline-item_right">
+              <text>{{ item.create_time }}</text>
+              <text>放{{ item.fishes + (item.put_num || 0) }}仓</text>
+            </view>
+          </view>
+        </block>
+      </view>
+    </block>
+    <van-empty wx:else description="暂无数据" />
+  </view>
 </view>

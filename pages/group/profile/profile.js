@@ -73,6 +73,8 @@ Page({
   },
   afterRead(event) {
     const { file } = event.detail;
+    const { fileList } = this.data;
+    const that = this;
     wx.uploadFile({
       url: env.baseURL + "/private/fish/admin/photo/add",
       filePath: file.url,
@@ -88,16 +90,19 @@ Page({
           return;
         }
         // 上传完成需要更新 fileList
-        const { fileList } = this.data;
         fileList.push({ id: data.id, url: data.url });
         that.setData({ fileList });
       }
     });
   },
   async handleSave() {
-    const { form } = this.data;
-    // 不传钓场名称、位置会新增失败
-    await postPrivateFishAdminAdd({ ...form });
+    const { form, fileList } = this.data;
+    const photo_ids = fileList.map(v => v.id);
+    const params = {
+      ...form,
+      photo_ids
+    };
+    await postPrivateFishAdminAdd(params);
     wx.showToast({
       title: "新增成功",
       success() {

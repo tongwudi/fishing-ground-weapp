@@ -20,8 +20,7 @@ Page({
     this.setData({ info, recordList });
   },
   onClickLeft() {
-    const { role } = this.data;
-    const isFish = role.split(",").includes("fish");
+    const { isFish } = this.data;
     wx.switchTab({ url: isFish ? "/pages/group/my/my" : "/pages/home/home" });
   },
 

@@ -1,7 +1,5 @@
 // pages/mine/mine.js
-import {
-  mainBehavior
-} from "@/store/behaviors";
+import { mainBehavior } from "@/store/behaviors";
 
 Page({
   behaviors: [mainBehavior],
@@ -13,21 +11,15 @@ Page({
   },
 
   goPage() {
-    const {
-      isLogin
-    } = this.data;
+    const { isLogin } = this.data;
     if (isLogin) {
       // wx.navigateTo({ url: "/pages/group/profile/profile" });
       return;
     }
-    wx.navigateTo({
-      url: "/pages/login/login"
-    });
+    wx.navigateTo({ url: "/pages/login/login" });
   },
   handleClick(event) {
-    const {
-      key
-    } = event.currentTarget.dataset;
+    const { key } = event.currentTarget.dataset;
     switch (key) {
       case "authentication":
         this.openModal();
@@ -38,19 +30,13 @@ Page({
     }
   },
   openModal() {
-    this.setData({
-      overlayShow: true
-    });
+    this.setData({ overlayShow: true });
   },
   closeModal() {
-    this.setData({
-      overlayShow: false
-    });
+    this.setData({ overlayShow: false });
   },
   async logout() {
-    const res = await wx.showModal({
-      content: "确定要退出登录吗？"
-    });
+    const res = await wx.showModal({ content: "确定要退出登录吗？" });
     res.confirm && this.resetStore();
   },
 

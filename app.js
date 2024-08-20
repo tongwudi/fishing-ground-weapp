@@ -5,9 +5,7 @@ import { store } from "@/store/index";
 App({
   onLaunch() {
     // 根据权限定位首页
-    if (!store.role) return;
-    const isFish = store.role.split(",").includes("fish");
-    wx.reLaunch({ url: isFish ? "/pages/group/my/my" : "/pages/home/home" });
+    wx.reLaunch({ url: store.isFish ? "/pages/group/my/my" : "/pages/home/home" });
 
     // // 微信登陆
     // wx.login({

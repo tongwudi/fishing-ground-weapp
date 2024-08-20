@@ -5,22 +5,23 @@ export const mainBehavior = BehaviorWithStore({
   storeBindings: {
     store,
     fields: [
-      "anglingSiteName",
-      "isLogin",
-      "userInfo",
-      "isOnline",
-      "groupId",
       "token",
-      "role"
+      "role",
+      "userInfo",
+      "groupId",
+      "anglingSiteName",
+      "isOnline",
+      "isLogin",
+      "isFish"
     ],
     actions: [
+      "resetStore",
       "setToken",
       "setRole",
       "setUserInfo",
       "setGroupId",
-      "setIsOnline",
       "setAnglingSiteName",
-      "resetStore"
+      "setIsOnline"
     ]
   }
 });

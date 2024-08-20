@@ -28,12 +28,16 @@ Page({
   },
 
   async getData() {
-    const { groupId: id } = this.data;
+    const { form, groupId: id } = this.data;
     const [{ data: pondList }, { data: fishList }] = await Promise.all([
       getPrivateFishAdminPondList({ id }),
       getPrivateFishAdminFishList()
     ]);
-    this.setData({ pondList, fishList });
+    if (pondList.length > 0) {
+      form.pond = pondList[0].name;
+      form.fishes_pond_id = pondList[0].id;
+    }
+    this.setData({ pondList, fishList, form });
   },
   handleChange(event) {
     const { field } = event.currentTarget.dataset;

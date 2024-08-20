@@ -17,6 +17,9 @@ export const store = observable({
   get isLogin() {
     return this.token != "";
   },
+  get isFish() {
+    return this.role.split(",").includes("fish");
+  },
 
   // actions
   resetStore: action(function () {

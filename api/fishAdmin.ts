@@ -20,6 +20,42 @@ export async function postPrivateFishAdminAdd(
   );
 }
 
+/** 新增轮播图 POST /private/fish/admin/banner/add */
+export async function postPrivateFishAdminBannerAdd(
+  body: API.FileRequest[],
+  options?: { [key: string]: any },
+) {
+  return request<API.Response & { code?: number; data?: string; message?: string }>(
+    '/private/fish/admin/banner/add',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: body,
+      ...(options || {}),
+    },
+  );
+}
+
+/** 删除轮播图 DELETE /private/fish/admin/banner/delete */
+export async function deletePrivateFishAdminBannerOpenApiDelete(
+  body: API.FishesCommonRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.Response & { code?: number; data?: string; message?: string }>(
+    '/private/fish/admin/banner/delete',
+    {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: body,
+      ...(options || {}),
+    },
+  );
+}
+
 /** 获取黑坑列表 GET /private/fish/admin/black/list */
 export async function getPrivateFishAdminBlackList(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
@@ -33,6 +69,24 @@ export async function getPrivateFishAdminBlackList(
       params: {
         ...params,
       },
+      ...(options || {}),
+    },
+  );
+}
+
+/** 删除钓场 DELETE /private/fish/admin/delete */
+export async function deletePrivateFishAdminOpenApiDelete(
+  body: API.FishesCommonRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.Response & { code?: number; data?: string; message?: string }>(
+    '/private/fish/admin/delete',
+    {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: body,
       ...(options || {}),
     },
   );

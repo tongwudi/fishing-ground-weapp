@@ -6,10 +6,10 @@
       <van-radio-group value="{{ form.status }}" data-field="status" bind:change="handleChange">
         <van-row>
           <van-col span="12">
-            <van-radio icon-size="18px" name="{{1}}">开放</van-radio>
+            <van-radio icon-size="18px" name="{{ 1 }}">开放</van-radio>
           </van-col>
           <van-col span="12">
-            <van-radio icon-size="18px" name="{{2}}">不开放</van-radio>
+            <van-radio icon-size="18px" name="{{ 2 }}">不开放</van-radio>
           </van-col>
         </van-row>
       </van-radio-group>

@@ -8,7 +8,7 @@
     </van-field>
     <van-cell title="视频" title-width="6.2em" title-class="cell-title" border="{{ false }}">
       <view class="upload-box">
-        <van-uploader accept="video" media-type="video" camera="back" max-count="2" file-list="{{ fileList }}" bind:delete="handleDelete" bind:after-read="afterRead" />
+        <van-uploader accept="video" capture="{{ ['camera'] }}" camera="back" max-count="2" file-list="{{ fileList }}" bind:delete="handleDelete" bind:after-read="afterRead" />
       </view>
     </van-cell>
   </van-cell-group>

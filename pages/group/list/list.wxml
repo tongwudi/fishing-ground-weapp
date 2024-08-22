@@ -4,9 +4,12 @@
     <block wx:if="{{ list.length > 0 }}">
       <block wx:for="{{ list }}" wx:key="index">
         <van-cell title="{{ item.name }}">
-          <van-button slot="right-icon" size="small" type="primary" plain="{{ item.id != groupId }}" data-id="{{ item.id }}" data-name="{{ item.name }}" bind:tap="handleChange">
-            {{ item.id != groupId? '切换' : '已选中' }}
-          </van-button>
+          <view slot="right-icon">
+            <van-button size="small" type="primary" plain="{{ item.id != groupId }}" data-id="{{ item.id }}" data-name="{{ item.name }}" bind:tap="handleChange">
+              {{ item.id != groupId? '切换' : '已选中' }}
+            </van-button>
+            <van-button style="margin-left: 6px;" size="small" plain type="danger" data-id="{{ item.id }}" bind:click="handleDelete">删除</van-button>
+          </view>
         </van-cell>
       </block>
     </block>

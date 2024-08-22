@@ -5,8 +5,8 @@
       <block wx:for="{{ list }}" wx:key="index">
         <van-cell title="{{ item.name }}">
           <view slot="right-icon">
-            <van-button style="margin-right: 6px;" size="small" type="primary" plain data-id="{{ item.id }}" bind:tap="goPage">放鱼计划</van-button>
-            <van-button size="small" type="danger" plain data-id="{{ item.id }}" bind:tap="handleDelete">删除</van-button>
+            <van-button size="small" type="primary" plain data-id="{{ item.id }}" bind:tap="goPage">放鱼计划</van-button>
+            <van-button style="margin-left: 6px;" size="small" type="danger" plain data-id="{{ item.id }}" bind:tap="handleDelete">删除</van-button>
           </view>
         </van-cell>
       </block>

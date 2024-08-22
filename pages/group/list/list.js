@@ -1,5 +1,8 @@
 // pages/group/list/list.js
-import { getPrivateFishAdminList } from "@/api/index";
+import {
+  getPrivateFishAdminList,
+  deletePrivateFishAdminOpenApiDelete
+} from "@/api/index";
 import { mainBehavior } from "@/store/behaviors";
 
 Page({
@@ -14,6 +17,10 @@ Page({
   async getData() {
     const { data: list } = await getPrivateFishAdminList();
     this.setData({ list });
+    const { groupId } = this.data;
+    if (list.length == 0 || groupId) return;
+    this.setGroupId(list[0].id);
+    this.setAnglingSiteName(list[0].name);
   },
   goPage() {
     wx.navigateTo({ url: "/pages/group/profile/profile" });
@@ -24,6 +31,15 @@ Page({
     if (id === groupId) return;
     this.setGroupId(id);
     this.setAnglingSiteName(name);
+  },
+  async handleDelete(event) {
+    const { id } = event.currentTarget.dataset;
+    const res = await wx.showModal({ content: "确定要删除该钓场吗？" });
+    if (res.confirm) {
+      await deletePrivateFishAdminOpenApiDelete({ id });
+      this.getData();
+      wx.showToast({ title: "删除成功" });
+    }
   },
   /**
    * 生命周期函数--监听页面加载

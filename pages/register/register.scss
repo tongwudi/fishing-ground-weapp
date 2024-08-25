@@ -1,5 +1,10 @@
+/* pages/register/register.wxss */
 .form-box {
+  // width: 100%;
+  // height: auto;
+  // overflow: hidden;
   padding: 0 40rpx;
+  // margin-top: 96rpx;
   background: #fff;
 }
 
@@ -10,8 +15,7 @@
   border-bottom: 1px solid #d9d9d9;
 }
 
-.form-item .username,
-.form-item .password {
+.form-item input {
   position: absolute;
   top: 26rpx;
   left: 0;
@@ -22,7 +26,6 @@
   color: #333;
   font-size: 30rpx;
 }
-
 .form-btn {
   margin-top: 30rpx;
 }

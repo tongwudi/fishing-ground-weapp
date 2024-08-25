@@ -1,0 +1,13 @@
+<!--pages/register/register.wxml-->
+<view class="form-box">
+  <view class="form-item">
+    <input value="{{ form.user_name }}" data-field="user_name" bind:input="bindInput" placeholder="用户名" />
+  </view>
+  <view class="form-item">
+    <input value="{{ form.nick_name }}" data-field="nick_name" bind:input="bindInput" placeholder="昵称" />
+  </view>
+  <view class="form-item">
+    <input value="{{ form.password }}" password data-field="password" bind:input="bindInput" placeholder="密码" />
+  </view>
+  <button type="primary" class="form-btn" bind:tap="register">注册</button>
+</view>

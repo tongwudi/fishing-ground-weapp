@@ -17,6 +17,9 @@ Page({
     const { value } = event.detail;
     this.setData({ [field]: value });
   },
+  goPage() {
+    wx.navigateTo({ url: "/pages/register/register" });
+  },
   async login() {
     const { user_name, password } = this.data;
     if (user_name?.length == 0 && password?.length == 0) {

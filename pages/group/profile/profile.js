@@ -12,7 +12,11 @@ Page({
   data: {
     pickerConfig: {
       show: false,
-      activeKey: ""
+      activeKey: "",
+      start: "9:00",
+      end: "18:00",
+      time: "9:00",
+      timeKey: "start"
     },
     form: {},
     fileList: []
@@ -25,19 +29,30 @@ Page({
   },
   openPicker(event) {
     const { field } = event.currentTarget.dataset;
-    const pickerConfig = {
-      show: true,
-      activeKey: field
-    };
-    this.setData({ pickerConfig });
+    this.setData({
+      "pickerConfig.show": true,
+      "pickerConfig.activeKey": field
+    });
+  },
+  handleTap(event) {
+    const { field } = event.currentTarget.dataset;
+    const { pickerConfig } = this.data;
+    this.setData({
+      "pickerConfig.time": pickerConfig[field],
+      "pickerConfig.timeKey": field
+    });
+  },
+  handleChangeTime(event) {
+    const time = event.detail;
+    const { pickerConfig } = this.data;
+    this.setData({ [`pickerConfig.${pickerConfig.timeKey}`]: time });
   },
   closePicker() {
     this.setData({ "pickerConfig.show": false });
   },
-  confirmPicker(event) {
-    const [start, end] = event.detail;
-    const dateStr = `${formatDate(start)} ~ ${formatDate(end)}`;
+  confirmPicker() {
     const { pickerConfig } = this.data;
+    const dateStr = `${pickerConfig.start} ~ ${pickerConfig.end}`;
     this.setData({
       "pickerConfig.show": false,
       [`form.${pickerConfig.activeKey}`]: dateStr

@@ -30,8 +30,16 @@
   </view>
 
   <van-popup show="{{ pickerConfig.show }}" position="bottom" bind:close="closePicker">
-    dfdf
+    <view class="picker-toolbar">
+      <text class="picker-toolbar_cancel" bind:tap="closePicker">取消</text>
+      <text class="picker-toolbar_confirm" bind:tap="confirmPicker">确认</text>
+    </view>
+    <view class="picker-content">
+      <input class="picker-content_input" disabled value="{{ pickerConfig.start }}" data-field="start" bind:tap="handleTap" placeholder="开始时间" />
+      <text class="picker-content_separator">~</text>
+      <input class="picker-content_input" disabled value="{{ pickerConfig.end }}" data-field="end" bind:tap="handleTap" placeholder="结束时间" />
+    </view>
+    <van-datetime-picker type="time" show-toolbar="{{ false }}" visible-item-count="{{ 4 }}" value="{{ pickerConfig.time }}" bind:input="handleChangeTime" />
   </van-popup>
-  <!-- <van-calendar show="{{ pickerConfig.show }}" type="range" bind:close="closePicker" bind:confirm="confirmPicker" /> -->
 </view>
 <van-empty wx:else description="暂无数据" />

@@ -25,35 +25,41 @@ Page({
     this.setData({ [`form.${field}`]: value });
   },
   afterRead(event) {
-    const _this = this;
     const { file } = event.detail;
-    // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
+    const { fileList } = this.data;
+    const that = this;
     wx.uploadFile({
-      url: env.baseURL + "/private/fish/admin/photo/add", // 仅为示例，非真实的接口地址
+      url: env.baseURL + "/private/fish/admin/photo/add",
       filePath: file.url,
       name: "file",
-      header: {
-        "x-token": wx.getStorageSync("token")
-      },
-      formData: {
-        user: "test"
-      },
+      header: { "x-token": wx.getStorageSync("token") },
       success(res) {
-        const result = JSON.parse(res.data);
-        _this.data.fileList.push({
-          url: "https://" + result.data.url,
-          id: result.data.id
-        });
-        _this.setData({
-          "form.photo_ids": _this.data.fileList.map(item => item.id),
-          fileList: _this.data.fileList
-        });
+        const { data, code } = JSON.parse(res.data);
+        if (code != 200) {
+          wx.showToast({
+            title: "上传失败请重试",
+            icon: "none"
+          });
+          return;
+        }
+        // 上传完成需要更新 fileList
+        fileList.push({ id: data.id, url: data.url });
+        that.setData({ fileList });
       }
     });
   },
   async handleSave() {
-    const { form } = this.data;
-    await postPrivateFishAdminPondAdd({ ...form });
+    const { form, fileList } = this.data;
+    const photo_ids = fileList.map(v => v.id);
+    const params = {
+      ...form,
+      photo_ids,
+      size: +form.size,
+      position_num: +form.position_num,
+      water_depth: +form.water_depth,
+      status: 1
+    };
+    await postPrivateFishAdminPondAdd(params);
     wx.showToast({
       title: form.id ? "修改成功" : "新增成功",
       success() {

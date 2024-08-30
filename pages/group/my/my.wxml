@@ -38,7 +38,7 @@
   </view>
 
   <block wx:if="{{ groupInfo.fishes_pond.length > 0 }}">
-    <van-tabs sticky animated swipeable color="#2f85da" ellipsis="{{ false }}" active="{{ active }}">
+    <van-tabs sticky animated swipeable color="#2f85da" ellipsis="{{ false }}" active="{{ active }}" bind:change="handleChange">
       <block wx:for="{{ groupInfo.fishes_pond }}" wx:key="id" wx:for-item="tab">
         <van-tab title="{{ tab.name }}">
           <view class="card tab-content">

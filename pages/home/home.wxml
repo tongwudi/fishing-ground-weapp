@@ -10,7 +10,7 @@
 
   <view class="title">热门钓场推荐</view>
 
-  <scroll-view class="scroll-view" type="list" scroll-y>
+  <scroll-view class="scroll-view" type="list" scroll-y refresher-enabled refresher-triggered="{{ isRefreshing }}" bindrefresherrefresh="handleRefresherRefresh">
     <block wx:if="{{ list.length > 0 }}">
       <view class="list">
         <block wx:for="{{ list }}" wx:key="index">

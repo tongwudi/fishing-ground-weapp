@@ -21,6 +21,10 @@ Page({
     const { data: groupInfo } = await getPublicFishGrounds({ id });
     this.setData({ groupInfo, active: 0 });
   },
+  handleChange(event) {
+    const id = event.detail.name;
+    this.setData({ active: id });
+  },
   goPage(event) {
     const { id, type } = event.currentTarget.dataset;
     if (type == "plan") {
@@ -38,7 +42,9 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {},
+  onReady() {
+    this.getData();
+  },
 
   /**
    * 生命周期函数--监听页面显示
@@ -47,7 +53,6 @@ Page({
     if (typeof this.getTabBar === "function") {
       this.getTabBar().init();
     }
-    this.getData();
   },
 
   /**
@@ -63,7 +68,10 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh() {},
+  async onPullDownRefresh() {
+    await this.getData();
+    wx.stopPullDownRefresh();
+  },
 
   /**
    * 页面上拉触底事件的处理函数

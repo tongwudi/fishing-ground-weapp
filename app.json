@@ -32,6 +32,7 @@
     "van-tabs": "@vant/weapp/tabs/index",
     "van-field": "@vant/weapp/field/index",
     "van-popup": "@vant/weapp/popup/index",
+    "van-calendar": "@vant/weapp/calendar/index",
     "van-datetime-picker": "@vant/weapp/datetime-picker/index",
     "van-uploader": "@vant/weapp/uploader/index",
     "van-radio": "@vant/weapp/radio/index",

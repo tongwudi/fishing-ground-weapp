@@ -1,4 +1,4 @@
-import { getPublicFishList } from "@/api/index";
+import { getPublicFishBanner, getPublicFishList } from "@/api/index";
 
 Page({
   /**
@@ -12,17 +12,19 @@ Page({
       },
       {
         url:
-          "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimage109.360doc.com%2FDownloadImg%2F2023%2F09%2F1409%2F272232655_1_20230914092523542&refer=http%3A%2F%2Fimage109.360doc.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1721874578&t=4187ef3e9966ffb592eaf6550d69f3e4"
-      },
-      {
-        url:
           "https://img0.baidu.com/it/u=100080021,1406455647&fm=253&fmt=auto&app=120&f=JPEG?w=756&h=500"
       }
     ],
     total: 0,
-    list: []
+    list: [],
+    isRefreshing: false
   },
 
+  async getBanner() {
+    const { data } = await getPublicFishBanner();
+    if (data?.length == 0) return;
+    this.setData({ banner: data });
+  },
   async getList() {
     const { data } = await getPublicFishList();
     this.setData({
@@ -30,7 +32,10 @@ Page({
       total: data.total
     });
   },
-
+  async handleRefresherRefresh() {
+    await this.getList();
+    this.setData({ isRefreshing: false });
+  },
   goPage(event) {
     const { id } = event.currentTarget.dataset;
     wx.navigateTo({ url: `/pages/group/detail/detail?id=${id}` });
@@ -39,14 +44,15 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-    this.getList();
-  },
+  onLoad(options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {},
+  onReady() {
+    this.getBanner();
+    this.getList();
+  },
 
   /**
    * 生命周期函数--监听页面显示

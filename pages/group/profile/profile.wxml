@@ -2,7 +2,7 @@
 <view class="container" wx:if="{{isOnline}}">
   <van-cell-group>
     <van-field label="钓场名称" value="{{ form.name }}" data-field="name" bind:change="handleChange" clearable placeholder="请输入钓场名称" />
-    <van-field label="钓场位置" value="{{ form.address }}" data-field="address" bind:change="handleChange" bind:click-icon="handleRightIconClick" placeholder="请输入钓场位置">
+    <van-field label="钓场位置" type="textarea" autosize="{{ { maxHeight: 100, minHeight: 50 } }}" value="{{ form.address }}" data-field="address" readonly bind:click-icon="handleRightIconClick" placeholder="请选择钓场位置">
       <van-icon slot="right-icon" class-prefix="iconfont" name="position" />
     </van-field>
     <van-field label="营业时间" value="{{ form.business_hours }}" data-field="business_hours" bind:click-input="openPicker" readonly placeholder="请选择营业时间" />

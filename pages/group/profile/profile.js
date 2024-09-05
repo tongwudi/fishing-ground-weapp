@@ -62,7 +62,7 @@ Page({
       const res = await wx.chooseLocation();
       console.log(res,"位置")
       this.setData({
-        "form.address": res.name,
+        "form.address": res.name?res.name:res.address,
         "form.latitude": res.latitude + "",
         "form.longitude": res.longitude + ""
       });

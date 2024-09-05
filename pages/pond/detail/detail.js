@@ -74,13 +74,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    wx.setNavigationBarTitle({ title: options.id ? "修改塘口" : "新增塘口" });
     if (options.id) {
       this.getData(options.id);
-      wx.setNavigationBarTitle({ title: "修改塘口" });
     } else {
       const { groupId } = this.data;
-      this.setData({ ["form.angling_site_id"]: groupId });
-      wx.setNavigationBarTitle({ title: "新增塘口" });
+      this.setData({ "form.angling_site_id": groupId });
     }
   },
 

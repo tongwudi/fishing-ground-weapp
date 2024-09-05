@@ -21,11 +21,8 @@ Page({
   },
   goPage(event) {
     const { id } = event.currentTarget.dataset;
-    if (!id) {
-      wx.navigateTo({ url: "/pages/pond/detail/detail" });
-    } else {
-      wx.navigateTo({ url: `/pages/plan/detail/detail?pondId=${id}` });
-    }
+    const url = "/pages/pond/detail/detail";
+    wx.navigateTo({ url: id ? `${url}?id=${id}` : url });
   },
   async handleDelete(event) {
     const { id } = event.currentTarget.dataset;

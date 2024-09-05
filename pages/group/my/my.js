@@ -17,9 +17,11 @@ Page({
     active: 0
   },
   async getData() {
-    const id = this.data.groupId;
-    const { data: groupInfo } = await getPublicFishGrounds({ id });
-    this.setData({ groupInfo, active: 0 });
+    let { groupId: id, banner } = this.data;
+    const { data } = await getPublicFishGrounds({ id });
+    const { files = [], ...groupInfo } = data;
+    files.length > 0 && (banner = files.map(v => ({ id: v.id, url: v.path })));
+    this.setData({ groupInfo, banner, active: 0 });
   },
   handleChange(event) {
     const id = event.detail.name;

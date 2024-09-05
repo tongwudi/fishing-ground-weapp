@@ -1,5 +1,5 @@
 // pages/profile/profile.js
-import { postPrivateFishAdminAdd } from "@/api/index";
+import { postPrivateFishAdminAdd, getPublicFishGrounds } from "@/api/index";
 import { env } from "@/utils/env";
 import { mainBehavior } from "@/store/behaviors";
 
@@ -21,6 +21,12 @@ Page({
     fileList: []
   },
 
+  async getData(id) {
+    const { data } = await getPublicFishGrounds({ id });
+    const { user, files = [], ...form } = data;
+    const fileList = files.map(v => ({ id: v.id, url: v.path }));
+    this.setData({ form, fileList });
+  },
   handleChange(event) {
     const { field } = event.currentTarget.dataset;
     const value = event.detail;
@@ -60,9 +66,8 @@ Page({
   async handleRightIconClick() {
     try {
       const res = await wx.chooseLocation();
-      console.log(res,"位置")
       this.setData({
-        "form.address": res.name?res.name:res.address,
+        "form.address": res.name ? res.name : res.address,
         "form.latitude": res.latitude + "",
         "form.longitude": res.longitude + ""
       });
@@ -137,16 +142,15 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {},
+  onLoad(options) {
+    wx.setNavigationBarTitle({ title: options.id ? "修改钓场" : "新增钓场" });
+    options.id && this.getData(options.id);
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  async onReady() {
-    // const params = { id: "25905b018cb148beb67bcdad0dd93a80" };
-    // const res = await groupDetail(params);
-    // console.log(res, "groupDetail");
-  },
+  async onReady() {},
 
   /**
    * 生命周期函数--监听页面显示

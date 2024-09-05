@@ -22,8 +22,10 @@ Page({
     this.setGroupId(list[0].id);
     this.setAnglingSiteName(list[0].name);
   },
-  goPage() {
-    wx.navigateTo({ url: "/pages/group/profile/profile" });
+  goPage(event) {
+    const { id } = event.currentTarget.dataset;
+    const url = "/pages/group/profile/profile";
+    wx.navigateTo({ url: id ? `${url}?id=${id}` : url });
   },
   handleChange(event) {
     const { id, name } = event.currentTarget.dataset;
@@ -31,6 +33,9 @@ Page({
     if (id === groupId) return;
     this.setGroupId(id);
     this.setAnglingSiteName(name);
+  },
+  handleEdit() {
+    wx.navigateTo({ url: "/pages/group/profile/profile" });
   },
   async handleDelete(event) {
     const { id } = event.currentTarget.dataset;

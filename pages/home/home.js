@@ -23,7 +23,8 @@ Page({
   async getBanner() {
     const { data } = await getPublicFishBanner();
     if (data?.length == 0) return;
-    this.setData({ banner: data });
+    const banner = data.map(v => ({ id: v.id, url: v.path }));
+    this.setData({ banner });
   },
   async getList() {
     const { data } = await getPublicFishList();

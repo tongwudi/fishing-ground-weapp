@@ -17,8 +17,13 @@ Page({
   },
 
   async getData(id) {
-    const { data: groupInfo } = await getPublicFishGrounds({ id });
-    this.setData({ groupInfo });
+    let { banner } = this.data;
+    const { data } = await getPublicFishGrounds({ id });
+    console.log(data,'data');
+    const { files = [], ...groupInfo } = data;
+    files.length > 0 && (banner = files.map(v => ({ id: v.id, url: v.path })));
+    this.setData({ groupInfo, banner });
+    // 是否存在塘口
     if (groupInfo.fishes_pond.length == 0) return;
     const pondId = groupInfo.fishes_pond[0].id;
     this.getPondInfo(pondId);

@@ -53,6 +53,9 @@ Page({
     if (typeof this.getTabBar === "function") {
       this.getTabBar().init();
     }
+    const { groupInfo, groupId } = this.data;
+    if (!groupInfo.id || groupInfo.id == groupId) return;
+    this.getData();
   },
 
   /**

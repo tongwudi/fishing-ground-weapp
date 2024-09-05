@@ -60,8 +60,9 @@ Page({
   async handleRightIconClick() {
     try {
       const res = await wx.chooseLocation();
+      console.log(res,"位置")
       this.setData({
-        "form.address": res.address,
+        "form.address": res.name,
         "form.latitude": res.latitude + "",
         "form.longitude": res.longitude + ""
       });

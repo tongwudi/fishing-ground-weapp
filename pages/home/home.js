@@ -28,8 +28,13 @@ Page({
   },
   async getList() {
     const { data } = await getPublicFishList();
+    const list = data.list.map(v => {
+      const imgPath = "https://pic.imgdb.cn/item/66b9a438d9c307b7e99a980c.jpg";
+      v.imgPath = v.files[0]?.path || imgPath;
+      return v;
+    });
     this.setData({
-      list: data.list,
+      list: list,
       total: data.total
     });
   },

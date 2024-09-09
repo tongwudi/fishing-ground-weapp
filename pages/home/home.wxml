@@ -33,7 +33,7 @@
                 <text class="info-item_value van-ellipsis">{{ item.business_hours || '随到随钓' }}</text>
               </view>
             </view>
-            <image class="item-img" src="https://pic.imgdb.cn/item/66b9a438d9c307b7e99a980c.jpg" />
+            <image class="item-img" src="{{ item.imgPath }}" />
           </view>
         </block>
       </view>

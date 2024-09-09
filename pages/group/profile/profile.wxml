@@ -2,10 +2,24 @@
 <view class="container" wx:if="{{isOnline}}">
   <van-cell-group>
     <van-field label="钓场名称" value="{{ form.name }}" data-field="name" bind:change="handleChange" clearable placeholder="请输入钓场名称" />
-    <van-field label="钓场位置" type="textarea" autosize="{{ { maxHeight: 100, minHeight: 50 } }}" value="{{ form.address }}" data-field="address" readonly bind:click-icon="handleRightIconClick" placeholder="请选择钓场位置">
+    <van-field label="钓场位置" type="textarea" autosize="{{ { maxHeight: 100, minHeight: 50 } }}" value="{{ form.address }}" data-field="address" readonly bind:click-input="handleAddressClick" bind:click-icon="handleAddressClick" placeholder="请选择钓场位置">
       <van-icon slot="right-icon" class-prefix="iconfont" name="position" />
     </van-field>
-    <van-field label="营业时间" value="{{ form.business_hours }}" data-field="business_hours" bind:click-input="openPicker" readonly placeholder="请选择营业时间" />
+    <van-cell title="营业时间" title-width="6.2em" title-class="cell-title">
+      <van-radio-group value="{{ pickerConfig.time }}" bind:change="handleTimeClick">
+        <van-row>
+          <van-col span="12">
+            <van-radio icon-size="18px" name="{{ 1 }}">随到随钓</van-radio>
+          </van-col>
+          <van-col span="12">
+            <van-radio icon-size="18px" name="{{ 2 }}">固定时间</van-radio>
+          </van-col>
+        </van-row>
+      </van-radio-group>
+    </van-cell>
+    <block wx:if="{{ pickerConfig.time === 2 }}">
+      <van-field label="固定时间" value="{{ form.business_hours }}" data-field="business_hours" bind:click-input="openPicker" readonly placeholder="请选择营业时间" />
+    </block>
     <van-field label="联系电话" type="tel" value="{{ form.phone }}" data-field="phone" bind:change="handleChange" placeholder="请输入联系电话" />
     <van-field label="钓场描述" type="textarea" autosize="{{ { maxHeight: 100, minHeight: 50 } }}" value="{{ form.description }}" data-field="description" bind:change="handleChange" placeholder="请输入钓场描述" />
     <!-- <van-cell title="支付宝收款码" title-width="6.2em" title-class="cell-title">
@@ -39,7 +53,7 @@
       <text class="picker-content_separator">~</text>
       <input class="picker-content_input" disabled value="{{ pickerConfig.end }}" data-field="end" bind:tap="handleTap" placeholder="结束时间" />
     </view>
-    <van-datetime-picker type="time" show-toolbar="{{ false }}" visible-item-count="{{ 4 }}" value="{{ pickerConfig.time }}" bind:input="handleChangeTime" />
+    <van-datetime-picker type="time" show-toolbar="{{ false }}" visible-item-count="{{ 4 }}" value="{{ pickerConfig[pickerConfig.timeKey] }}" bind:input="handleChangeTime" />
   </van-popup>
 </view>
 <van-empty wx:else description="暂无数据" />

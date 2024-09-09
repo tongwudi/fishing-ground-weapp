@@ -10,11 +10,11 @@ Page({
    */
   data: {
     pickerConfig: {
+      time: 1,
       show: false,
       activeKey: "",
       start: "9:00",
       end: "18:00",
-      time: "9:00",
       timeKey: "start"
     },
     form: {},
@@ -25,45 +25,18 @@ Page({
     const { data } = await getPublicFishGrounds({ id });
     const { user, files = [], ...form } = data;
     const fileList = files.map(v => ({ id: v.id, url: v.path }));
-    this.setData({ form, fileList });
+    this.setData({
+      "pickerConfig.time": form.business_hours == "随到随钓" ? 1 : 2,
+      form,
+      fileList
+    });
   },
   handleChange(event) {
     const { field } = event.currentTarget.dataset;
     const value = event.detail;
     this.setData({ [`form.${field}`]: value });
   },
-  openPicker(event) {
-    const { field } = event.currentTarget.dataset;
-    this.setData({
-      "pickerConfig.show": true,
-      "pickerConfig.activeKey": field
-    });
-  },
-  handleTap(event) {
-    const { field } = event.currentTarget.dataset;
-    const { pickerConfig } = this.data;
-    this.setData({
-      "pickerConfig.time": pickerConfig[field],
-      "pickerConfig.timeKey": field
-    });
-  },
-  handleChangeTime(event) {
-    const time = event.detail;
-    const { pickerConfig } = this.data;
-    this.setData({ [`pickerConfig.${pickerConfig.timeKey}`]: time });
-  },
-  closePicker() {
-    this.setData({ "pickerConfig.show": false });
-  },
-  confirmPicker() {
-    const { pickerConfig } = this.data;
-    const dateStr = `${pickerConfig.start} ~ ${pickerConfig.end}`;
-    this.setData({
-      "pickerConfig.show": false,
-      [`form.${pickerConfig.activeKey}`]: dateStr
-    });
-  },
-  async handleRightIconClick() {
+  async handleAddressClick() {
     try {
       const res = await wx.chooseLocation();
       this.setData({
@@ -96,6 +69,40 @@ Page({
     //     wx.showToast({ title: "您拒绝了授权", icon: "none" });
     //   }
     // }
+  },
+  handleTimeClick(event) {
+    const value = event.detail;
+    this.setData({
+      "form.business_hours": value === 1 ? "随到随钓" : "",
+      "pickerConfig.time": value
+    });
+  },
+  openPicker(event) {
+    const { field } = event.currentTarget.dataset;
+    this.setData({
+      "pickerConfig.show": true,
+      "pickerConfig.activeKey": field
+    });
+  },
+  handleTap(event) {
+    const { field } = event.currentTarget.dataset;
+    this.setData({ "pickerConfig.timeKey": field });
+  },
+  handleChangeTime(event) {
+    const time = event.detail;
+    const { pickerConfig } = this.data;
+    this.setData({ [`pickerConfig.${pickerConfig.timeKey}`]: time });
+  },
+  closePicker() {
+    this.setData({ "pickerConfig.show": false });
+  },
+  confirmPicker() {
+    const { pickerConfig } = this.data;
+    const dateStr = `${pickerConfig.start} ~ ${pickerConfig.end}`;
+    this.setData({
+      [`form.${pickerConfig.activeKey}`]: dateStr,
+      "pickerConfig.show": false
+    });
   },
   afterRead(event) {
     const { file } = event.detail;

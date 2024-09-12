@@ -5,7 +5,8 @@
       <block wx:for="{{ list }}" wx:key="index">
         <van-cell title="{{ item.name }}">
           <view slot="right-icon">
-            <van-button size="small" type="primary" plain data-id="{{ item.id }}" bind:tap="goPage">放鱼计划</van-button>
+            <van-button size="small" type="primary" plain data-id="{{ item.id }}" bind:tap="gpPlan">放鱼计划</van-button>
+            <van-button style="margin-left: 6px;" size="small" plain type="info" data-id="{{ item.id }}" bind:click="goPage">修改</van-button>
             <van-button style="margin-left: 6px;" size="small" type="danger" plain data-id="{{ item.id }}" bind:tap="handleDelete">删除</van-button>
           </view>
         </van-cell>
@@ -14,7 +15,7 @@
     <van-empty wx:else description="暂无数据" />
   </scroll-view>
 
-  <view class="operate-btn" wx:if="{{ isOnline }}">
+  <view class="operate-btn">
     <van-button type="primary" block bind:click="goPage">新增</van-button>
   </view>
 </view>

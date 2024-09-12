@@ -1,5 +1,5 @@
 <!--pages/put/add/add.wxml-->
-<view class="container" wx:if="{{ isOnline }}">
+<view class="container">
   <van-cell-group>
     <van-field label="塘口" readonly value="{{ form.pond }}" data-field="pond" bind:click-input="openPondPicker" placeholder="请选择塘口" />
     <van-field label="鱼种" readonly value="{{ form.fishes }}" data-field="fishes" bind:click-input="openFishesPicker" placeholder="请选择鱼种" />
@@ -25,4 +25,3 @@
     <van-picker show-toolbar title="选择鱼种" value-key="name" default-index="{{ fishesPicker.selectIndex }}" columns="{{ fishList }}" bind:cancel="closeFishesPicker" bind:confirm="confirmFishesPicker" />
   </van-popup>
 </view>
-<van-empty wx:else description="暂无数据" />

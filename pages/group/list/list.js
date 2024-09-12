@@ -17,8 +17,9 @@ Page({
   async getData() {
     const { data: list } = await getPrivateFishAdminList();
     this.setData({ list });
+    // 若之前没有默认钓场，则选中第一个钓场
     const { groupId } = this.data;
-    if (list.length == 0 || groupId) return;
+    if (groupId || list.length == 0) return;
     this.setGroupId(list[0].id);
     this.setAnglingSiteName(list[0].name);
   },

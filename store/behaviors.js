@@ -10,7 +10,6 @@ export const mainBehavior = BehaviorWithStore({
       "userInfo",
       "groupId",
       "anglingSiteName",
-      "isOnline",
       "isLogin",
       "isFish"
     ],
@@ -20,8 +19,7 @@ export const mainBehavior = BehaviorWithStore({
       "setRole",
       "setUserInfo",
       "setGroupId",
-      "setAnglingSiteName",
-      "setIsOnline"
+      "setAnglingSiteName"
     ]
   }
 });

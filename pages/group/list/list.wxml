@@ -17,7 +17,7 @@
     <van-empty wx:else description="暂无数据" />
   </scroll-view>
 
-  <view class="operate-btn" wx:if="{{ isOnline }}">
+  <view class="operate-btn">
     <van-button type="primary" block bind:click="goPage">新增</van-button>
   </view>
 </view>

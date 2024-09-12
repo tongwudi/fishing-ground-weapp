@@ -88,7 +88,7 @@ Page({
     const { fileList, anglingSiteName } = this.data;
     const that = this;
     wx.uploadFile({
-      url: env.baseURL + "/private/fish/admin/video/add", // 仅为示例，非真实的接口地址
+      url: env.baseURL + "/private/fish/admin/video/add",
       filePath: file.url,
       name: "file",
       formData: { name: anglingSiteName },

@@ -19,6 +19,9 @@ Page({
     const { data: list } = await getPrivateFishAdminPondList({ id });
     this.setData({ list });
   },
+  gpPlan() {
+    wx.navigateTo({ url: "/pages/plan/detail/detail" });
+  },
   goPage(event) {
     const { id } = event.currentTarget.dataset;
     const url = "/pages/pond/detail/detail";
@@ -49,7 +52,6 @@ Page({
    */
   onShow() {
     this.getData();
-    console.log(this);
   },
 
   /**

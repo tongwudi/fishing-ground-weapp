@@ -79,7 +79,6 @@ export async function request<T>(
     isLoading: true,
   }
   const options = requestInterceptors(config);
-  console.log(options);
 
   return new Promise((resolve, reject) => {
     wx.request({

@@ -1,11 +1,16 @@
 // app.js
 import { store } from "@/store/index";
+import { getPrivateFishAdminList } from "@/api/index";
 // import { authorize } from "@/api/index";
 
 App({
   onLaunch() {
-    // 根据权限定位首页
-    wx.reLaunch({ url: store.isFish ? "/pages/group/my/my" : "/pages/home/home" });
+    if (store.isFish) {
+      // 如果是钓场身份，获取第一个钓场
+      this.getGroupList();
+      // 如果是钓场身份，跳转到钓场首页
+      wx.reLaunch({ url: "/pages/group/my/my" });
+    }
 
     // // 微信登陆
     // wx.login({
@@ -20,6 +25,12 @@ App({
     //     }
     //   }
     // });
+  },
+  async getGroupList() {
+    const { data: groundList } = await getPrivateFishAdminList();
+    if (groundList.length == 0) return;
+    store.setGroupId(groundList[0].id);
+    store.setAnglingSiteName(groundList[0].name);
   },
   globalData: {
     userTabbar: [

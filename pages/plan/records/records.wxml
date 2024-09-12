@@ -1,4 +1,4 @@
-<!--pages/plan/list/list.wxml-->
+<!--pages/plan/records/records.wxml-->
 <view class="container">
   <van-nav-bar title="放鱼计划" fixed placeholder bind:click-left="onClickLeft">
     <view slot="left">

@@ -11,7 +11,6 @@ export const store = observable({
   userInfo: wx.getStorageSync("userInfo") || defaultUserInfo,
   groupId: wx.getStorageSync("groupId") || "",
   anglingSiteName: wx.getStorageSync("anglingSiteName") || "",
-  isOnline: wx.getStorageSync("isOnline") || false,
 
   // 计算属性
   get isLogin() {
@@ -27,7 +26,6 @@ export const store = observable({
     this.role = "";
     this.userInfo = defaultUserInfo;
     this.groupId = "";
-    this.isOnline = false;
     wx.clearStorageSync();
   }),
   setToken: action(function (token) {
@@ -45,10 +43,6 @@ export const store = observable({
   setGroupId: action(function (groupId) {
     this.groupId = groupId;
     wx.setStorageSync("groupId", groupId);
-  }),
-  setIsOnline: action(function (isOnline) {
-    this.isOnline = isOnline;
-    wx.setStorageSync("isOnline", isOnline);
   }),
   setAnglingSiteName: action(function (val) {
     this.anglingSiteName = val;

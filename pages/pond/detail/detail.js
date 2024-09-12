@@ -16,8 +16,13 @@ Page({
   },
 
   async getData(id) {
-    const { data: form } = await getPublicFishPond({ id });
-    this.setData({ form });
+    const { data } = await getPublicFishPond({ id });
+    const { files = [], ...form } = data;
+    const fileList = files.map(v => ({ id: v.id, url: v.path }));
+    this.setData({
+      form,
+      fileList
+    });
   },
   handleChange(event) {
     const { field } = event.currentTarget.dataset;
@@ -56,8 +61,7 @@ Page({
       photo_ids,
       size: +form.size,
       position_num: +form.position_num,
-      water_depth: +form.water_depth,
-      status: 1
+      water_depth: +form.water_depth
     };
     await postPrivateFishAdminPondAdd(params);
     wx.showToast({
@@ -75,12 +79,7 @@ Page({
    */
   onLoad(options) {
     wx.setNavigationBarTitle({ title: options.id ? "修改塘口" : "新增塘口" });
-    if (options.id) {
-      this.getData(options.id);
-    } else {
-      const { groupId } = this.data;
-      this.setData({ "form.angling_site_id": groupId });
-    }
+    options.id && this.getData(options.id);
   },
 
   /**

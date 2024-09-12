@@ -40,7 +40,8 @@ Page({
     try {
       const res = await wx.chooseLocation();
       this.setData({
-        "form.address": res.name ? res.name : res.address,
+        "form.address_name": res.name ? res.name : res.address,
+        "form.address": res.address,
         "form.latitude": res.latitude + "",
         "form.longitude": res.longitude + ""
       });
@@ -137,7 +138,7 @@ Page({
     };
     await postPrivateFishAdminAdd(params);
     wx.showToast({
-      title: "新增成功",
+      title: form.id ? "修改成功" : "新增成功",
       success() {
         setTimeout(() => {
           wx.navigateBack();

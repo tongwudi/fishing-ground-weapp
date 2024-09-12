@@ -1,7 +1,6 @@
 import {
   postBaseSystemLogin,
-  getPrivateFishAdminList,
-  getPublicFishSetting
+  getPrivateFishAdminList
 } from "@/api/index";
 import { mainBehavior } from "@/store/behaviors";
 
@@ -35,16 +34,11 @@ Page({
     this.setToken(data.token);
     this.setRole(userRole.join());
     this.setUserInfo(data.user);
-    await this.getIsOnline();
     // 默认每个钓场身份的账号只有一个钓场，所以把请求钓场列表接口放到登录来做
     if (userRole.includes("fish")) {
       this.getGroupList();
     }
     wx.navigateBack();
-  },
-  async getIsOnline() {
-    const { data } = await getPublicFishSetting();
-    this.setIsOnline(data.is_online);
   },
   async getGroupList() {
     const { data: groundList } = await getPrivateFishAdminList();

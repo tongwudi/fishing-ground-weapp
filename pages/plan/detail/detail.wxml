@@ -1,4 +1,4 @@
-<view class="container" wx:if="{{ isOnline }}">
+<view class="container">
   <block wx:for="{{ form }}" wx:key="index">
     <view class="cell-row">
       <text>{{ item.put_time }}</text>

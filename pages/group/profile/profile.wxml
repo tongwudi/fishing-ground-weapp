@@ -1,5 +1,5 @@
 <!--pages/profile/profile.wxml-->
-<view class="container" wx:if="{{isOnline}}">
+<view class="container">
   <van-cell-group>
     <van-field label="钓场名称" value="{{ form.name }}" data-field="name" bind:change="handleChange" clearable placeholder="请输入钓场名称" />
     <van-field label="钓场位置" type="textarea" autosize="{{ { maxHeight: 100, minHeight: 50 } }}" value="{{ form.address }}" data-field="address" readonly bind:click-input="handleAddressClick" bind:click-icon="handleAddressClick" placeholder="请选择钓场位置">
@@ -32,7 +32,7 @@
         <van-uploader file-list="{{ form.fileList }}" max-count="1" bind:after-read="afterRead" />
       </view>
     </van-cell> -->
-    <van-cell title="塘口宣传图" title-width="6.2em" title-class="cell-title" border="{{ false }}">
+    <van-cell title="钓场宣传图" title-width="6.2em" title-class="cell-title" border="{{ false }}">
       <view class="upload-box">
         <van-uploader file-list="{{ fileList }}" max-count="4" bind:after-read="afterRead" />
       </view>
@@ -56,4 +56,3 @@
     <van-datetime-picker type="time" show-toolbar="{{ false }}" visible-item-count="{{ 4 }}" value="{{ pickerConfig[pickerConfig.timeKey] }}" bind:input="handleChangeTime" />
   </van-popup>
 </view>
-<van-empty wx:else description="暂无数据" />

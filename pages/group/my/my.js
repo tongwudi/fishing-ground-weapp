@@ -7,12 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    banner: [
-      {
-        url:
-          "https://img95.699pic.com/xsj/0w/39/0n.jpg%21/fw/700/watermark/url/L3hzai93YXRlcl9kZXRhaWwyLnBuZw/align/southeast"
-      }
-    ],
+    banner: [{ url: "https://pic.imgdb.cn/item/66b9a438d9c307b7e99a980c.jpg" }],
     groupInfo: {},
     active: 0
   },
@@ -21,7 +16,21 @@ Page({
     const { data } = await getPublicFishGrounds({ id });
     const { files = [], ...groupInfo } = data;
     files.length > 0 && (banner = files.map(v => ({ id: v.id, url: v.path })));
-    this.setData({ groupInfo, banner, active: 0 });
+    this.setData({
+      groupInfo,
+      banner,
+      active: 0
+    });
+  },
+  callPosition() {
+    const { groupInfo } = this.data;
+    wx.openLocation({
+      latitude: +groupInfo.latitude,
+      longitude: +groupInfo.longitude,
+      scale: 18,
+      name: groupInfo.address_name,
+      address: groupInfo.address
+    });
   },
   handleChange(event) {
     const id = event.detail.name;
@@ -30,7 +39,7 @@ Page({
   goPage(event) {
     const { id, type } = event.currentTarget.dataset;
     if (type == "plan") {
-      wx.navigateTo({ url: `/pages/plan/list/list?id=${id}` });
+      wx.navigateTo({ url: `/pages/plan/records/records?id=${id}` });
     } else {
       wx.navigateTo({ url: `/pages/put/records/records?id=${id}` });
     }

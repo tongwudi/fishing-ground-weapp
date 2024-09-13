@@ -55,7 +55,7 @@
             </view>
             <view class="timeline-item_right">
               <text>{{ item.create_time }}</text>
-              <text>放{{ item.fishes + (item.put_num || 0) }}仓</text>
+              <text>放{{ item.fishes + (item.num || 0) }}仓</text>
             </view>
           </view>
         </block>

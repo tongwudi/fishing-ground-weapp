@@ -108,9 +108,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.setData({ pondId: options.pondId });
+    this.setData({ pondId: options.id });
     this.getFishOption();
-    this.getData(options.pondId);
+    this.getData(options.id);
   },
 
   /**

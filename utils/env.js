@@ -17,7 +17,7 @@ const env = {};
 if (!envVersion) {
   // 当手机处于低版本的情况下
   console.log("当前环境异常");
-  env.baseURL = "https://release.com";
+  env.baseURL = "https://uvdream.cn/fish";
 } else {
   env.baseURL = baseApi[envVersion];
 }

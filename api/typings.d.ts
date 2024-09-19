@@ -432,4 +432,10 @@ declare namespace API {
   type VideoConfig = {
     path?: string;
   };
+  type WxUserRequest = {
+    /** 头像 */
+    avatar?: string;
+    /** 昵称 */
+    nick_name?: string;
+  };
 }

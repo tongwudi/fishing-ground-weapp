@@ -301,3 +301,21 @@ export async function postPrivateUserRoleUser(
     },
   );
 }
+
+/** 保存微信用户信息 该接口用于保存微信用户信息 POST /private/user/wx/save */
+export async function postPrivateUserWxSave(
+  body: API.WxUserRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.Response & { code?: number; data?: string; msg?: string; success?: boolean }>(
+    '/private/user/wx/save',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: body,
+      ...(options || {}),
+    },
+  );
+}

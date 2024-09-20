@@ -176,6 +176,23 @@ export async function putPrivateUserPermissionUpdate(
   );
 }
 
+/** 编辑个人资料 编辑个人资料 PUT /private/user/profile/update */
+export async function putPrivateUserProfileUpdate(
+  body: API.User,
+  options?: { [key: string]: any },
+) {
+  return request<
+    API.Response & { code?: number; data?: API.User; msg?: string; success?: boolean }
+  >('/private/user/profile/update', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
 /** 新增角色 新增角色 POST /private/user/role/create */
 export async function postPrivateUserRoleCreate(body: API.Role, options?: { [key: string]: any }) {
   return request<

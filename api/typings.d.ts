@@ -2,14 +2,16 @@ declare namespace API {
   type AnglingSite = {
     /** 钓场地址 */
     address?: string;
-    /** 图片 */
-    angling_site_photos?: AnglingSitePhoto[];
+    /** 钓场地址名 */
+    address_name?: string;
     /** 营业时间 */
     business_hours?: string;
     create_time?: string;
     delete_time?: DeletedAt;
     /** 钓场描述 */
     description?: string;
+    /** 钓场图片url */
+    files?: File[];
     /** 塘口 */
     fishes_pond?: FishesPond[];
     id?: string;
@@ -21,25 +23,15 @@ declare namespace API {
     name?: string;
     /** 钓场联系电话 */
     phone?: string;
+    /** 图片 */
     photo_ids?: string[];
-    /** 钓场图片url */
-    photos?: string[];
+    /** 认证状态 0 未认证 1 认证 */
+    status?: string;
     update_time?: string;
     /** 塘主 */
     user?: User;
     /** 塘主 */
     user_id?: string;
-  };
-
-  type AnglingSitePhoto = {
-    /** 钓场ID */
-    angling_site_id?: string;
-    createdAt?: string;
-    deletedAt?: DeletedAt;
-    id?: number;
-    /** 照片ID */
-    photo_id?: string;
-    updatedAt?: string;
   };
 
   type DeletedAt = {
@@ -83,6 +75,12 @@ declare namespace API {
     user?: User;
     /** 上传者 */
     user_id?: string;
+    /** 视频处理状态默认处理中为0 处理完成为1 */
+    video_status?: number;
+  };
+
+  type FileRequest = {
+    path?: string;
   };
 
   type FishedConfig = {
@@ -107,17 +105,22 @@ declare namespace API {
     delete_time?: DeletedAt;
     /** 塘口描述 */
     description?: string;
+    /** 时长 */
+    duration?: number;
+    /** FishesPondPhotos []FishesPondPhoto `json:"fishes_pond_photos"` */
+    files?: File[];
     /** 鱼种,不关联,直接拿前端存储 */
     fishes?: string;
-    fishes_pond_photos?: FishesPondPhoto[];
     id?: string;
     /** 塘口名 */
     name?: string;
+    /** 前端提交使用 */
     photo_ids?: string[];
     photos?: string[];
     /** 钓位数 */
     position_num?: number;
     put_fish_plans?: PutFishPlan[];
+    /** 放鱼记录 */
     put_fish_records?: PutFishRecord[];
     /** 回鱼规则 */
     return_fish_rule?: string;
@@ -131,7 +134,7 @@ declare namespace API {
     status?: number;
     update_time?: string;
     /** 水深 */
-    water_depth?: number;
+    water_depth?: string;
     /** 根据塘口设置视频水印还是钓场 */
     where_watermark?: number;
   };
@@ -147,15 +150,38 @@ declare namespace API {
     update_time?: string;
   };
 
-  type FishesPondPhoto = {
+  type FishingDuration = {
+    /** 时长 */
+    duration?: number;
+    /** 塘口id */
+    pond_id?: string;
+  };
+
+  type FishingTimeRecord = {
+    angling_site?: AnglingSite;
+    angling_site_id?: string;
     create_time?: string;
     delete_time?: DeletedAt;
-    /** 塘口ID */
+    /** 塘口 */
+    fishes_pond?: FishesPond;
+    /** 塘口id */
     fishes_pond_id?: string;
     id?: string;
-    /** 照片ID */
-    photo_id?: string;
+    /** 座位号 */
+    position_num?: number;
+    /** 时长 */
+    time?: string;
     update_time?: string;
+    user?: User;
+    user_id?: string;
+  };
+
+  type FishingTimeRecordAdmin = {
+    /** 塘口 */
+    fishes_pond?: FishesPond;
+    /** 塘口id */
+    fishes_pond_id?: string;
+    fishing_time_record?: FishingTimeRecord[];
   };
 
   type getBaseSystemWxOpenidParams = {
@@ -179,6 +205,16 @@ declare namespace API {
   type getPrivateFishAdminPondListParams = {
     /** 钓场id */
     id: string;
+  };
+
+  type getPrivateFishAdminRecordFishingParams = {
+    /** 钓场ID */
+    angling_site_id?: string;
+  };
+
+  type getPrivateFishAdminRecordTodayParams = {
+    /** 钓场ID */
+    angling_site_id?: string;
   };
 
   type getPrivateOtherFileListParams = {
@@ -312,31 +348,19 @@ declare namespace API {
   type PutFishRecord = {
     create_time?: string;
     delete_time?: DeletedAt;
+    /** 放鱼视频 */
+    files?: File[];
     /** 鱼种 */
     fishes?: string;
     /** 鱼塘id */
     fishes_pond_id?: string;
     id?: string;
-    /** 放鱼视频 */
-    put_fish_videos?: PutFishVideo[];
     /** 放鱼数量 */
     put_num?: string;
     /** 备注 */
     remark?: string;
     update_time?: string;
     video_ids?: string[];
-    videos?: string[];
-  };
-
-  type PutFishVideo = {
-    create_time?: string;
-    delete_time?: DeletedAt;
-    id?: string;
-    /** 放鱼记录id */
-    put_fish_record_id?: string;
-    update_time?: string;
-    /** 视频id */
-    video_id?: string;
   };
 
   type Response = {
@@ -383,10 +407,14 @@ declare namespace API {
     id?: string;
     /** 昵称 */
     nick_name?: string;
+    /** 微信openid */
+    open_id?: string;
     /** 密码 */
     password?: string;
     /** 手机号 */
     phone?: string;
+    /** 微信二维码地址 */
+    qr_code?: string;
     /** 推荐码 */
     recommend_code?: string;
     /** 个人简介 */
@@ -432,6 +460,7 @@ declare namespace API {
   type VideoConfig = {
     path?: string;
   };
+
   type WxUserRequest = {
     /** 头像 */
     avatar?: string;

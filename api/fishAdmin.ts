@@ -92,6 +92,24 @@ export async function deletePrivateFishAdminOpenApiDelete(
   );
 }
 
+/** 修改塘口时长 POST /private/fish/admin/duration */
+export async function postPrivateFishAdminDuration(
+  body: API.FishingDuration,
+  options?: { [key: string]: any },
+) {
+  return request<API.Response & { code?: number; data?: string; message?: string }>(
+    '/private/fish/admin/duration',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: body,
+      ...(options || {}),
+    },
+  );
+}
+
 /** 放鱼 POST /private/fish/admin/fish/add */
 export async function postPrivateFishAdminFishAdd(
   body: API.PutFishRecord,
@@ -166,6 +184,24 @@ export async function deletePrivateFishAdminFishTypeOpenApiDelete(
     '/private/fish/admin/fish/type/delete',
     {
       method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: body,
+      ...(options || {}),
+    },
+  );
+}
+
+/** 新增外链图片 POST /private/fish/admin/link/add */
+export async function postPrivateFishAdminLinkAdd(
+  body: API.File,
+  options?: { [key: string]: any },
+) {
+  return request<API.Response & { code?: number; data?: string; message?: string }>(
+    '/private/fish/admin/link/add',
+    {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -283,6 +319,8 @@ export async function postPrivateFishAdminVideoAdd(
   body: {
     /** 文件名 */
     name: string;
+    /** 来源 */
+    source: string;
   },
   options?: { [key: string]: any },
 ) {

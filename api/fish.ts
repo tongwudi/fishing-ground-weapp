@@ -4,10 +4,13 @@ import { request } from '../utils/request';
 
 /** 获取轮播图 GET /public/fish/banner */
 export async function getPublicFishBanner(options?: { [key: string]: any }) {
-  return request<API.Response>('/public/fish/banner', {
-    method: 'GET',
-    ...(options || {}),
-  });
+  return request<API.Response & { code?: number; data?: API.File[]; message?: string }>(
+    '/public/fish/banner',
+    {
+      method: 'GET',
+      ...(options || {}),
+    },
+  );
 }
 
 /** 获取钓场信息 GET /public/fish/grounds */

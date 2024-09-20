@@ -12,7 +12,8 @@
     <view class="card-head">
       <view class="title">
         <text>{{ groupInfo.name }}</text>
-        <van-tag type="success">已认证</van-tag>
+        <van-tag color="grey" wx:if="{{groupInfo.status==='0'}}">未认证</van-tag>
+        <van-tag type="success" wx:if="{{groupInfo.status==='1'}}">已认证</van-tag>
       </view>
       <!-- <view class="favorite">
         <van-icon name="like-o" size="20" />
@@ -32,7 +33,7 @@
       <view class="info-item">
         <text class="info-item_label">联系电话</text>
         <text class="info-item_value">{{ groupInfo.phone }}</text>
-        <van-icon  name="phone-circle-o" bind:tap="callPhone" />
+        <van-icon name="phone-circle-o" bind:tap="callPhone" />
       </view>
       <view class="info-item">
         <text class="info-item_label">钓场描述</text>

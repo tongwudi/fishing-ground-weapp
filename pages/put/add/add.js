@@ -91,7 +91,7 @@ Page({
       url: env.baseURL + "/private/fish/admin/video/add",
       filePath: file.url,
       name: "file",
-      formData: { name: anglingSiteName },
+      formData: { name: anglingSiteName,source:"boss" },
       header: { "x-token": wx.getStorageSync("token") },
       success(res) {
         const { data, code } = JSON.parse(res.data);

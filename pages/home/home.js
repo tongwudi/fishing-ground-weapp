@@ -5,28 +5,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-    banner: [
-      {
-        url:
-          "https://img95.699pic.com/xsj/0w/39/0n.jpg%21/fw/700/watermark/url/L3hzai93YXRlcl9kZXRhaWwyLnBuZw/align/southeast"
-      },
-      {
-        url:
-          "https://img0.baidu.com/it/u=100080021,1406455647&fm=253&fmt=auto&app=120&f=JPEG?w=756&h=500"
-      }
-    ],
+    banner: [],
     total: 0,
-    list: [],
-    isRefreshing: false
+    list: []
   },
 
   async getBanner() {
     const { data } = await getPublicFishBanner();
-    if (data?.length == 0) return;
-    const banner = data.map(v => ({ id: v.id, url: v.path }));
+    const banner = data.map(v => v.path);
     this.setData({ banner });
   },
-  async getList() {
+  async getData() {
     const { data } = await getPublicFishList();
     const list = data.list.map(v => {
       const imgPath = "https://pic.imgdb.cn/item/66b9a438d9c307b7e99a980c.jpg";
@@ -37,10 +26,6 @@ Page({
       list: list,
       total: data.total
     });
-  },
-  async handleRefresherRefresh() {
-    await this.getList();
-    this.setData({ isRefreshing: false });
   },
   goPage(event) {
     const { id } = event.currentTarget.dataset;
@@ -57,7 +42,7 @@ Page({
    */
   onReady() {
     this.getBanner();
-    this.getList();
+    this.getData();
   },
 
   /**
@@ -82,7 +67,10 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh() {},
+  async onPullDownRefresh() {
+    await this.getData();
+    wx.stopPullDownRefresh();
+  },
 
   /**
    * 页面上拉触底事件的处理函数

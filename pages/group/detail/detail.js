@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    banner: [{ url: "https://pic.imgdb.cn/item/66b9a438d9c307b7e99a980c.jpg" }],
+    banner: ["https://pic.imgdb.cn/item/66b9a438d9c307b7e99a980c.jpg"],
     groupInfo: {},
     pondInfo: {},
     active: ""
@@ -15,7 +15,7 @@ Page({
     let { banner } = this.data;
     const { data } = await getPublicFishGrounds({ id });
     const { files = [], ...groupInfo } = data;
-    files.length > 0 && (banner = files.map(v => ({ id: v.id, url: v.path })));
+    files.length > 0 && (banner = files.map(v => v.path));
     this.setData({
       groupInfo,
       banner
@@ -24,6 +24,10 @@ Page({
     if (groupInfo.fishes_pond.length == 0) return;
     const pondId = groupInfo.fishes_pond[0].id;
     this.getPondInfo(pondId);
+  },
+  previewImage() {
+    const { banner } = this.data;
+    wx.previewImage({ urls: banner });
   },
   callPosition() {
     const { groupInfo } = this.data;

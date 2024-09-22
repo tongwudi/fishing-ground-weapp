@@ -3,41 +3,35 @@
   <swiper class="swiper-view" indicator-dots='true' autoplay='true' interval='5000' duration='1000'>
     <block wx:for="{{ banner }}" wx:key="index">
       <swiper-item>
-        <image src='{{ item.url }}' style="width: 100%;height: 100%"></image>
+        <image src='{{ item }}' style="width: 100%;height: 100%"></image>
       </swiper-item>
     </block>
   </swiper>
 
   <view class="title">热门钓场推荐</view>
 
-  <scroll-view class="scroll-view" type="list" scroll-y refresher-enabled refresher-triggered="{{ isRefreshing }}" bindrefresherrefresh="handleRefresherRefresh">
-    <block wx:if="{{ list.length > 0 }}">
-      <view class="list">
-        <block wx:for="{{ list }}" wx:key="index">
-          <view class="item" data-id="{{ item.id }}" bind:tap="goPage">
-            <view class="item-info info">
-              <view class="info-item">
-                <text class="info-item_label">钓场名称</text>
-                <text class="info-item_value van-ellipsis">{{ item.name }}</text>
-              </view>
-              <view class="info-item">
-                <text class="info-item_label">钓场位置</text>
-                <text class="info-item_value van-ellipsis">{{ item.address }}</text>
-              </view>
-              <view class="info-item">
-                <text class="info-item_label">塘口数量</text>
-                <text class="info-item_value">{{ item.fishes_pond.length || 0 }}</text>
-              </view>
-              <view class="info-item">
-                <text class="info-item_label">营业时间</text>
-                <text class="info-item_value van-ellipsis">{{ item.business_hours }}</text>
-              </view>
+  <block wx:if="{{ list.length > 0 }}">
+    <view class="list">
+      <block wx:for="{{ list }}" wx:key="index">
+        <view class="item" data-id="{{ item.id }}" bind:tap="goPage">
+          <image class="item-img" src="{{ item.imgPath }}" />
+          <view class="item-info info">
+            <view class="info-item">
+              <text class="info-item_label">钓场名称</text>
+              <text class="info-item_value van-ellipsis">{{ item.name }}</text>
             </view>
-            <image class="item-img" src="{{ item.imgPath }}" />
+            <view class="info-item">
+              <text class="info-item_label">塘口数量</text>
+              <text class="info-item_value">{{ item.fishes_pond.length || 0 }}</text>
+            </view>
+            <view class="info-item">
+              <text class="info-item_label">营业时间</text>
+              <text class="info-item_value van-ellipsis">{{ item.business_hours }}</text>
+            </view>
           </view>
-        </block>
-      </view>
-    </block>
-    <van-empty wx:else description="暂无数据" />
-  </scroll-view>
+        </view>
+      </block>
+    </view>
+  </block>
+  <van-empty wx:else description="暂无数据" />
 </view>

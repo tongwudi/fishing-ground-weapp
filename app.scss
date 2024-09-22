@@ -30,15 +30,15 @@ page {
 }
 
 .card {
-  padding: global.$gutter-12;
-  margin-bottom: global.$gutter-12;
+  padding: global.$small;
+  margin-bottom: global.$small;
   background-color: #fff;
 
   .card-head {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: global.$gutter-12 0;
+    margin: global.$small 0;
   }
 
   .card-body {
@@ -54,7 +54,7 @@ page {
 
     .info-item_label {
       width: 160rpx;
-      color: rgb(92, 88, 88);
+      color: #5c5858;
       &::after {
         content: "：";
       }
@@ -69,7 +69,7 @@ page {
     }
 
     .info-item_right-icon {
-      margin-left: global.$gutter-8;
+      margin-left: global.$mini;
     }
   }
 }
@@ -78,7 +78,7 @@ page {
 .timeline {
   display: flex;
   flex-direction: column;
-  padding: 10rpx global.$padding-20 0;
+  padding: 10rpx global.$large 0;
   background-color: #fff;
   overflow: hidden;
 
@@ -110,8 +110,8 @@ page {
       flex: 1;
       display: flex;
       flex-direction: column;
-      padding-left: global.$padding-20;
-      padding-bottom: global.$padding-20;
+      padding-left: global.$large;
+      padding-bottom: global.$large;
 
       text {
         line-height: 48rpx;
@@ -142,5 +142,5 @@ page {
 }
 
 .operate-btn {
-  padding: global.$padding-20 10%;
+  padding: global.$large global.$medium;
 }

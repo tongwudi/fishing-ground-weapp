@@ -22,6 +22,10 @@ Page({
       active: 0
     });
   },
+  previewImage() {
+    const { banner } = this.data;
+    wx.previewImage({ urls: banner });
+  },
   callPosition() {
     const { groupInfo } = this.data;
     wx.openLocation({

@@ -54,14 +54,15 @@ Page({
     });
   },
   async handleSave() {
-    const { form, fileList } = this.data;
+    const { groupId, form, fileList } = this.data;
     const photo_ids = fileList.map(v => v.id);
     const params = {
+      angling_site_id: groupId,
       ...form,
       photo_ids,
       size: +form.size,
-      position_num: +form.position_num,
-      water_depth: +form.water_depth
+      position_num: +form.position_num
+      // water_depth: +form.water_depth
     };
     await postPrivateFishAdminPondAdd(params);
     wx.showToast({

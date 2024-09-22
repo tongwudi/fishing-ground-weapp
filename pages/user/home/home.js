@@ -29,7 +29,7 @@ Page({
   },
   goPage(event) {
     const { id } = event.currentTarget.dataset;
-    wx.navigateTo({ url: `/pages/group/detail/detail?id=${id}` });
+    wx.navigateTo({ url: `/pages/user/detail/detail?id=${id}` });
   },
 
   /**

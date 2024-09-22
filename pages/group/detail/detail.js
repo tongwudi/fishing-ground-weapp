@@ -1,79 +1,163 @@
-import { getPublicFishGrounds, getPublicFishPond } from "@/api/index";
+import { postPrivateFishAdminAdd, getPublicFishGrounds } from "@/api/index";
+import { env } from "@/utils/env";
+import { mainBehavior } from "@/store/behaviors";
 
 Page({
+  behaviors: [mainBehavior],
   /**
    * 页面的初始数据
    */
   data: {
-    banner: ["https://pic.imgdb.cn/item/66b9a438d9c307b7e99a980c.jpg"],
-    groupInfo: {},
-    pondInfo: {},
-    active: ""
+    pickerConfig: {
+      time: 1,
+      show: false,
+      activeKey: "",
+      start: "9:00",
+      end: "18:00",
+      timeKey: "start"
+    },
+    form: {},
+    fileList: []
   },
 
   async getData(id) {
-    let { banner } = this.data;
     const { data } = await getPublicFishGrounds({ id });
-    const { files = [], ...groupInfo } = data;
-    files.length > 0 && (banner = files.map(v => v.path));
+    const { user, files = [], ...form } = data;
+    const fileList = files.map(v => ({ id: v.id, url: v.path }));
     this.setData({
-      groupInfo,
-      banner
+      "pickerConfig.time": form.business_hours == "随到随钓" ? 1 : 2,
+      form,
+      fileList
     });
-    // 是否存在塘口
-    if (groupInfo.fishes_pond.length == 0) return;
-    const pondId = groupInfo.fishes_pond[0].id;
-    this.getPondInfo(pondId);
-  },
-  previewImage() {
-    const { banner } = this.data;
-    wx.previewImage({ urls: banner });
-  },
-  callPosition() {
-    const { groupInfo } = this.data;
-    wx.openLocation({
-      latitude: +groupInfo.latitude,
-      longitude: +groupInfo.longitude,
-      scale: 18,
-      name: groupInfo.address_name,
-      address: groupInfo.address
-    });
-  },
-  callPhone() {
-    const { groupInfo } = this.data;
-    wx.makePhoneCall({ phoneNumber: groupInfo.phone });
   },
   handleChange(event) {
-    const id = event.detail.name;
-    this.getPondInfo(id);
+    const { field } = event.currentTarget.dataset;
+    const value = event.detail;
+    this.setData({ [`form.${field}`]: value });
   },
-  async getPondInfo(id) {
-    const { data: pondInfo } = await getPublicFishPond({ id });
+  async handleAddressClick() {
+    try {
+      const res = await wx.chooseLocation();
+      this.setData({
+        "form.address_name": res.name ? res.name : res.address,
+        "form.address": res.address,
+        "form.latitude": res.latitude + "",
+        "form.longitude": res.longitude + ""
+      });
+    } catch (error) {}
+    // const { authSetting } = await wx.getSetting();
+    // if (authSetting["scope.userLocation"] === false) {
+    //   wx.showModal({
+    //     title: "授权提示",
+    //     content: "需要获取位置信息，请确认授权",
+    //     complete: async res => {
+    //       if (res.cancel) {
+    //         wx.showToast({ title: "您拒绝了授权", icon: "none" });
+    //         return;
+    //       }
+    //       const { authSetting } = await wx.openSetting();
+    //       if (authSetting["scope.userLocation"] === false) {
+    //         wx.showToast({ title: "您拒绝了授权", icon: "none" });
+    //       }
+    //     }
+    //   });
+    // } else {
+    //   try {
+    //     const res = await wx.getLocation();
+    //     console.log(res);
+    //   } catch (error) {
+    //     wx.showToast({ title: "您拒绝了授权", icon: "none" });
+    //   }
+    // }
+  },
+  handleTimeClick(event) {
+    const value = event.detail;
     this.setData({
-      pondInfo,
-      active: id
+      "form.business_hours": value === 1 ? "随到随钓" : "",
+      "pickerConfig.time": value
     });
   },
-  goPage(event) {
-    const { id, type } = event.currentTarget.dataset;
-    if (type == "plan") {
-      wx.navigateTo({ url: `/pages/plan/records/records?id=${id}` });
-    } else {
-      wx.navigateTo({ url: `/pages/put/records/records?id=${id}` });
-    }
+  openPicker(event) {
+    const { field } = event.currentTarget.dataset;
+    this.setData({
+      "pickerConfig.show": true,
+      "pickerConfig.activeKey": field
+    });
+  },
+  handleTimeClick(event) {
+    const { field } = event.currentTarget.dataset;
+    this.setData({ "pickerConfig.timeKey": field });
+  },
+  handleTimeChange(event) {
+    const time = event.detail;
+    const { pickerConfig } = this.data;
+    this.setData({ [`pickerConfig.${pickerConfig.timeKey}`]: time });
+  },
+  closePicker() {
+    this.setData({ "pickerConfig.show": false });
+  },
+  confirmPicker() {
+    const { pickerConfig } = this.data;
+    const dateStr = `${pickerConfig.start} ~ ${pickerConfig.end}`;
+    this.setData({
+      [`form.${pickerConfig.activeKey}`]: dateStr,
+      "pickerConfig.show": false
+    });
+  },
+  afterRead(event) {
+    const { file } = event.detail;
+    const { fileList } = this.data;
+    const that = this;
+    wx.uploadFile({
+      url: env.baseURL + "/private/fish/admin/photo/add",
+      filePath: file.url,
+      name: "file",
+      header: { "x-token": wx.getStorageSync("token") },
+      success(res) {
+        const { data, code } = JSON.parse(res.data);
+        if (code != 200) {
+          wx.showToast({
+            title: "上传失败请重试",
+            icon: "none"
+          });
+          return;
+        }
+        // 上传完成需要更新 fileList
+        fileList.push({ id: data.id, url: data.url });
+        that.setData({ fileList });
+      }
+    });
+  },
+  async handleSave() {
+    const { form, fileList } = this.data;
+    const photo_ids = fileList.map(v => v.id);
+    const params = {
+      ...form,
+      photo_ids
+    };
+    await postPrivateFishAdminAdd(params);
+    wx.showToast({
+      title: form.id ? "修改成功" : "新增成功",
+      success() {
+        setTimeout(() => {
+          wx.navigateBack();
+        }, 1000);
+      }
+    });
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.getData(options.id);
+    wx.setNavigationBarTitle({ title: options.id ? "修改钓场" : "新增钓场" });
+    options.id && this.getData(options.id);
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {},
+  async onReady() {},
 
   /**
    * 生命周期函数--监听页面显示

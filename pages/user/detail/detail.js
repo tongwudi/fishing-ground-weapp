@@ -1,26 +1,29 @@
-import { getPublicFishGrounds } from "@/api/index";
-import { mainBehavior } from "@/store/behaviors";
+import { getPublicFishGrounds, getPublicFishPond } from "@/api/index";
 
 Page({
-  behaviors: [mainBehavior],
   /**
    * 页面的初始数据
    */
   data: {
     banner: ["https://pic.imgdb.cn/item/66b9a438d9c307b7e99a980c.jpg"],
     groupInfo: {},
-    active: 0
+    pondInfo: {},
+    active: ""
   },
-  async getData() {
-    let { groupId: id, banner } = this.data;
+
+  async getData(id) {
+    let { banner } = this.data;
     const { data } = await getPublicFishGrounds({ id });
     const { files = [], ...groupInfo } = data;
     files.length > 0 && (banner = files.map(v => v.path));
     this.setData({
-      groupInfo,
       banner,
-      active: 0
+      groupInfo
     });
+    // 是否存在塘口
+    if (groupInfo.fishes_pond.length == 0) return;
+    const pondId = groupInfo.fishes_pond[0].id;
+    this.getPondInfo(pondId);
   },
   previewImage() {
     const { banner } = this.data;
@@ -36,9 +39,20 @@ Page({
       address: groupInfo.address
     });
   },
+  callPhone() {
+    const { groupInfo } = this.data;
+    wx.makePhoneCall({ phoneNumber: groupInfo.phone });
+  },
   handleChange(event) {
     const id = event.detail.name;
-    this.setData({ active: id });
+    this.getPondInfo(id);
+  },
+  async getPondInfo(id) {
+    const { data: pondInfo } = await getPublicFishPond({ id });
+    this.setData({
+      pondInfo,
+      active: id
+    });
   },
   goPage(event) {
     const { id, type } = event.currentTarget.dataset;
@@ -52,28 +66,19 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {},
+  onLoad(options) {
+    this.getData(options.id);
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-    const { groupInfo, groupId } = this.data;
-    if (!groupInfo.id || !groupId || groupInfo.id == groupId) return;
-    this.getData();
-  },
+  onReady() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-    if (typeof this.getTabBar === "function") {
-      this.getTabBar().init();
-    }
-    const { groupInfo, groupId } = this.data;
-    if (!groupInfo.id || !groupId || groupInfo.id == groupId) return;
-    this.getData();
-  },
+  onShow() {},
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -88,10 +93,7 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  async onPullDownRefresh() {
-    await this.getData();
-    wx.stopPullDownRefresh();
-  },
+  onPullDownRefresh() {},
 
   /**
    * 页面上拉触底事件的处理函数

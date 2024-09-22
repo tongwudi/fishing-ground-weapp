@@ -1,0 +1,18 @@
+.title {
+  display: flex;
+  align-items: center;
+  gap: global.$small;
+  > text {
+    font-size: global.$title-size;
+    font-weight: 600;
+  }
+}
+.favorite {
+  float: right;
+  display: flex;
+  gap: global.$mini;
+}
+
+.tab-content {
+  padding: global.$large;
+}

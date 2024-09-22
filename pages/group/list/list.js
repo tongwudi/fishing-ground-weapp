@@ -25,7 +25,7 @@ Page({
   },
   goPage(event) {
     const { id } = event.currentTarget.dataset;
-    const url = "/pages/group/profile/profile";
+    const url = "/pages/group/detail/detail";
     wx.navigateTo({ url: id ? `${url}?id=${id}` : url });
   },
   handleChange(event) {
@@ -36,7 +36,7 @@ Page({
     this.setAnglingSiteName(name);
   },
   handleEdit() {
-    wx.navigateTo({ url: "/pages/group/profile/profile" });
+    wx.navigateTo({ url: "/pages/group/detail/detail" });
   },
   async handleDelete(event) {
     const { id } = event.currentTarget.dataset;

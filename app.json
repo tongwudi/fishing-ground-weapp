@@ -1,21 +1,21 @@
 {
   "pages": [
-    "pages/home/home",
-    "pages/mine/mine",
-    "pages/login/login",
-    "pages/register/register",
+    "pages/user/home/home",
+    "pages/user/detail/detail",
+    "pages/group/home/home",
     "pages/group/list/list",
-    "pages/group/profile/profile",
-    "pages/group/my/my",
     "pages/group/detail/detail",
     "pages/pond/list/list",
     "pages/pond/detail/detail",
-    "pages/plan/records/records",
     "pages/plan/detail/detail",
+    "pages/plan/records/records",
     "pages/put/records/records",
     "pages/put/add/add",
     "pages/fish/list/list",
     "pages/fish/add/add",
+    "pages/mine/mine",
+    "pages/login/login",
+    "pages/register/register",
     "pages/forum/settings/settings"
   ],
   "usingComponents": {
@@ -51,11 +51,11 @@
     "custom": true,
     "list": [
       {
-        "pagePath": "pages/home/home",
+        "pagePath": "pages/user/home/home",
         "text": "首页"
       },
       {
-        "pagePath": "pages/group/my/my",
+        "pagePath": "pages/group/home/home",
         "text": "我的钓场"
       },
       {

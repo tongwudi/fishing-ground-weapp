@@ -1,98 +1,57 @@
 <view class="container">
-  <!--轮播图-->
-  <swiper indicator-dots='true' autoplay='true' interval='5000' duration='1000'>
-    <block wx:for="{{ banner }}" wx:key="index">
-      <swiper-item bindtap="previewImage">
-        <image src='{{ item }}' style="width: 100%;height: 100%"></image>
-      </swiper-item>
+  <van-cell-group>
+    <van-field label="钓场名称" value="{{ form.name }}" data-field="name" bind:change="handleChange" clearable placeholder="请输入钓场名称" />
+    <van-field label="钓场位置" type="textarea" autosize="{{ { maxHeight: 100, minHeight: 50 } }}" value="{{ form.address }}" data-field="address" readonly bind:click-input="handleAddressClick" bind:click-icon="handleAddressClick" placeholder="请选择钓场位置">
+      <van-icon slot="right-icon" class-prefix="iconfont" name="position" />
+    </van-field>
+    <van-cell title="营业时间" title-width="6.2em" title-class="cell-title">
+      <van-radio-group value="{{ pickerConfig.time }}" bind:change="handleTimeClick">
+        <van-row>
+          <van-col span="12">
+            <van-radio icon-size="18px" name="{{ 1 }}">随到随钓</van-radio>
+          </van-col>
+          <van-col span="12">
+            <van-radio icon-size="18px" name="{{ 2 }}">固定时间</van-radio>
+          </van-col>
+        </van-row>
+      </van-radio-group>
+    </van-cell>
+    <block wx:if="{{ pickerConfig.time === 2 }}">
+      <van-field label="固定时间" value="{{ form.business_hours }}" data-field="business_hours" bind:click-input="openPicker" readonly placeholder="请选择营业时间" />
     </block>
-  </swiper>
+    <van-field label="联系电话" type="tel" value="{{ form.phone }}" data-field="phone" bind:change="handleChange" placeholder="请输入联系电话" />
+    <van-field label="钓场描述" type="textarea" autosize="{{ { maxHeight: 100, minHeight: 50 } }}" value="{{ form.description }}" data-field="description" bind:change="handleChange" placeholder="请输入钓场描述" />
+    <!-- <van-cell title="支付宝收款码" title-width="6.2em" title-class="cell-title">
+      <view class="upload-box">
+        <van-uploader file-list="{{ form.fileList }}" max-count="1" bind:after-read="afterRead" />
+      </view>
+    </van-cell>
+    <van-cell title="微信收款码" title-width="6.2em" title-class="cell-title">
+      <view class="upload-box">
+        <van-uploader file-list="{{ form.fileList }}" max-count="1" bind:after-read="afterRead" />
+      </view>
+    </van-cell> -->
+    <van-cell title="钓场宣传图" title-width="6.2em" title-class="cell-title" border="{{ false }}">
+      <view class="upload-box">
+        <van-uploader file-list="{{ fileList }}" max-count="4" bind:after-read="afterRead" />
+      </view>
+    </van-cell>
+  </van-cell-group>
 
-  <view class="card">
-    <view class="card-head">
-      <view class="title">
-        <text>{{ groupInfo.name }}</text>
-        <van-tag color="grey" wx:if="{{ groupInfo.status === '0' }}">未认证</van-tag>
-        <van-tag type="success" wx:if="{{ groupInfo.status=== '1' }}">已认证</van-tag>
-      </view>
-      <!-- <view class="favorite">
-        <van-icon name="like-o" size="20" />
-        <text>加粉</text>
-      </view> -->
-    </view>
-    <view class="card-body info">
-      <view class="info-item">
-        <text class="info-item_label">钓场位置</text>
-        <text class="info-item_value">{{ groupInfo.address }}</text>
-        <van-icon class="info-item_right-icon" class-prefix="iconfont" name="position" bind:tap="callPosition" />
-      </view>
-      <view class="info-item">
-        <text class="info-item_label">营业时间</text>
-        <text class="info-item_value">{{ groupInfo.business_hours }}</text>
-      </view>
-      <view class="info-item">
-        <text class="info-item_label">联系电话</text>
-        <text class="info-item_value">{{ groupInfo.phone }}</text>
-        <van-icon name="phone-circle-o" bind:tap="callPhone" />
-      </view>
-      <view class="info-item">
-        <text class="info-item_label">钓场描述</text>
-        <text class="info-item_value">{{ groupInfo.description }}</text>
-      </view>
-    </view>
+  <view class="operate-btn">
+    <van-button type="info" block bind:click="handleSave">保存</van-button>
   </view>
 
-  <block wx:if="{{ groupInfo.fishes_pond.length > 0 }}">
-    <van-tabs sticky animated swipeable color="#2f85da" ellipsis="{{ false }}" active="{{ active }}" bind:change="handleChange">
-      <block wx:for="{{ groupInfo.fishes_pond }}" wx:key="id" wx:for-item="tab">
-        <van-tab title="{{ tab.name }}" name="{{ tab.id }}">
-          <view class="card tab-content">
-            <!-- <image src="" mode=""/> -->
-            <view class="card-body info">
-              <view class="info-item">
-                <text class="info-item_label">塘口名称</text>
-                <text class="info-item_value">{{ pondInfo.name }}</text>
-              </view>
-              <view wx:if="{{ pondInfo.put_fish_records.length > 0 }}" class="info-item">
-                <text class="info-item_label">放鱼记录</text>
-                <text class="info-item_btn" data-id="{{ pondInfo.id }}" data-type="records" bind:tap="goPage">查看</text>
-              </view>
-              <view wx:if="{{ pondInfo.put_fish_plans.length > 0 }}" class="info-item">
-                <text class="info-item_label">放鱼计划</text>
-                <text class="info-item_btn" data-id="{{ pondInfo.id }}" data-type="plan" bind:tap="goPage">查看</text>
-              </view>
-              <view class="info-item">
-                <text class="info-item_label">塘口大小</text>
-                <text class="info-item_value">{{ pondInfo.size || 0 }}亩</text>
-              </view>
-              <view class="info-item">
-                <text class="info-item_label">钓位数</text>
-                <text class="info-item_value">{{ pondInfo.position_num || 0 }}个</text>
-              </view>
-              <view class="info-item">
-                <text class="info-item_label">水深</text>
-                <text class="info-item_value">{{ pondInfo.water_depth || 0 }}米</text>
-              </view>
-              <view class="info-item">
-                <text class="info-item_label">收费标准</text>
-                <text class="info-item_value">{{ pondInfo.charge_standard }}</text>
-              </view>
-              <view class="info-item">
-                <text class="info-item_label">回鱼规则</text>
-                <text class="info-item_value">{{ pondInfo.return_fish_rule }}</text>
-              </view>
-              <view class="info-item">
-                <text class="info-item_label">限杆规则</text>
-                <text class="info-item_value">{{ pondInfo.rod_limit }}</text>
-              </view>
-              <view class="info-item">
-                <text class="info-item_label">塘口规则</text>
-                <text class="info-item_value">{{ pondInfo.rule }}</text>
-              </view>
-            </view>
-          </view>
-        </van-tab>
-      </block>
-    </van-tabs>
-  </block>
+  <van-popup show="{{ pickerConfig.show }}" position="bottom" bind:close="closePicker">
+    <view class="picker-toolbar">
+      <text class="picker-toolbar_cancel" bind:tap="closePicker">取消</text>
+      <text class="picker-toolbar_confirm" bind:tap="confirmPicker">确认</text>
+    </view>
+    <view class="picker-content">
+      <input class="picker-content_input" disabled value="{{ pickerConfig.start }}" data-field="start" bind:tap="handleTimeClick" placeholder="开始时间" />
+      <text class="picker-content_separator">~</text>
+      <input class="picker-content_input" disabled value="{{ pickerConfig.end }}" data-field="end" bind:tap="handleTimeClick" placeholder="结束时间" />
+    </view>
+    <van-datetime-picker type="time" show-toolbar="{{ false }}" visible-item-count="{{ 4 }}" value="{{ pickerConfig[pickerConfig.timeKey] }}" bind:input="handleTimeChange" />
+  </van-popup>
 </view>

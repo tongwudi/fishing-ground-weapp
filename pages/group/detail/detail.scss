@@ -1,18 +1,28 @@
-.title {
+.picker-toolbar {
+  height: 90rpx;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: global.$small;
-  > text {
-    font-size: global.$title-size;
-    font-weight: 600;
+  &_cancel,
+  &_confirm {
+    padding: 0 16rpx;
+  }
+  &_cancel {
+    color: #969799;
+  }
+  &_confirm {
+    color: #576b95;
   }
 }
-.favorite {
-  float: right;
-  display: flex;
-  gap: global.$mini;
-}
 
-.tab-content {
-  padding: global.$large;
+.picker-content {
+  display: flex;
+  align-items: center;
+  margin: 30rpx 0;
+  &_input {
+    text-align: center;
+  }
+  &_separator {
+    margin: 0 30rpx;
+  }
 }

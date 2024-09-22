@@ -9,15 +9,21 @@ App({
       // 如果是钓场身份，获取第一个钓场
       this.getGroupList();
       // 如果是钓场身份，跳转到钓场首页
-      wx.reLaunch({ url: "/pages/group/my/my" });
+      wx.reLaunch({ url: "/pages/group/home/home" });
     }
 
     // // 微信登陆
     // wx.login({
     //   async success({ code }) {
-    //     console.log("wx.login：", res);
+    //     console.log("wx.login：", code);
     //     if (code) {
-    //       const authRes = await authorize({ code });
+    //       wx.getUserInfo({
+    //         success(res) {
+    //           console.log("wx.getUserInfo", res);
+    //         }
+    //       });
+    //       // const authRes = await authorize({ code });
+    //       // wx.setStorageSync("unionId", authRes.unionId);
     //       // wx.setStorageSync("openid", authRes.openid);
     //       // wx.setStorageSync("sessionKey", authRes.session_key);
     //     } else {
@@ -35,7 +41,7 @@ App({
   globalData: {
     userTabbar: [
       {
-        pagePath: "/pages/home/home",
+        pagePath: "/pages/user/home/home",
         text: "首页",
         iconPath: "/assets/images/home.png",
         selectedIconPath: "/assets/images/home-active.png"
@@ -49,7 +55,7 @@ App({
     ],
     fishTabbar: [
       {
-        pagePath: "/pages/group/my/my",
+        pagePath: "/pages/group/home/home",
         text: "我的钓场",
         iconPath: "../assets/images/home.png",
         selectedIconPath: "../assets/images/home-active.png"

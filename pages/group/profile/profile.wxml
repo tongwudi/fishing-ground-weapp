@@ -49,10 +49,10 @@
       <text class="picker-toolbar_confirm" bind:tap="confirmPicker">确认</text>
     </view>
     <view class="picker-content">
-      <input class="picker-content_input" disabled value="{{ pickerConfig.start }}" data-field="start" bind:tap="handleTap" placeholder="开始时间" />
+      <input class="picker-content_input" disabled value="{{ pickerConfig.start }}" data-field="start" bind:tap="handleTimeClick" placeholder="开始时间" />
       <text class="picker-content_separator">~</text>
-      <input class="picker-content_input" disabled value="{{ pickerConfig.end }}" data-field="end" bind:tap="handleTap" placeholder="结束时间" />
+      <input class="picker-content_input" disabled value="{{ pickerConfig.end }}" data-field="end" bind:tap="handleTimeClick" placeholder="结束时间" />
     </view>
-    <van-datetime-picker type="time" show-toolbar="{{ false }}" visible-item-count="{{ 4 }}" value="{{ pickerConfig[pickerConfig.timeKey] }}" bind:input="handleChangeTime" />
+    <van-datetime-picker type="time" show-toolbar="{{ false }}" visible-item-count="{{ 4 }}" value="{{ pickerConfig[pickerConfig.timeKey] }}" bind:input="handleTimeChange" />
   </van-popup>
 </view>

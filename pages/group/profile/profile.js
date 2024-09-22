@@ -85,11 +85,11 @@ Page({
       "pickerConfig.activeKey": field
     });
   },
-  handleTap(event) {
+  handleTimeClick(event) {
     const { field } = event.currentTarget.dataset;
     this.setData({ "pickerConfig.timeKey": field });
   },
-  handleChangeTime(event) {
+  handleTimeChange(event) {
     const time = event.detail;
     const { pickerConfig } = this.data;
     this.setData({ [`pickerConfig.${pickerConfig.timeKey}`]: time });

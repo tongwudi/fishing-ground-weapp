@@ -40,7 +40,7 @@
   </van-cell-group>
 
   <view class="operate-btn">
-    <van-button type="primary" block bind:click="handleSave">保存</van-button>
+    <van-button type="info" block bind:click="handleSave">保存</van-button>
   </view>
 
   <van-popup show="{{ pickerConfig.show }}" position="bottom" bind:close="closePicker">

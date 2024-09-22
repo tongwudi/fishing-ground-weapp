@@ -7,3 +7,8 @@ page,
   display: flex;
   flex-direction: column;
 }
+
+.actions {
+  display: flex;
+  gap: global.$gutter-8;
+}

@@ -14,7 +14,7 @@
   </van-cell-group>
 
   <view class="operate-btn">
-    <van-button type="primary" block bind:click="handleSave">保存</van-button>
+    <van-button type="info" block bind:click="handleSave">保存</van-button>
   </view>
 
   <van-popup show="{{ pondPicker.show }}" position="bottom" bind:close="closePondPicker">
@@ -24,4 +24,10 @@
   <van-popup show="{{ fishesPicker.show }}" position="bottom" bind:close="closeFishesPicker">
     <van-picker show-toolbar title="选择鱼种" value-key="name" default-index="{{ fishesPicker.selectIndex }}" columns="{{ fishList }}" bind:cancel="closeFishesPicker" bind:confirm="confirmFishesPicker" />
   </van-popup>
+
+  <van-overlay show="{{ overlayShow }}" z-index="{{ 99999 }}" bind:click="closeOverlay">
+    <view class="wrapper">
+      <van-loading /> <van-loading type="spinner" />
+    </view>
+  </van-overlay>
 </view>

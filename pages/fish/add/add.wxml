@@ -13,6 +13,6 @@
   </view>
 
   <view class="operate-btn">
-    <van-button type="primary" block bind:click="handleSave">保存</van-button>
+    <van-button type="info" block bind:click="handleSave">保存</van-button>
   </view>
 </view>

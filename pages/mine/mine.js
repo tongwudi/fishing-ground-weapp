@@ -10,7 +10,7 @@ Page({
     overlayShow: false
   },
 
-  goPage() {
+  loginClick() {
     const { isLogin } = this.data;
     if (isLogin) {
       // wx.navigateTo({ url: "/pages/group/profile/profile" });
@@ -18,21 +18,21 @@ Page({
     }
     wx.navigateTo({ url: "/pages/login/login" });
   },
-  handleClick(event) {
+  handleCellClick(event) {
     const { key } = event.currentTarget.dataset;
     switch (key) {
       case "authentication":
-        this.openModal();
+        this.openOverlay();
         break;
       case "logout":
         this.logout();
         break;
     }
   },
-  openModal() {
+  openOverlay() {
     this.setData({ overlayShow: true });
   },
-  closeModal() {
+  closeOverlay() {
     this.setData({ overlayShow: false });
   },
   async logout() {

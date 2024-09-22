@@ -17,7 +17,7 @@
   </view>
 
   <view class="operate-btn">
-    <van-button type="primary" block bind:click="handleSave">保存</van-button>
+    <van-button type="info" block bind:click="handleSave">保存</van-button>
   </view>
 
   <van-calendar show="{{ showCalendar }}" bind:close="closeCalendar" bind:confirm="addField" />

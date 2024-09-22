@@ -5,29 +5,22 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {
-    form: {}
-  },
-
-  bindInput(event) {
-    const { field } = event.currentTarget.dataset;
-    const { value } = event.detail;
-    this.setData({ [`form.${field}`]: value });
-  },
+  data: {},
 
   async register() {
-    const { form } = this.data;
-    if (Object.keys(form).length != 3) {
-      wx.showModal({
-        title: "提示",
-        content: "请输入注册所需信息",
-        showCancel: false
+    const { user_name, nick_name, password } = this.data;
+    if (!user_name || !nick_name || !password) {
+      wx.showToast({
+        title: "请输入注册所需信息",
+        icon: "none"
       });
       return;
     }
     const params = {
       avatar: "https://pic.imgdb.cn/item/64c0cc451ddac507ccd49532.png",
-      ...form
+      user_name,
+      nick_name,
+      password
     };
     await postBaseSystemRegister(params);
     wx.showToast({

@@ -3,26 +3,20 @@ import { mainBehavior } from "@/store/behaviors";
 
 Page({
   behaviors: [mainBehavior],
-  data: {
-    user_name: "",
-    password: ""
-  },
+  /**
+   * 页面的初始数据
+   */
+  data: {},
 
-  bindInput(event) {
-    const { field } = event.currentTarget.dataset;
-    const { value } = event.detail;
-    this.setData({ [field]: value });
-  },
-  goPage() {
+  goRegister() {
     wx.navigateTo({ url: "/pages/register/register" });
   },
   async login() {
     const { user_name, password } = this.data;
-    if (user_name?.length == 0 && password?.length == 0) {
-      wx.showModal({
-        title: "提示",
-        content: "请输入用户名和密码",
-        showCancel: false
+    if (!user_name || !password) {
+      wx.showToast({
+        title: "请输入用户名和密码",
+        icon: "none"
       });
       return;
     }

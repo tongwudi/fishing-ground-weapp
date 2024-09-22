@@ -12,6 +12,6 @@
   </scroll-view>
 
   <view class="operate-btn">
-    <van-button type="primary" block bind:click="goPage">新增</van-button>
+    <van-button type="info" block bind:click="goPage">新增</van-button>
   </view>
 </view>

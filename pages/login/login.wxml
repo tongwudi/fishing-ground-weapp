@@ -1,10 +1,11 @@
-<view class="form-box">
-  <view class="form-item">
-    <input class="username" value="{{ user_name }}" data-field="user_name" bind:input="bindInput" placeholder="用户名" auto-focus />
+<view class="container">
+  <van-cell-group>
+    <van-field size="large" model:value="{{ user_name }}" placeholder="用户名" />
+    <van-field size="large" password model:value="{{ password }}" placeholder="密码" />
+  </van-cell-group>
+
+  <view class="operate-btn">
+    <van-button type="info" block bind:click="login">登录</van-button>
+    <van-button custom-style="margin-top: 30rpx;" type="default" block bind:click="goRegister">注册</van-button>
   </view>
-  <view class="form-item">
-    <input class="password" value="{{ password }}" password data-field="password" bind:input="bindInput" placeholder="密码" />
-  </view>
-  <button type="primary" class="form-btn" bind:tap="login">登录</button>
-  <button class="form-btn" bind:tap="goPage">注册</button>
 </view>

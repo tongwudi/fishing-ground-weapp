@@ -13,7 +13,8 @@
     <view class="card-head">
       <view class="title">
         <text>{{ groupInfo.name }}</text>
-        <van-tag type="success">已认证</van-tag>
+        <van-tag color="grey" wx:if="{{ groupInfo.status === '0' }}">未认证</van-tag>
+        <van-tag type="success" wx:if="{{ groupInfo.status=== '1' }}">已认证</van-tag>
       </view>
       <!-- <view class="favorite">
         <van-icon name="like-o" size="20" />

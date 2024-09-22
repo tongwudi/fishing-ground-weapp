@@ -1,7 +1,4 @@
-import {
-  postBaseSystemLogin,
-  getPrivateFishAdminList
-} from "@/api/index";
+import { postBaseSystemLogin, getPrivateFishAdminList } from "@/api/index";
 import { mainBehavior } from "@/store/behaviors";
 
 Page({

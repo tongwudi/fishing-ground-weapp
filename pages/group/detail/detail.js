@@ -35,12 +35,9 @@ Page({
       address: groupInfo.address
     });
   },
-  callPhone(){
-    // 拨打电话
-    wx.makePhoneCall({
-      phoneNumber: this.data.groupInfo.phone
-    });
-    
+  callPhone() {
+    const { groupInfo } = this.data;
+    wx.makePhoneCall({ phoneNumber: groupInfo.phone });
   },
   handleChange(event) {
     const id = event.detail.name;

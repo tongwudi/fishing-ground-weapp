@@ -54,6 +54,8 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
+    const { groupInfo, groupId } = this.data;
+    if (!groupInfo.id || !groupId || groupInfo.id == groupId) return;
     this.getData();
   },
 
@@ -65,7 +67,7 @@ Page({
       this.getTabBar().init();
     }
     const { groupInfo, groupId } = this.data;
-    if (!groupInfo.id || groupInfo.id == groupId) return;
+    if (!groupInfo.id || !groupId || groupInfo.id == groupId) return;
     this.getData();
   },
 

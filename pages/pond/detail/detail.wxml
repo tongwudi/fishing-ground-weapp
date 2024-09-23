@@ -1,4 +1,4 @@
-<!--pages/pond/detail/detail.wxml-->
+<!-- pages/pond/detail/detail.wxml -->
 <view class="container">
   <van-cell-group>
     <van-field label="塘口名称" value="{{ form.name }}" data-field="name" bind:change="handleChange" clearable placeholder="请输入塘口名称" />
@@ -28,12 +28,40 @@
         <van-uploader file-list="{{ fileList }}" max-count="1" bind:after-read="afterRead" />
       </view>
     </van-cell>
-    <van-field label="收费标准" type="textarea" autosize="{{ { maxHeight: 100, minHeight: 50 } }}" value="{{ form.charge_standard }}" data-field="charge_standard" bind:change="handleChange" placeholder="请输入收费标准" />
+    <van-cell title="收费标准" title-width="6.2em" title-class="cell-title">
+      <van-radio-group value="{{ standard }}" bind:change="handleRuleChange">
+        <van-row>
+          <van-col span="12">
+            <van-radio icon-size="18px" name="{{ 1 }}">通杀</van-radio>
+          </van-col>
+          <van-col span="12">
+            <van-radio icon-size="18px" name="{{ 2 }}">多标准</van-radio>
+          </van-col>
+        </van-row>
+      </van-radio-group>
+    </van-cell>
+    <van-cell style="margin-bottom: 6px">
+      <view style="display: flex; align-items: center;" wx:for="{{ rules }}" wx:key="index">
+        <van-field style="flex: 1" wx:if="{{ standard === 2 }}" placeholder="鱼种" data-field="fish" data-index="{{ index }}" value="{{ rules[index].fish }}" bind:change="handleRuleField"></van-field>
+        <van-field style="flex: 1" placeholder="价格" data-field="price" data-index="{{ index }}" value="{{ rules[index].price }}" bind:change="handleRuleField">
+          <text slot="button">元</text>
+        </van-field>
+        <van-field style="flex: 1" placeholder="时长" data-field="duration" data-index="{{ index }}" value="{{ rules[index].duration }}" bind:change="handleRuleField">
+          <text slot="button">小时</text>
+        </van-field>
+        <van-button type="danger" wx:if="{{ standard === 2 }}" data-index="{{ index }}" size="small" bind:click="handleRuleDelete">
+          删除
+        </van-button>
+      </view>
+      <van-button wx:if="{{ standard === 2 }}" block type="info" size="small" bind:click="addNewRule">
+        添加
+      </van-button>
+    </van-cell>
+    <!-- <van-field label="收费标准" type="textarea" autosize="{{ { maxHeight: 100, minHeight: 50 } }}" value="{{ form.charge_standard }}" data-field="charge_standard" bind:change="handleChange" placeholder="请输入收费标准" /> -->
     <van-field label="回鱼规则" type="textarea" autosize="{{ { maxHeight: 100, minHeight: 50 } }}" value="{{ form.return_fish_rule }}" data-field="return_fish_rule" bind:change="handleChange" placeholder="请输入回鱼规则" />
     <van-field label="限杆规则" type="textarea" autosize="{{ { maxHeight: 100, minHeight: 50 } }}" value="{{ form.rod_limit }}" data-field="rod_limit" bind:change="handleChange" placeholder="请输入限杆规则" />
     <van-field label="塘口规则" type="textarea" autosize="{{ { maxHeight: 100, minHeight: 50 } }}" value="{{ form.rule }}" data-field="rule" bind:change="handleChange" placeholder="请输入塘口规则" border="{{ false }}" />
   </van-cell-group>
-
   <view class="operate-btn">
     <van-button type="info" block bind:click="handleSave">保存</van-button>
   </view>

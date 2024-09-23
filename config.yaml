@@ -3,8 +3,8 @@ zip:
   outName: date
 openApi:
   requestLibPath: import {request} from '../utils/request.ts'
-  schemaPath: http://localhost:8989/swagger/doc.json
-  serversPath: ./src
+  schemaPath: /Users/wangzhongjie/Desktop/github/go-gin-api/docs/swagger.json
+  serversPath: ./
 upload:
   serverType: linux
   port: 22

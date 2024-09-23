@@ -1,0 +1,15 @@
+zip:
+  targetFolder: ./dist
+  outName: date
+openApi:
+  requestLibPath: import {request} from '../utils/request.ts'
+  schemaPath: http://localhost:8989/swagger/doc.json
+  serversPath: ./src
+upload:
+  serverType: linux
+  port: 22
+  host: ''
+  userName: ''
+  password: ''
+  targetDir: ''
+  localDir: dist

@@ -1,7 +1,6 @@
 // app.js
 import { store } from "@/store/index";
 import { getPrivateFishAdminList } from "@/api/index";
-// import { authorize } from "@/api/index";
 
 App({
   onLaunch() {
@@ -11,26 +10,6 @@ App({
       // 如果是钓场身份，跳转到钓场首页
       wx.reLaunch({ url: "/pages/group/home/home" });
     }
-
-    // // 微信登陆
-    // wx.login({
-    //   async success({ code }) {
-    //     console.log("wx.login：", code);
-    //     if (code) {
-    //       wx.getUserInfo({
-    //         success(res) {
-    //           console.log("wx.getUserInfo", res);
-    //         }
-    //       });
-    //       // const authRes = await authorize({ code });
-    //       // wx.setStorageSync("unionId", authRes.unionId);
-    //       // wx.setStorageSync("openid", authRes.openid);
-    //       // wx.setStorageSync("sessionKey", authRes.session_key);
-    //     } else {
-    //       wx.showToast({ title: "授权失败，请重新授权", icon: "error" });
-    //     }
-    //   }
-    // });
   },
   async getGroupList() {
     const { data: groundList } = await getPrivateFishAdminList();

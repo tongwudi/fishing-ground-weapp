@@ -14,6 +14,7 @@
     "pages/fish/list/list",
     "pages/fish/add/add",
     "pages/mine/mine",
+    "pages/profile/profile",
     "pages/login/login",
     "pages/register/register",
     "pages/forum/settings/settings"

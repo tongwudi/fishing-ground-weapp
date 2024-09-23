@@ -6,6 +6,7 @@ export const mainBehavior = BehaviorWithStore({
     store,
     fields: [
       "token",
+      "isNewUser",
       "role",
       "userInfo",
       "groupId",
@@ -16,6 +17,7 @@ export const mainBehavior = BehaviorWithStore({
     actions: [
       "resetStore",
       "setToken",
+      "setIsNewUser",
       "setRole",
       "setUserInfo",
       "setGroupId",

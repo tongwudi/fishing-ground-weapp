@@ -1,4 +1,5 @@
 // pages/mine/mine.js
+import { getBaseSystemWxOpenid, postPrivateUserWxSave } from "@/api/index";
 import { mainBehavior } from "@/store/behaviors";
 
 Page({
@@ -8,15 +9,60 @@ Page({
    */
   data: {
     overlayShow: false,
-    popupShow: false
+    popupShow: false,
+    radio: ""
   },
 
-  loginClick() {
+  handleLogin() {
     const { isLogin } = this.data;
-    if (isLogin) {
-      return;
+    !isLogin ? this.openPopup() : this.goProfile();
+  },
+  onChange(event) {
+    const value = event.detail;
+    if (value == 2) {
+      wx.navigateTo({ url: "/pages/login/login" });
+    } else if (value == 3) {
+      this.getUserInfo();
+    } else {
+      const that = this;
+      // 微信登陆
+      wx.login({
+        async success({ code }) {
+          if (code) {
+            const { data } = await getBaseSystemWxOpenid({ code });
+            that.setToken(data.token);
+            that.setIsNewUser(data.isNewUser);
+            data.isNewUser ? that.openPopup() : that.getUserInfo();
+          } else {
+            wx.showToast({ title: "授权失败，请重新授权", icon: "error" });
+          }
+        }
+      });
     }
-    wx.navigateTo({ url: "/pages/login/login" });
+    this.closePopup();
+  },
+  openPopup() {
+    this.setData({ popupShow: true });
+  },
+  closePopup() {
+    this.setData({ popupShow: false });
+  },
+  goProfile() {
+    wx.navigateTo({ url: "/pages/profile/profile" });
+  },
+  getUserInfo() {
+    wx.getUserInfo({
+      async success(res) {
+        console.log("wx.getUserInfo", res);
+        const { userInfo } = res;
+        const params = {
+          avatar: userInfo.avatarUrl,
+          nick_name: userInfo.nickName
+        };
+        const { data } = await postPrivateUserWxSave(params);
+        console.log(data);
+      }
+    });
   },
   handleCellClick(event) {
     const { key } = event.currentTarget.dataset;

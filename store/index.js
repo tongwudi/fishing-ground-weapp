@@ -7,6 +7,7 @@ const defaultUserInfo = {
 export const store = observable({
   // 数据字段
   token: wx.getStorageSync("token") || "",
+  isNewUser: wx.getStorageSync("isNewUser") || "",
   role: wx.getStorageSync("role") || "",
   userInfo: wx.getStorageSync("userInfo") || defaultUserInfo,
   groupId: wx.getStorageSync("groupId") || "",
@@ -31,6 +32,10 @@ export const store = observable({
   setToken: action(function (token) {
     this.token = token;
     wx.setStorageSync("token", token);
+  }),
+  setIsNewUser: action(function (isNewUser) {
+    this.isNewUser = isNewUser;
+    wx.setStorageSync("isNewUser", isNewUser);
   }),
   setRole: action(function (role) {
     this.role = role;

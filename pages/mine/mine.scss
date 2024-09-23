@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   padding: 0 global.$large;
-  background: #333;
+  background: #2f85da;
   .avatar {
     height: 140rpx;
     width: 140rpx;
@@ -28,6 +28,7 @@
     border-radius: 50%;
   }
 }
+
 .wrapper {
   height: 100%;
   display: flex;

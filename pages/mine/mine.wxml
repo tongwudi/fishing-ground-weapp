@@ -1,14 +1,18 @@
 <!--pages/mine/mine.wxml-->
 <view class="container">
   <view class="profile">
-    <image class="avatar" src="{{ userInfo.avatar || defaultUserInfo.avatar }}" bind:tap="loginClick"></image>
+    <image class="avatar" src="{{ userInfo.avatar || defaultUserInfo.avatar }}" bind:tap="handleLogin"></image>
     <view class="info">
-      <text class="name" bind:tap="loginClick">{{ userInfo.nick_name || defaultUserInfo.nick_name }}</text>
-      <image wx:if="{{ !isLogin }}" class="btn" src='/assets/images/arrow.png' bind:tap="loginClick"></image>
+      <text class="name" bind:tap="handleLogin">{{ userInfo.nick_name || defaultUserInfo.nick_name }}</text>
+      <block wx:if="{{ isLogin }}">
+        <image class="btn" src='/assets/images/arrow.png' bind:tap="goProfile"></image>
+      </block>
     </view>
   </view>
   <van-cell-group>
-    <van-cell wx:if="{{ isLogin }}" title="钓场认证" is-link data-key="authentication" bind:click="handleCellClick" />
+    <block wx:if="{{ isLogin }}">
+      <van-cell title="钓场认证" is-link data-key="authentication" bind:click="handleCellClick" />
+    </block>
     <block wx:if="{{ isFish }}">
       <van-cell title="我的钓场" is-link url="/pages/group/list/list" />
       <van-cell title="塘口管理" is-link url="/pages/pond/list/list" />
@@ -16,7 +20,9 @@
       <!-- <van-cell title="我的帖子" is-link /> -->
       <!-- <van-cell title="钓场圈设置" is-link url="/pages/forum/settings/settings" border="{{ false }}" /> -->
     </block>
-    <van-cell wx:if="{{ isLogin }}" title="退出登录" is-link data-key="logout" bind:click="handleCellClick" />
+    <block wx:if="{{ isLogin }}">
+      <van-cell title="退出登录" is-link border="{{ false }}" data-key="logout" bind:click="handleCellClick" />
+    </block>
   </van-cell-group>
 
   <van-overlay show="{{ overlayShow }}" z-index="{{ 99999 }}" bind:click="closeOverlay">
@@ -25,9 +31,11 @@
     </view>
   </van-overlay>
 
-  <van-popup show="{{ popupShow }}" bind:click="closeOverlay">
-    <view class="wrapper">
-      <image class="authentication" src="../../assets/images/authentication.jpg" />
-    </view>
+  <van-popup show="{{ popupShow }}" bind:close="closePopup">
+    <van-radio-group value="{{ radio }}" bind:change="onChange">
+      <van-radio name="1">微信登陆</van-radio>
+      <van-radio name="2">账号登陆</van-radio>
+      <van-radio name="3">获取用户信息</van-radio>
+    </van-radio-group>
   </van-popup>
 </view>

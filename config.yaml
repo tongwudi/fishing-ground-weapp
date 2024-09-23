@@ -2,7 +2,7 @@ zip:
   targetFolder: ./dist
   outName: date
 openApi:
-  requestLibPath: import {request} from '../utils/request.ts'
+  requestLibPath: import {request} from '../utils/request'
   schemaPath: /Users/wangzhongjie/Desktop/github/go-gin-api/docs/swagger.json
   serversPath: ./
 upload:

@@ -71,7 +71,14 @@
               </view>
               <view class="info-item">
                 <text class="info-item_label">收费标准</text>
-                <text class="info-item_value">{{ tab.charge_standard }}</text>
+                <view >
+                  <view wx:for="{{tab.charge_rule}}" wx:for-item="rule"  class="info-item_block">
+                    <text>{{rule.fish}}</text>
+                    <text>{{rule.price}}</text>元
+                    <text>{{rule.duration}}</text>小时
+                  </view>
+                </view>
+                <!-- <text class="info-item_value">{{ tab.charge_standard }}</text> -->
               </view>
               <view class="info-item">
                 <text class="info-item_label">限竿规则</text>

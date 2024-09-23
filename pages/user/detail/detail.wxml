@@ -83,6 +83,10 @@
                   </view>
                 </view>
               </view>
+              <view class="info-item" wx:if="{{pondInfo.preferential_policy}}">
+                <text class="info-item_label">优惠政策</text>
+                <text class="info-item_value">{{ pondInfo.preferential_policy }}</text>
+              </view>
               <view class="info-item">
                 <text class="info-item_label">回鱼规则</text>
                 <text class="info-item_value">{{ pondInfo.return_fish_rule }}</text>

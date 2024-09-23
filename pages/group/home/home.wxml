@@ -80,6 +80,10 @@
                 </view>
                 <!-- <text class="info-item_value">{{ tab.charge_standard }}</text> -->
               </view>
+              <view class="info-item" wx:if="{{tab.preferential_policy}}">
+                <text class="info-item_label">优惠政策</text>
+                <text class="info-item_value">{{ tab.preferential_policy }}</text>
+              </view>
               <view class="info-item">
                 <text class="info-item_label">限竿规则</text>
                 <text class="info-item_value">{{ tab.rod_limit }}</text>

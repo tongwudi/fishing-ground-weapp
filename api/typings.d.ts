@@ -99,7 +99,10 @@ declare namespace API {
   type FishesPond = {
     /** 钓场ID */
     angling_site_id?: string;
-    /** 收费标准 */
+    /** 收费规则 */
+    charge_rule?: number[];
+    /** TODO
+	收费标准 */
     charge_standard?: string;
     create_time?: string;
     delete_time?: DeletedAt;
@@ -119,6 +122,8 @@ declare namespace API {
     photos?: string[];
     /** 钓位数 */
     position_num?: number;
+    /** 优惠政策 */
+    preferential_policy?: string;
     put_fish_plans?: PutFishPlan[];
     /** 放鱼记录 */
     put_fish_records?: PutFishRecord[];

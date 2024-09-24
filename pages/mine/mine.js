@@ -1,5 +1,9 @@
 // pages/mine/mine.js
-import { getBaseSystemWxOpenid, postPrivateUserWxSave } from "@/api/index";
+import {
+  getBaseSystemWxOpenid,
+  postPrivateUserWxSave,
+  getPrivateUserInfo
+} from "@/api/index";
 import { mainBehavior } from "@/store/behaviors";
 
 Page({
@@ -8,21 +12,32 @@ Page({
    * 页面的初始数据
    */
   data: {
+    defaultAvatar: "https://pic.imgdb.cn/item/64c0cc451ddac507ccd49532.png",
     overlayShow: false,
-    popupShow: false,
-    radio: ""
+    actionSheetShow: false,
+    actions: [{ name: "微信登录" }, { name: "账号登录" }],
   },
 
+  // // 获取用户信息弹框
+  // const params = {
+  //   avatar: userInfo.avatarUrl,
+  //   nick_name: userInfo.nickName
+  // };
+  // await postPrivateUserWxSave(params);
   handleLogin() {
     const { isLogin } = this.data;
-    !isLogin ? this.openPopup() : this.goProfile();
+    !isLogin ? this.openActionSheet() : this.goProfile();
   },
-  onChange(event) {
-    const value = event.detail;
-    if (value == 2) {
+  openActionSheet() {
+    this.setData({ actionSheetShow: true });
+  },
+  closeActionSheet() {
+    this.setData({ actionSheetShow: false });
+  },
+  selectLoginMethod(event) {
+    const { name } = event.detail;
+    if (name == "账号登录") {
       wx.navigateTo({ url: "/pages/login/login" });
-    } else if (value == 3) {
-      this.getUserInfo();
     } else {
       const that = this;
       // 微信登陆
@@ -32,37 +47,23 @@ Page({
             const { data } = await getBaseSystemWxOpenid({ code });
             that.setToken(data.token);
             that.setIsNewUser(data.isNewUser);
-            data.isNewUser ? that.openPopup() : that.getUserInfo();
+            data.isNewUser ? that.openActionSheet() : that.getUserInfo();
           } else {
             wx.showToast({ title: "授权失败，请重新授权", icon: "error" });
           }
         }
       });
     }
-    this.closePopup();
-  },
-  openPopup() {
-    this.setData({ popupShow: true });
-  },
-  closePopup() {
-    this.setData({ popupShow: false });
+    this.closeActionSheet();
   },
   goProfile() {
     wx.navigateTo({ url: "/pages/profile/profile" });
   },
-  getUserInfo() {
-    wx.getUserInfo({
-      async success(res) {
-        console.log("wx.getUserInfo", res);
-        const { userInfo } = res;
-        const params = {
-          avatar: userInfo.avatarUrl,
-          nick_name: userInfo.nickName
-        };
-        const { data } = await postPrivateUserWxSave(params);
-        console.log(data);
-      }
-    });
+  async getUserInfo() {
+    const { data } = await getPrivateUserInfo();
+    const userRole = data.roles.map(v => v.key).filter(Boolean);
+    this.setRole(userRole.join());
+    this.setUserInfo(data);
   },
   handleCellClick(event) {
     const { key } = event.currentTarget.dataset;

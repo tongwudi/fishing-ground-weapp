@@ -41,6 +41,7 @@
     "van-row": "@vant/weapp/row/index",
     "van-col": "@vant/weapp/col/index",
     "van-picker": "@vant/weapp/picker/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index",
     "van-nav-bar": "@vant/weapp/nav-bar/index"
   },
   "window": {

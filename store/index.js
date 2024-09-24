@@ -1,15 +1,11 @@
 import { observable, action } from "mobx-miniprogram";
 
-const defaultUserInfo = {
-  avatar: "https://pic.imgdb.cn/item/64c0cc451ddac507ccd49532.png",
-  nick_name: "登录 / 注册"
-};
 export const store = observable({
   // 数据字段
   token: wx.getStorageSync("token") || "",
   isNewUser: wx.getStorageSync("isNewUser") || "",
   role: wx.getStorageSync("role") || "",
-  userInfo: wx.getStorageSync("userInfo") || defaultUserInfo,
+  userInfo: wx.getStorageSync("userInfo") || {},
   groupId: wx.getStorageSync("groupId") || "",
   anglingSiteName: wx.getStorageSync("anglingSiteName") || "",
 
@@ -25,7 +21,7 @@ export const store = observable({
   resetStore: action(function () {
     this.token = "";
     this.role = "";
-    this.userInfo = defaultUserInfo;
+    this.userInfo = {};
     this.groupId = "";
     wx.clearStorageSync();
   }),

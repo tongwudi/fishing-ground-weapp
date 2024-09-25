@@ -38,8 +38,8 @@ export const store = observable({
     wx.setStorageSync("role", role);
   }),
   setUserInfo: action(function (userInfo) {
-    this.userInfo = userInfo;
-    wx.setStorageSync("userInfo", userInfo);
+    this.userInfo = { ...this.userInfo, ...userInfo };
+    wx.setStorageSync("userInfo", this.userInfo);
   }),
   setGroupId: action(function (groupId) {
     this.groupId = groupId;

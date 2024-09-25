@@ -4,13 +4,13 @@ const app = getApp();
 
 Component({
   behaviors: [storeBindingsBehavior],
-  data: {
-    active: 0,
-    tabbar: []
-  },
   storeBindings: {
     store,
     fields: ["role"]
+  },
+  data: {
+    active: 0,
+    tabbar: []
   },
   observers: {
     role: function (val) {

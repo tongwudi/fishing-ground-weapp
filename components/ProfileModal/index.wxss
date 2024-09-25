@@ -1,0 +1,35 @@
+.profile-popup {
+  width: 600rpx;
+  padding: 32rpx;
+}
+.title-box {
+  height: 100rpx;
+  line-height: 100rpx;
+  position: relative;
+}
+.title {
+  font-size: 38rpx;
+  text-align: center;
+}
+.jump-btn {
+  position: absolute;
+  top: 0;
+  right: 48rpx;
+  font-size: 32rpx;
+  color: #bbb;
+}
+.avatar-wrapper {
+  width: 240rpx;
+  height: 240rpx;
+  padding: 0;
+  border-radius: 50%;
+}
+.avatar-img {
+  width: 100%;
+  height: 100%;
+}
+.avatar-box,
+.nick-box,
+.save-btn {
+  margin-top: 32rpx;
+}

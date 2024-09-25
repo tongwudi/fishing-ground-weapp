@@ -1,13 +1,10 @@
 // pages/mine/mine.js
-import {
-  getBaseSystemWxOpenid,
-  postPrivateUserWxSave,
-  getPrivateUserInfo
-} from "@/api/index";
+import { getBaseSystemWxOpenid, getPrivateUserInfo } from "@/api/index";
 import { mainBehavior } from "@/store/behaviors";
 
 Page({
   behaviors: [mainBehavior],
+
   /**
    * 页面的初始数据
    */
@@ -16,14 +13,9 @@ Page({
     overlayShow: false,
     actionSheetShow: false,
     actions: [{ name: "微信登录" }, { name: "账号登录" }],
+    profileModalShow: false
   },
 
-  // // 获取用户信息弹框
-  // const params = {
-  //   avatar: userInfo.avatarUrl,
-  //   nick_name: userInfo.nickName
-  // };
-  // await postPrivateUserWxSave(params);
   handleLogin() {
     const { isLogin } = this.data;
     !isLogin ? this.openActionSheet() : this.goProfile();
@@ -38,16 +30,16 @@ Page({
     const { name } = event.detail;
     if (name == "账号登录") {
       wx.navigateTo({ url: "/pages/login/login" });
-    } else {
+    } else if (name == "微信登录") {
       const that = this;
-      // 微信登陆
       wx.login({
         async success({ code }) {
           if (code) {
             const { data } = await getBaseSystemWxOpenid({ code });
             that.setToken(data.token);
             that.setIsNewUser(data.isNewUser);
-            data.isNewUser ? that.openActionSheet() : that.getUserInfo();
+            that.getUserInfo();
+            data.isNewUser && that.openProfileModal();
           } else {
             wx.showToast({ title: "授权失败，请重新授权", icon: "error" });
           }
@@ -56,14 +48,17 @@ Page({
     }
     this.closeActionSheet();
   },
-  goProfile() {
-    wx.navigateTo({ url: "/pages/profile/profile" });
-  },
   async getUserInfo() {
     const { data } = await getPrivateUserInfo();
     const userRole = data.roles.map(v => v.key).filter(Boolean);
     this.setRole(userRole.join());
     this.setUserInfo(data);
+  },
+  openProfileModal() {
+    this.setData({ profileModalShow: true });
+  },
+  goProfile() {
+    wx.navigateTo({ url: "/pages/profile/profile" });
   },
   handleCellClick(event) {
     const { key } = event.currentTarget.dataset;
@@ -85,6 +80,13 @@ Page({
   async logout() {
     const res = await wx.showModal({ content: "确定要退出登录吗？" });
     res.confirm && this.resetStore();
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady() {
+    this.isNewUser && this.openProfileModal();
   },
 
   /**

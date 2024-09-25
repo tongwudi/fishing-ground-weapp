@@ -20,6 +20,7 @@
     "pages/forum/settings/settings"
   ],
   "usingComponents": {
+    "ProfileModal": "/components/ProfileModal/index",
     "van-tabbar": "@vant/weapp/tabbar/index",
     "van-tabbar-item": "@vant/weapp/tabbar-item/index",
     "van-button": "@vant/weapp/button/index",
@@ -76,7 +77,7 @@
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents",
-  "requiredPrivateInfos": ["getLocation", "chooseLocation"],
+  "requiredPrivateInfos": ["chooseLocation"],
   "permission": {
     "scope.userLocation": {
       "desc": "获取你的位置信息，将用于填写当前钓场具体位置"

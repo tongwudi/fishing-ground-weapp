@@ -12,8 +12,8 @@ Page({
     defaultAvatar: "https://pic.imgdb.cn/item/64c0cc451ddac507ccd49532.png",
     overlayShow: false,
     actionSheetShow: false,
-    actions: [{ name: "微信登录" }, { name: "账号登录" }],
-    profileModalShow: false
+    actions: [{ name: "微信登录" }, { name: "账号登录" }, { name: "账号注册" }],
+    profileModalShow: false,
   },
 
   handleLogin() {
@@ -43,14 +43,16 @@ Page({
           } else {
             wx.showToast({ title: "授权失败，请重新授权", icon: "error" });
           }
-        }
+        },
       });
+    }else if(name == "账号注册"){
+      wx.navigateTo({ url: "/pages/register/register" });
     }
     this.closeActionSheet();
   },
   async getUserInfo() {
     const { data } = await getPrivateUserInfo();
-    const userRole = data.roles.map(v => v.key).filter(Boolean);
+    const userRole = data.roles.map((v) => v.key).filter(Boolean);
     this.setRole(userRole.join());
     this.setUserInfo(data);
   },
@@ -121,5 +123,5 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {}
+  onShareAppMessage() {},
 });

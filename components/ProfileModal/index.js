@@ -10,8 +10,6 @@ Component({
    * 组件的对外属性，是属性名到属性设置的映射表
    */
   properties: {
-    // avatarUrl: String,
-    // nickname: String,
     show: Boolean
   },
 
@@ -20,7 +18,7 @@ Component({
    */
   data: {
     avatarUrl: "https://pic.imgdb.cn/item/64c0cc451ddac507ccd49532.png",
-    nickname: ""
+    nickname: undefined
   },
 
   /**
@@ -32,10 +30,8 @@ Component({
    * 组件生命周期声明对象
    */
   lifetimes: {
-    // attached() {
-    //   const { nickname } = this.data;
-    //   this.setData({ nickname: nickname });
-    // }
+    // 在组件实例进入页面节点树时执行
+    // attached() {}
   },
 
   /**

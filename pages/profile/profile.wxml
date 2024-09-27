@@ -1,2 +1,14 @@
 <!--pages/profile/profile.wxml-->
-<text>pages/profile/profile.wxml</text>
+<view class="container">
+  <view class="avatar-box">
+    <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+      <image class="avatar-img" src="{{ avatarUrl }}"></image>
+    </button>
+  </view>
+  <view class="nickname-box">
+    <van-field type="nickname" model:value="{{ nickname }}" placeholder="请输入昵称" clearable />
+  </view>
+  <view class="operate-btn">
+    <van-button type="info" block bind:click="handleSave">保存</van-button>
+  </view>
+</view>

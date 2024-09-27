@@ -1,11 +1,11 @@
 /* pages/plan/detail/detail.wxss */
 .cell-row {
-  padding: global.$small;
+  padding: global.$small-space;
   display: flex;
   justify-content: space-between;
 }
 .add-btn {
-  padding: global.$large 0;
+  padding: global.$large-space 0;
   text-align: center;
   background-color: #fff;
 }

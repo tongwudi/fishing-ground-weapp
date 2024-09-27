@@ -34,5 +34,5 @@
   <van-action-sheet show="{{ actionSheetShow }}" z-index="{{ 99999 }}" actions="{{ actions }}" cancel-text="取消" bind:select="selectLoginMethod" bind:click-overlay="closeActionSheet" bind:cancel="closeActionSheet" />
 
   <!-- 弹出编辑昵称和头像的框 -->
-  <ProfileModal show="{{ profileModalShow }}" />
+  <ProfileModal show="{{ profileModalShow }}" nickname="{{ nickname }}" />
 </view>

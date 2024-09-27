@@ -8,8 +8,8 @@
       <image class="avatar-img" src="{{ avatarUrl }}"></image>
     </button>
   </view>
-  <view class="nick-box">
-    <van-field type="nickname" model:value="{{ nickname }}" placeholder="请输入昵称" clearable />
+  <view class="nickname-box">
+    <van-field size="large" type="nickname" model:value="{{ nickname }}" placeholder="请输入昵称" clearable />
   </view>
   <view class="save-btn">
     <van-button type="info" block bind:click="handleSave">保存</van-button>

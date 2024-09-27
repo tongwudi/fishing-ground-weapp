@@ -29,7 +29,7 @@
   height: 100%;
 }
 .avatar-box,
-.nick-box,
+.nickname-box,
 .save-btn {
   margin-top: 32rpx;
 }

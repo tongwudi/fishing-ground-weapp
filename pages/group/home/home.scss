@@ -6,7 +6,7 @@
 .title {
   display: flex;
   align-items: center;
-  gap: global.$small;
+  gap: global.$small-space;
   > text {
     font-size: global.$title-size;
     font-weight: 600;
@@ -15,9 +15,9 @@
 .favorite {
   float: right;
   display: flex;
-  gap: global.$mini;
+  gap: global.$mini-space;
 }
 
 .tab-content {
-  padding: global.$large;
+  padding: global.$large-space;
 }

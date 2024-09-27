@@ -31,15 +31,15 @@ page {
 }
 
 .card {
-  padding: global.$small;
-  margin-bottom: global.$small;
+  padding: global.$small-space;
+  margin-bottom: global.$small-space;
   background-color: #fff;
 
   .card-head {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: global.$small 0;
+    margin: global.$small-space 0;
   }
 
   .card-body {
@@ -71,7 +71,7 @@ page {
     }
 
     .info-item_right-icon {
-      margin-left: global.$mini;
+      margin-left: global.$mini-space;
     }
   }
 }
@@ -80,7 +80,7 @@ page {
 .timeline {
   display: flex;
   flex-direction: column;
-  padding: 10rpx global.$large 0;
+  padding: 10rpx global.$large-space 0;
   background-color: #fff;
   overflow: hidden;
 
@@ -112,8 +112,8 @@ page {
       flex: 1;
       display: flex;
       flex-direction: column;
-      padding-left: global.$large;
-      padding-bottom: global.$large;
+      padding-left: global.$large-space;
+      padding-bottom: global.$large-space;
 
       text {
         line-height: 48rpx;
@@ -144,5 +144,5 @@ page {
 }
 
 .operate-btn {
-  padding: global.$large global.$medium;
+  padding: global.$large-space global.$medium-space;
 }

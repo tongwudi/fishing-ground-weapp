@@ -17,23 +17,11 @@ Page({
   async getData() {
     const { data: list } = await getPrivateFishAdminList();
     this.setData({ list });
-    // 若之前没有默认钓场，则选中第一个钓场
-    const { groupId } = this.data;
-    if (groupId || list.length == 0) return;
-    this.setGroupId(list[0].id);
-    this.setAnglingSiteName(list[0].name);
   },
   goPage(event) {
     const { id } = event.currentTarget.dataset;
     const url = "/pages/group/detail/detail";
     wx.navigateTo({ url: id ? `${url}?id=${id}` : url });
-  },
-  handleChange(event) {
-    const { id, name } = event.currentTarget.dataset;
-    const { groupId } = this.data;
-    if (id === groupId) return;
-    this.setGroupId(id);
-    this.setAnglingSiteName(name);
   },
   handleEdit() {
     wx.navigateTo({ url: "/pages/group/detail/detail" });
@@ -43,8 +31,8 @@ Page({
     const res = await wx.showModal({ content: "确定要删除该钓场吗？" });
     if (res.confirm) {
       await deletePrivateFishAdminOpenApiDelete({ id });
-      this.getData();
       wx.showToast({ title: "删除成功" });
+      this.getData();
     }
   },
   /**

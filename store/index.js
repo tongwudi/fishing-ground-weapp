@@ -2,12 +2,10 @@ import { observable, action } from "mobx-miniprogram";
 
 export const store = observable({
   // 数据字段
-  token: wx.getStorageSync("token") || "",
   isNewUser: wx.getStorageSync("isNewUser") || "",
+  token: wx.getStorageSync("token") || "",
   role: wx.getStorageSync("role") || "",
   userInfo: wx.getStorageSync("userInfo") || {},
-  groupId: wx.getStorageSync("groupId") || "",
-  anglingSiteName: wx.getStorageSync("anglingSiteName") || "",
 
   // 计算属性
   get isLogin() {
@@ -18,20 +16,13 @@ export const store = observable({
   },
 
   // actions
-  resetStore: action(function () {
-    this.token = "";
-    this.role = "";
-    this.userInfo = {};
-    this.groupId = "";
-    wx.clearStorageSync();
+  setIsNewUser: action(function (isNewUser) {
+    this.isNewUser = isNewUser;
+    wx.setStorageSync("isNewUser", isNewUser);
   }),
   setToken: action(function (token) {
     this.token = token;
     wx.setStorageSync("token", token);
-  }),
-  setIsNewUser: action(function (isNewUser) {
-    this.isNewUser = isNewUser;
-    wx.setStorageSync("isNewUser", isNewUser);
   }),
   setRole: action(function (role) {
     this.role = role;
@@ -41,12 +32,10 @@ export const store = observable({
     this.userInfo = { ...this.userInfo, ...userInfo };
     wx.setStorageSync("userInfo", this.userInfo);
   }),
-  setGroupId: action(function (groupId) {
-    this.groupId = groupId;
-    wx.setStorageSync("groupId", groupId);
+  resetStore: action(function () {
+    this.token = "";
+    this.role = "";
+    this.userInfo = {};
+    wx.clearStorageSync();
   }),
-  setAnglingSiteName: action(function (val) {
-    this.anglingSiteName = val;
-    wx.setStorageSync("anglingSiteName", val);
-  })
 });

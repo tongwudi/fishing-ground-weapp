@@ -46,6 +46,28 @@ Page({
     const { groupInfo } = this.data;
     wx.makePhoneCall({ phoneNumber: groupInfo.phone });
   },
+  handleGridClick(event) {
+    const { key } = event.currentTarget.dataset;
+    const { isLogin } = this.data;
+    switch (key) {
+      case "开钓":
+        if (!isLogin) {
+          wx.showModal({
+            title: "提示",
+            content: "用户未登录，是否去登录？",
+            success(res) {
+              res.confirm && wx.switchTab({ url: "/pages/mine/mine" });
+            }
+          });
+          return;
+        }
+        wx.navigateTo({ url: "/pages/settings/startFish/startFish" });
+        break;
+      case "放鱼":
+        // wx.navigateTo({ url: "/pages/put/add/add?groupId" });
+        break;
+    }
+  },
   async handleChange(event) {
     const id = event.detail.name;
     await this.getPondInfo(id);

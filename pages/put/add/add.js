@@ -9,6 +9,7 @@ import { mainBehavior } from "@/store/behaviors";
 
 Page({
   behaviors: [mainBehavior],
+
   /**
    * 页面的初始数据
    */
@@ -127,7 +128,10 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {},
+  onLoad(options) {
+    this.setData({ groupId: options.groupId });
+    this.getData();
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -137,12 +141,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-    if (typeof this.getTabBar === "function") {
-      this.getTabBar().init();
-    }
-    this.getData();
-  },
+  onShow() {},
 
   /**
    * 生命周期函数--监听页面隐藏

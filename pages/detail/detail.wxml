@@ -53,7 +53,7 @@
     </block>
     <block wx:else>
       <van-grid border="{{ false }}">
-        <van-grid-item icon-color="#2f85da" icon="photo-o" text="开钓" />
+        <van-grid-item icon-color="#2f85da" icon="photo-o" text="开钓" data-key="开钓" bind:click="handleGridClick" />
         <van-grid-item icon-color="#2f85da" icon="photo-o" text="今日鱼情" />
         <van-grid-item icon-color="#2f85da" icon="photo-o" text="加群" />
         <van-grid-item icon-color="#2f85da" icon="photo-o" text="更多工具" />

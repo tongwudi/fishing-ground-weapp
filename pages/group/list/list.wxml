@@ -5,9 +5,6 @@
       <block wx:for="{{ list }}" wx:key="index">
         <van-cell title="{{ item.name }}">
           <view class="actions" slot="right-icon">
-            <van-button size="small" type="primary" plain="{{ item.id != groupId }}" data-id="{{ item.id }}" data-name="{{ item.name }}" bind:tap="handleChange">
-              {{ item.id != groupId? '切换' : '已选中' }}
-            </van-button>
             <van-button size="small" plain type="info" data-id="{{ item.id }}" bind:click="goPage">修改</van-button>
             <van-button size="small" plain type="danger" data-id="{{ item.id }}" bind:click="handleDelete">删除</van-button>
           </view>

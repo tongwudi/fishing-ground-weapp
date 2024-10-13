@@ -1,6 +1,9 @@
 import { getPublicFishGrounds, getPublicFishPond } from "@/api/index";
+import { mainBehavior } from "@/store/behaviors";
 
 Page({
+  behaviors: [mainBehavior],
+
   /**
    * 页面的初始数据
    */
@@ -43,16 +46,18 @@ Page({
     const { groupInfo } = this.data;
     wx.makePhoneCall({ phoneNumber: groupInfo.phone });
   },
-  handleChange(event) {
+  async handleChange(event) {
     const id = event.detail.name;
-    this.getPondInfo(id);
+    await this.getPondInfo(id);
   },
   async getPondInfo(id) {
+    wx.showLoading({ title: "加载中" });
     const { data: pondInfo } = await getPublicFishPond({ id });
     this.setData({
       pondInfo,
       active: id
     });
+    wx.hideLoading();
   },
   goPage(event) {
     const { id, type } = event.currentTarget.dataset;

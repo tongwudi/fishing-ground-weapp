@@ -17,6 +17,12 @@
   .item {
     display: flex;
     box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.05);
+    position: relative;
+    .item-tag {
+      position: absolute;
+      left: 8rpx;
+      top: 8rpx;
+    }
     .item-img {
       width: 260rpx;
       height: 200rpx;

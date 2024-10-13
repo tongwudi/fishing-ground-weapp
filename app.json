@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/user/home/home",
-    "pages/user/detail/detail",
+    "pages/home/home",
+    "pages/detail/detail",
     "pages/group/home/home",
     "pages/group/list/list",
     "pages/group/detail/detail",
@@ -17,6 +17,9 @@
     "pages/profile/profile",
     "pages/login/login",
     "pages/register/register",
+    "pages/settings/startFish/startFish",
+    "pages/settings/fishToday/fishToday",
+    "pages/settings/solitaire/solitaire",
     "pages/forum/settings/settings"
   ],
   "usingComponents": {
@@ -32,6 +35,8 @@
     "van-icon": "@vant/weapp/icon/index",
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index",
+    "van-grid": "@vant/weapp/grid/index",
+    "van-grid-item": "@vant/weapp/grid-item/index",
     "van-field": "@vant/weapp/field/index",
     "van-popup": "@vant/weapp/popup/index",
     "van-calendar": "@vant/weapp/calendar/index",
@@ -52,22 +57,19 @@
   },
   "tabBar": {
     "custom": true,
+    "selectedColor": "#2f85da",
     "list": [
       {
-        "pagePath": "pages/user/home/home",
+        "pagePath": "pages/home/home",
+        "iconPath": "/assets/images/home.png",
+        "selectedIconPath": "/assets/images/home-active.png",
         "text": "首页"
       },
       {
-        "pagePath": "pages/group/home/home",
-        "text": "我的钓场"
-      },
-      {
         "pagePath": "pages/mine/mine",
-        "text": "我的"
-      },
-      {
-        "pagePath": "pages/put/add/add",
-        "text": "放鱼"
+        "text": "我的",
+        "iconPath": "/assets/images/mine.png",
+        "selectedIconPath": "/assets/images/mine-active.png"
       }
     ]
   },

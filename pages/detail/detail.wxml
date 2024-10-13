@@ -12,8 +12,8 @@
     <view class="card-head">
       <view class="title">
         <text>{{ groupInfo.name }}</text>
-        <van-tag color="grey" wx:if="{{ groupInfo.status === '0' }}">未认证</van-tag>
-        <van-tag type="success" wx:if="{{ groupInfo.status=== '1' }}">已认证</van-tag>
+        <van-tag size="medium" color="grey" wx:if="{{ groupInfo.status === '0' }}">未认证</van-tag>
+        <van-tag size="medium" type="success" wx:if="{{ groupInfo.status=== '1' }}">已认证</van-tag>
       </view>
       <!-- <view class="favorite">
         <van-icon name="like-o" size="20" />
@@ -40,6 +40,25 @@
         <text class="info-item_value">{{ groupInfo.description }}</text>
       </view>
     </view>
+  </view>
+
+  <view style="margin-bottom: 24rpx;">
+    <block wx:if="{{ role == 'fish' }}">
+      <van-grid border="{{ false }}">
+        <van-grid-item icon-color="#2f85da" icon="photo-o" text="放鱼" />
+        <van-grid-item icon-color="#2f85da" icon="photo-o" text="塘口设置" />
+        <van-grid-item icon-color="#2f85da" icon="photo-o" text="放鱼计划" />
+        <van-grid-item icon-color="#2f85da" icon="photo-o" text="更多工具" />
+      </van-grid>
+    </block>
+    <block wx:else>
+      <van-grid border="{{ false }}">
+        <van-grid-item icon-color="#2f85da" icon="photo-o" text="开钓" />
+        <van-grid-item icon-color="#2f85da" icon="photo-o" text="今日鱼情" />
+        <van-grid-item icon-color="#2f85da" icon="photo-o" text="加群" />
+        <van-grid-item icon-color="#2f85da" icon="photo-o" text="更多工具" />
+      </van-grid>
+    </block>
   </view>
 
   <block wx:if="{{ groupInfo.fishes_pond.length > 0 }}">

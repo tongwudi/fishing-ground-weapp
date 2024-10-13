@@ -14,6 +14,7 @@
     <view class="list">
       <block wx:for="{{ list }}" wx:key="index">
         <view class="item" data-id="{{ item.id }}" bind:tap="goPage">
+          <van-tag class="item-tag" plain type="primary">我的</van-tag>
           <image class="item-img" src="{{ item.imgPath }}" />
           <view class="item-info info">
             <view class="info-item">

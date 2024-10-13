@@ -84,7 +84,7 @@ instance.interceptors.request = config => {
 
   if (config.isLoading) {
     // 发送请求之前添加 loading
-    instance.queue.length === 0 && wx.showLoading();
+    instance.queue.length === 0 && wx.showLoading({ title: "加载中" });
     // 然后向队列中添加一个请求标识，代表需要发送一次新请求
     instance.queue.push(config.url);
   }

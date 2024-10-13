@@ -63,8 +63,11 @@ Page({
         }
         wx.navigateTo({ url: "/pages/settings/startFish/startFish" });
         break;
+      case "今日鱼情":
+        wx.navigateTo({ url: "/pages/settings/fishToday/fishToday" });
+        break;
       case "放鱼":
-        // wx.navigateTo({ url: "/pages/put/add/add?groupId" });
+        // wx.navigateTo({ url: "/pages/put/add/add?groupId=" });
         break;
     }
   },

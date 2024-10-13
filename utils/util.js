@@ -1,4 +1,4 @@
-const formatTime = date => {
+const formatTime = (date, separator = "-") => {
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   const day = date.getDate();
@@ -6,7 +6,7 @@ const formatTime = date => {
   const minute = date.getMinutes();
   const second = date.getSeconds();
 
-  return `${[year, month, day].map(formatNumber).join("/")} ${[
+  return `${[year, month, day].map(formatNumber).join(separator)} ${[
     hour,
     minute,
     second
@@ -25,4 +25,4 @@ const formatDate = date => {
   return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 };
 
-export { formatDate };
+export { formatTime, formatDate };

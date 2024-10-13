@@ -1,7 +1,7 @@
 /* pages/profile/profile.scss */
 .avatar-wrapper {
-  width: 200rpx;
-  height: 200rpx;
+  width: 240rpx;
+  height: 240rpx;
   padding: 0;
   border-radius: 50%;
   .avatar-img {
@@ -12,5 +12,5 @@
 .avatar-box,
 .nickname-box,
 .save-btn {
-  margin-top: 32rpx;
+  margin-top: global.$medium-space;
 }

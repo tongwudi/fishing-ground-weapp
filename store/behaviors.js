@@ -9,6 +9,8 @@ export const mainBehavior = BehaviorWithStore({
       "isNewUser",
       "role",
       "userInfo",
+      "groupId",
+      "anglingSiteName",
       "isLogin",
       "isFish"
     ],
@@ -18,6 +20,8 @@ export const mainBehavior = BehaviorWithStore({
       "setIsNewUser",
       "setRole",
       "setUserInfo",
+      "setGroupId",
+      "setAnglingSiteName"
     ]
   }
 });

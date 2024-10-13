@@ -16,8 +16,7 @@ Page({
     this.setData({ info });
   },
   onClickLeft() {
-    const { isFish } = this.data;
-    wx.switchTab({ url: isFish ? "/pages/group/home/home" : "/pages/user/home/home" });
+    wx.switchTab({ url: "/pages/home/home" });
   },
 
   /**

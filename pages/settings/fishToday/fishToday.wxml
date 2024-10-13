@@ -1,2 +1,17 @@
 <!--pages/settings/fishToday/fishToday.wxml-->
-<text>pages/settings/fishToday/fishToday.wxml</text>
+<view class="container">
+  <view class="circle-box">
+    <van-circle size="120" stroke-width="8" value="{{ value }}" text="{{ value + '%' }}" />
+  </view>
+
+  <van-cell-group>
+    <van-cell title="开始时间" value="{{ form.beginTime }}" />
+    <van-cell title="当前时间" value="{{ form.currentTime }}" border="{{ false }}" />
+  </van-cell-group>
+
+  <view class="operate-btn">
+    <van-button type="danger" block bind:click="stop">提前结束</van-button>
+    <van-button type="info" block>加场</van-button>
+    <van-button type="primary" block>换钓位</van-button>
+  </view>
+</view>

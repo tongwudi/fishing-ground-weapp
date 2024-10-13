@@ -6,6 +6,6 @@
 
   <view class="operate-btn">
     <van-button type="info" block bind:click="login">登录</van-button>
-    <van-button custom-style="margin-top: 30rpx;" type="default" block bind:click="goRegister">注册</van-button>
+    <van-button type="default" block bind:click="goRegister">注册</van-button>
   </view>
 </view>

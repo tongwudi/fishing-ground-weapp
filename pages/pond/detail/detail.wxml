@@ -63,6 +63,7 @@
     <van-field label="限杆规则" type="textarea" autosize="{{ { maxHeight: 100, minHeight: 50 } }}" value="{{ form.rod_limit }}" data-field="rod_limit" bind:change="handleChange" placeholder="请输入限杆规则" />
     <van-field label="塘口规则" type="textarea" autosize="{{ { maxHeight: 100, minHeight: 50 } }}" value="{{ form.rule }}" data-field="rule" bind:change="handleChange" placeholder="请输入塘口规则" border="{{ false }}" />
   </van-cell-group>
+
   <view class="operate-btn">
     <van-button type="info" block bind:click="handleSave">保存</van-button>
   </view>

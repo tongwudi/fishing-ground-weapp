@@ -1,10 +1,14 @@
 // pages/settings/startFish/startFish.ts
+import { formatTime } from "@/utils/util";
+
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    form: {}
+    form: {
+      currentTime: ""
+    }
   },
 
   handleChange(event) {
@@ -17,7 +21,11 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {},
+  onLoad() {
+    this.data.timer = setInterval(() => {
+      this.setData({ "form.currentTime": formatTime(new Date()) });
+    });
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -37,7 +45,9 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload() {},
+  onUnload() {
+    this.data.timer && clearInterval(this.data.timer);
+  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作

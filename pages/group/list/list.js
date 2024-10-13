@@ -3,10 +3,8 @@ import {
   getPrivateFishAdminList,
   deletePrivateFishAdminOpenApiDelete
 } from "@/api/index";
-import { mainBehavior } from "@/store/behaviors";
 
 Page({
-  behaviors: [mainBehavior],
   /**
    * 页面的初始数据
    */

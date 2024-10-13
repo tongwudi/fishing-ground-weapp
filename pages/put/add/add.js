@@ -5,11 +5,8 @@ import {
   postPrivateFishAdminFishAdd
 } from "@/api/index";
 import { env } from "@/utils/env";
-import { mainBehavior } from "@/store/behaviors";
 
 Page({
-  behaviors: [mainBehavior],
-
   /**
    * 页面的初始数据
    */

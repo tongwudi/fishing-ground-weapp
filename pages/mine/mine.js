@@ -66,7 +66,15 @@ Page({
     const { key } = event.currentTarget.dataset;
     switch (key) {
       case "authentication":
-        this.openOverlay();
+        // this.openOverlay();
+        wx.previewImage({
+          urls: ["https://s21.ax1x.com/2024/10/14/pAtVWLR.jpg"],
+          current: 'https://s21.ax1x.com/2024/10/14/pAtVWLR.jpg',
+          showmenu: true,
+          success: (res) => {},
+          fail: (res) => {},
+          complete: (res) => {},
+        })
         break;
       case "logout":
         this.logout();

@@ -1,3 +1,11 @@
+/*
+ * @Author: wangzhongjie
+ * @Date: 2024-10-14 08:53:37
+ * @LastEditors: wangzhongjie
+ * @LastEditTime: 2024-10-17 16:15:43
+ * @Description: 
+ * @Email: shutdown0630@163.com
+ */
 import { getPublicFishPond } from "@/api/index";
 import { mainBehavior } from "@/store/behaviors";
 
@@ -63,9 +71,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {
-    const { anglingSiteName, info, pondId } = this.data;
+    const {  info, pondId } = this.data;
     return {
-      title: anglingSiteName + "钓场" + info.name,
+      title: info.angling_site.name + "(" + info.name + ")",
       path: `/pages/put/records/records?id=${pondId}`,
       imageUrl: "https://pic.imgdb.cn/item/66c2f945d9c307b7e9c67324.jpg"
     };

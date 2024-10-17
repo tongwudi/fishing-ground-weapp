@@ -1,3 +1,11 @@
+/*
+ * @Author: wangzhongjie
+ * @Date: 2024-10-14 08:53:37
+ * @LastEditors: wangzhongjie
+ * @LastEditTime: 2024-10-17 16:15:22
+ * @Description:
+ * @Email: shutdown0630@163.com
+ */
 import { getPublicFishPond, getPublicFishRecord } from "@/api/index";
 import { mainBehavior } from "@/store/behaviors";
 
@@ -9,13 +17,13 @@ Page({
   data: {
     info: {},
     recordList: [],
-    pondId: ""
+    pondId: "",
   },
 
   async getData(id) {
     const [{ data: info }, { data: recordList }] = await Promise.all([
       getPublicFishPond({ id }),
-      getPublicFishRecord({ id })
+      getPublicFishRecord({ id }),
     ]);
     this.setData({ info, recordList });
   },
@@ -67,11 +75,11 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {
-    const { anglingSiteName, info, pondId } = this.data;
+    const { info, pondId } = this.data;
     return {
-      title: anglingSiteName + "钓场" + info.name,
+      title: info.angling_site.name + "(" + info.name + ")",
       path: `/pages/put/records/records?id=${pondId}`,
-      imageUrl: "https://pic.imgdb.cn/item/66bc67d9d9c307b7e9878f2d.jpg"
+      imageUrl: "https://pic.imgdb.cn/item/66bc67d9d9c307b7e9878f2d.jpg",
     };
-  }
+  },
 });

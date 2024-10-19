@@ -46,7 +46,7 @@ Page({
       });
     } catch (error) {}
   },
-  handleTimeClick(event) {
+  handleTimeSelect(event) {
     const value = event.detail;
     this.setData({
       "form.business_hours": value === 1 ? "随到随钓" : "",

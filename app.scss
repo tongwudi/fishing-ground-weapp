@@ -17,8 +17,16 @@ page {
 }
 
 .van-grid {
-  // --grid-item-text-color: #000;
+  --grid-item-icon-size: 40rpx;
   --grid-item-text-color: #5c5858;
+  --grid-item-text-font-size: 28rpx;
+  --grid-item-content-padding: 24rpx 16rpx;
+}
+
+.van-grid-item__content--horizontal {
+  .van-grid-item__icon + .van-grid-item__text {
+    margin-top: 0;
+  }
 }
 
 // 封装组件
@@ -35,16 +43,31 @@ page {
   }
 }
 
-.card {
-  padding: global.$small-space;
+.title-box {
+  padding-left: global.$small-space;
   margin-bottom: global.$small-space;
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 10rpx;
+    height: 100%;
+    background-color: #2f85da;
+  }
+}
+
+.card {
+  padding: global.$medium-space;
+  margin-bottom: global.$medium-space;
   background-color: #fff;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.05);
 
   .card-head {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin: global.$small-space 0;
+    gap: global.$small-space;
   }
 
   .card-body {

@@ -4,7 +4,6 @@
 }
 
 .title {
-  line-height: 1.5;
   font-size: global.$title-size;
   font-weight: 600;
   padding-left: global.$large-space;
@@ -12,7 +11,7 @@
 }
 
 .list {
-  padding: global.$small-space;
+  padding: global.$medium-space;
   padding-top: 0;
   .item {
     display: flex;
@@ -37,7 +36,7 @@
       background-color: global.$bg-white;
     }
     & + .item {
-      margin-top: global.$small-space;
+      margin-top: global.$medium-space;
     }
   }
 }

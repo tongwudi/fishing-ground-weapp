@@ -9,30 +9,46 @@
       </block>
     </view>
   </view>
-  <van-cell-group>
-    <block wx:if="{{ isLogin }}">
-      <van-cell title="钓场认证" is-link data-key="authentication" bind:click="handleCellClick" />
-    </block>
-    <block wx:if="{{ isFish }}">
-      <van-cell title="我的钓场" is-link url="/pages/group/list/list" />
-      <van-cell title="塘口管理" is-link url="/pages/pond/list/list" />
-      <van-cell title="鱼种管理" is-link url="/pages/fish/list/list" />
-      <!-- <van-cell title="我的帖子" is-link /> -->
-      <!-- <van-cell title="钓场圈设置" is-link url="/pages/forum/settings/settings" border="{{ false }}" /> -->
-    </block>
-    <block wx:if="{{ isLogin }}">
-      <van-cell title="退出登录" is-link border="{{ false }}" data-key="logout" bind:click="handleCellClick" />
-    </block>
-  </van-cell-group>
 
-  <van-overlay show="{{ overlayShow }}" z-index="{{ 99999 }}" bind:click="closeOverlay">
-    <view class="wrapper">
-      <image class="authentication" src="../../assets/images/authentication.jpg" />
+  <block wx:if="{{ isLogin }}">
+    <view class="card">
+      <view class="title-box">工具</view>
+      <block wx:if="{{ isFish }}">
+        <van-grid border="{{ false }}" icon-size="40rpx">
+          <van-grid-item icon-color="#2f85da" icon="qr" text="我的钓场" url="/pages/group/list/list" />
+          <van-grid-item icon-color="#2f85da" icon="qr" text="塘口管理" url="/pages/pond/list/list" />
+          <van-grid-item icon-color="#2f85da" icon="qr" text="鱼种管理" />
+          <van-grid-item icon-color="#2f85da" icon="qr" text="在场钓友" />
+          <van-grid-item icon-color="#2f85da" icon="qr" text="活动管理" />
+          <van-grid-item icon-color="#2f85da" icon="qr" text="公告管理" />
+        </van-grid>
+      </block>
+      <block wx:else>
+        <van-grid border="{{ false }}" icon-size="40rpx">
+          <van-grid-item icon-color="#2f85da" icon="guide-o" text="今日钓鱼" />
+          <van-grid-item icon-color="#2f85da" icon="phone-o" text="视频回鱼" />
+          <van-grid-item icon-color="#2f85da" icon="qr" text="钓鱼记录" />
+          <van-grid-item icon-color="#2f85da" icon="qr" text="鱼获记录" />
+          <van-grid-item icon-color="#2f85da" icon="qr" text="接龙" />
+          <van-grid-item icon-color="#2f85da" icon="qr" text="正钓" />
+        </van-grid>
+      </block>
     </view>
-  </van-overlay>
 
+    <block wx:if="{{ !isFish }}">
+      <van-cell-group>
+        <van-cell title="钓场认证" is-link data-key="钓场认证" bind:click="handleCellClick" />
+      </van-cell-group>
+    </block>
+
+    <view class="operate-btn">
+      <van-button type="danger" block bind:click="logout">退出登录</van-button>
+    </view>
+  </block>
+
+  <!-- 选择登录方式 -->
   <van-action-sheet show="{{ actionSheetShow }}" z-index="{{ 99999 }}" actions="{{ actions }}" cancel-text="取消" bind:select="selectLoginMethod" bind:click-overlay="closeActionSheet" bind:cancel="closeActionSheet" />
 
-  <!-- 弹出编辑昵称和头像的框 -->
+  <!-- 编辑昵称和头像 -->
   <ProfileModal show="{{ profileModalShow }}" nickname="{{ nickname }}" />
 </view>

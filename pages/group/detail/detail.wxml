@@ -5,7 +5,7 @@
       <van-icon slot="right-icon" class-prefix="iconfont" name="position" />
     </van-field>
     <van-cell title="营业时间" title-width="6.2em" title-class="cell-title">
-      <van-radio-group value="{{ pickerConfig.time }}" bind:change="handleTimeClick">
+      <van-radio-group value="{{ pickerConfig.time }}" bind:change="handleTimeSelect">
         <van-row>
           <van-col span="12">
             <van-radio icon-size="18px" name="{{ 1 }}">随到随钓</van-radio>

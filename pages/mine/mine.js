@@ -10,7 +10,6 @@ Page({
    */
   data: {
     defaultAvatar: "https://pic.imgdb.cn/item/64c0cc451ddac507ccd49532.png",
-    overlayShow: false,
     actionSheetShow: false,
     actions: [{ name: "微信登录" }, { name: "账号登录" }, { name: "账号注册" }],
     profileModalShow: false
@@ -65,27 +64,15 @@ Page({
   handleCellClick(event) {
     const { key } = event.currentTarget.dataset;
     switch (key) {
-      case "authentication":
-        // this.openOverlay();
+      case "钓场认证":
         wx.previewImage({
-          urls: ["https://s21.ax1x.com/2024/10/14/pAtVWLR.jpg"],
-          current: 'https://s21.ax1x.com/2024/10/14/pAtVWLR.jpg',
-          showmenu: true,
-          success: (res) => {},
-          fail: (res) => {},
-          complete: (res) => {},
-        })
+          urls: ["https://s21.ax1x.com/2024/10/14/pAtVWLR.jpg"]
+        });
         break;
-      case "logout":
+      case "退出登录":
         this.logout();
         break;
     }
-  },
-  openOverlay() {
-    this.setData({ overlayShow: true });
-  },
-  closeOverlay() {
-    this.setData({ overlayShow: false });
   },
   async logout() {
     const res = await wx.showModal({ content: "确定要退出登录吗？" });

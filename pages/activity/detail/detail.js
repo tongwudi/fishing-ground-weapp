@@ -1,4 +1,4 @@
-// pages/activity/activity.ts
+// pages/activity/detail/detail.ts
 Page({
 
   /**

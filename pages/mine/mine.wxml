@@ -1,11 +1,11 @@
 <!--pages/mine/mine.wxml-->
 <view class="container">
   <view class="profile">
-    <image class="avatar" src="{{ userInfo.avatar || defaultAvatar }}" bind:tap="handleLogin"></image>
-    <view class="info">
+    <image class="profile-avatar" src="{{ userInfo.avatar || defaultAvatar }}" bind:tap="handleLogin"></image>
+    <view class="profile-content">
       <text class="name" bind:tap="handleLogin">{{ userInfo.nick_name || "登录 / 注册" }}</text>
       <block wx:if="{{ isLogin }}">
-        <image class="btn" src='/assets/images/arrow.png' bind:tap="goProfile"></image>
+        <image class="arrow" src="/assets/images/arrow.png" bind:tap="goProfile"></image>
       </block>
     </view>
   </view>

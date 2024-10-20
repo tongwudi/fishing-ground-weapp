@@ -1,10 +1,6 @@
 .title {
-  font-size: global.$title-size;
+  font-size: global.$large-size;
   font-weight: 600;
-}
-
-.info {
-  margin-top: global.$medium-space;
 }
 
 .quick-bar {
@@ -15,7 +11,6 @@
 .list {
   .item {
     margin-bottom: global.$medium-space;
-    box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.05);
     .item-img {
       display: block;
       width: 100%;

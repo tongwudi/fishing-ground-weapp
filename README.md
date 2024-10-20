@@ -33,4 +33,5 @@ npm install
 ├─plan: 放鱼计划
 ├─pond：塘口
 ├─put: 放鱼记录
+├─solitaire: 接龙
 ```

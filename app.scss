@@ -68,6 +68,7 @@ page {
     display: flex;
     align-items: center;
     gap: global.$small-space;
+    margin-bottom: global.$medium-space;
   }
 
   .card-body {
@@ -77,9 +78,15 @@ page {
 
 // 封装组件
 .info {
+  .info-title {
+    font-size: global.$medium-size;
+    font-weight: 600;
+    margin-bottom: global.$mini-space;
+  }
+
   .info-item {
     display: flex;
-    font-size: 32rpx;
+    font-size: global.$normal-size;
 
     .info-item_label {
       width: 160rpx;
@@ -95,11 +102,19 @@ page {
     }
 
     .info-item_btn {
+      text-align: left;
+    }
+
+    .info-item_link {
       color: #2f85da;
     }
 
-    .info-item_right-icon {
+    .info-item_left-icon {
       margin-left: global.$mini-space;
+    }
+
+    .info-item_right-icon {
+      margin-right: global.$mini-space;
     }
   }
 }

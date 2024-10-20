@@ -1,4 +1,4 @@
-// pages/settings/solitaire/solitaire.ts
+// pages/solitaire/list/list.ts
 Page({
 
   /**

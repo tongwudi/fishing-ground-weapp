@@ -17,12 +17,15 @@
     <view class="card-body info">
       <view class="info-item">
         <text class="info-item_label">钓场位置</text>
-        <text class="info-item_value">{{ groupInfo.address }}</text>
         <!-- <van-icon class="info-item_right-icon" class-prefix="iconfont" name="position" bind:tap="callPosition" /> -->
+        <text class="info-item_value van-ellipsis">{{ groupInfo.address }}</text>
+        <!-- <van-icon class="info-item_left-icon" name="arrow" /> -->
       </view>
       <view class="info-item">
         <text class="info-item_label">营业时间</text>
+        <!-- <van-icon class="info-item_right-icon" name="clock-o" /> -->
         <text class="info-item_value">{{ groupInfo.business_hours }}</text>
+        <!-- <van-icon class="info-item_left-icon" name="arrow" /> -->
       </view>
       <!-- <view class="info-item">
         <text class="info-item_label">联系电话</text>
@@ -38,7 +41,7 @@
 
   <block wx:if="{{ role != 'fish' }}">
     <view class="quick-bar">
-      <van-grid border="{{ false }}" column-num="3" icon-size="40rpx">
+      <van-grid column-num="3" icon-size="40rpx">
         <van-grid-item icon-color="#2f85da" icon="guide-o" text="导航" bind:click="callPosition" />
         <van-grid-item icon-color="#2f85da" icon="phone-o" text="呼叫" bind:click="callPhone" />
         <van-grid-item icon-color="#2f85da" icon="qr" text="加群" />
@@ -51,17 +54,12 @@
       <view class="title-box">开放塘口</view>
       <view class="list">
         <block wx:for="{{ groupInfo.fishes_pond }}" wx:key="id">
-          <view class="item">
+          <view class="item van-hairline--surround">
             <image class="item-img" src="https://pic.imgdb.cn/item/66b9a438d9c307b7e99a980c.jpg" />
-            <view class="item-info">
-              <view class="info-name">{{ item.name }}</view>
-              <view class="info-tags">
-                <van-tag round type="primary">标签1</van-tag>
-                <van-tag round type="primary">标签2</van-tag>
-                <van-tag round type="primary">标签2</van-tag>
-              </view>
+            <view class="item-info info">
+              <view class="info-title">{{ item.name }}</view>
             </view>
-            <van-grid direction="horizontal" column-num="2" icon-size="32rpx">
+            <van-grid border="{{ false }}" direction="horizontal" column-num="2" icon-size="32rpx">
               <block wx:if="{{ isFish }}">
                 <van-grid-item icon="underway-o" text="放鱼" />
               </block>

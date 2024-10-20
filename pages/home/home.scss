@@ -4,9 +4,9 @@
 }
 
 .title {
-  font-size: global.$title-size;
+  font-size: global.$large-size;
   font-weight: 600;
-  padding-left: global.$large-space;
+  padding-left: global.$medium-space;
   margin: global.$medium-space 0;
 }
 
@@ -15,7 +15,6 @@
   padding-top: 0;
   .item {
     display: flex;
-    box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.05);
     position: relative;
     .item-tag {
       position: absolute;
@@ -31,7 +30,7 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      justify-content: space-evenly;
+      justify-content: space-between;
       padding-left: global.$small-space;
       background-color: global.$bg-white;
     }

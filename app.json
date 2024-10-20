@@ -18,7 +18,8 @@
     "pages/register/register",
     "pages/settings/startFish/startFish",
     "pages/settings/fishToday/fishToday",
-    "pages/settings/solitaire/solitaire",
+    "pages/solitaire/list/list",
+    "pages/solitaire/detail/detail",
     "pages/forum/settings/settings"
   ],
   "usingComponents": {

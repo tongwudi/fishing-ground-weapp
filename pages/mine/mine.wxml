@@ -29,7 +29,7 @@
           <van-grid-item icon-color="#2f85da" icon="phone-o" text="视频回鱼" />
           <van-grid-item icon-color="#2f85da" icon="qr" text="钓鱼记录" />
           <van-grid-item icon-color="#2f85da" icon="qr" text="鱼获记录" />
-          <van-grid-item icon-color="#2f85da" icon="qr" text="接龙" />
+          <van-grid-item icon-color="#2f85da" icon="qr" text="接龙" url="/pages/solitaire/list/list" />
           <van-grid-item icon-color="#2f85da" icon="qr" text="正钓" />
         </van-grid>
       </block>

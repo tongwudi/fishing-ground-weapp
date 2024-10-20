@@ -27,6 +27,7 @@ npm install
 ### 目录结构
 
 ```
+├─activity: 活动
 ├─fish: 鱼种
 ├─forum：钓场圈
 ├─group：钓场

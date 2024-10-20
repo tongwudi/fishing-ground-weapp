@@ -1,2 +1,7 @@
 <!--pages/solitaire/list/list.wxml-->
-<text>pages/solitaire/list/list.wxml</text>
+<van-tabs sticky animated swipeable color="#2f85da" active="{{ active }}" bind:click="handleChange">
+  <van-tab title="进行中">
+    <van-button bind:tap="goPage">进行中</van-button>
+  </van-tab>
+  <van-tab title="已结束">已结束</van-tab>
+</van-tabs>

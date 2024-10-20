@@ -4,15 +4,21 @@ Component({
     tabbar: [
       {
         pagePath: "/pages/home/home",
-        text: "首页",
-        iconPath: "/assets/images/home.png",
-        selectedIconPath: "/assets/images/home-active.png"
+        iconPath: "/assets/tabbar/home.png",
+        selectedIconPath: "/assets/tabbar/home-active.png",
+        text: "首页"
+      },
+      {
+        pagePath: "/pages/activity/activity",
+        iconPath: "/assets/tabbar/fish.png",
+        selectedIconPath: "/assets/tabbar/fish-active.png",
+        text: "活动"
       },
       {
         pagePath: "/pages/mine/mine",
-        text: "我的",
-        iconPath: "/assets/images/mine.png",
-        selectedIconPath: "/assets/images/mine-active.png"
+        iconPath: "/assets/tabbar/mine.png",
+        selectedIconPath: "/assets/tabbar/mine-active.png",
+        text: "我的"
       }
     ]
   },

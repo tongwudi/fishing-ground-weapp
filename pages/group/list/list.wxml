@@ -9,7 +9,7 @@
               {{ item.id != groupId? '切换' : '已选中' }}
             </van-button>
             <van-button size="small" plain type="info" data-id="{{ item.id }}" bind:click="goPage">修改</van-button>
-            <van-button size="small" plain type="danger" data-id="{{ item.id }}" bind:click="handleDelete">删除</van-button>
+            <van-button size="small" plain type="danger" data-id="{{ item.id }}" bind:click="deleteItem">删除</van-button>
           </view>
         </van-cell>
       </block>

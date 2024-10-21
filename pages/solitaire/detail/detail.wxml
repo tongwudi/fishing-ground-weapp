@@ -1,2 +1,27 @@
 <!--pages/solitaire/detail/detail.wxml-->
-<text>pages/solitaire/detail/detail.wxml</text>
+<view class="container">
+  <view class="card">
+    <view class="title">接龙标题</view>
+    <view class="tag">
+      <van-tag size="medium" type="success">进行中</van-tag>
+    </view>
+    <view class="introduction">
+      这是活动说明这是活动说明这是活动说明这是活动说明这是活动说明
+      这是活动说明这是活动说明这是活动说明这是活动说明
+      这是活动说明这是活动说明这是活动说明
+      这是活动说明这是活动说明这是活动说明这是活动说明
+      这是活动说明这是活动说明这是活动说明
+    </view>
+  </view>
+
+  <van-cell-group>
+    <van-field disabled value="例：姓名" />
+    <block wx:for="{{ fields }}" wx:key="index">
+      <van-field value="{{ form[item.key] }}" data-field="{{ item.key }}" bind:change="handleChange" clearable placeholder="请输入名称" />
+    </block>
+  </van-cell-group>
+
+  <view class="operate-btn">
+    <van-button type="info" block bind:click="handleSave">保存</van-button>
+  </view>
+</view>

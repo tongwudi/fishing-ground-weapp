@@ -11,56 +11,60 @@ Page({
    * 页面的初始数据
    */
   data: {
-    pondPicker: {
-      show: false,
-      selectIndex: 0
-    },
+    // pondPicker: {
+    //   show: false,
+    //   selectIndex: 0
+    // },
+    // pondList: [],
     fishesPicker: {
       show: false,
       selectIndex: 0
     },
-    pondList: [],
     fishList: [],
     form: {},
     fileList: []
   },
 
+  // async getData() {
+  //   const { form, groupId: id } = this.data;
+  //   const [{ data: pondList }, { data: fishList }] = await Promise.all([
+  //     getPrivateFishAdminPondList({ id }),
+  //     getPrivateFishAdminFishList()
+  //   ]);
+  //   if (pondList.length > 0) {
+  //     form.pond = pondList[0].name;
+  //     form.fishes_pond_id = pondList[0].id;
+  //   }
+  //   this.setData({ pondList, fishList, form });
+  // },
   async getData() {
-    const { form, groupId: id } = this.data;
-    const [{ data: pondList }, { data: fishList }] = await Promise.all([
-      getPrivateFishAdminPondList({ id }),
-      getPrivateFishAdminFishList()
-    ]);
-    if (pondList.length > 0) {
-      form.pond = pondList[0].name;
-      form.fishes_pond_id = pondList[0].id;
-    }
-    this.setData({ pondList, fishList, form });
+    const { data: fishList } = await getPrivateFishAdminFishList();
+    this.setData({ fishList });
   },
+  // openPondPicker() {
+  //   const { pondList, form } = this.data;
+  //   const selectIndex = pondList.findIndex(v => form.fishes_pond_id == v.id);
+  //   const pondPicker = {
+  //     show: true,
+  //     selectIndex
+  //   };
+  //   this.setData({ pondPicker });
+  // },
+  // closePondPicker() {
+  //   this.setData({ ["pondPicker.show"]: false });
+  // },
+  // confirmPondPicker(event) {
+  //   const { value } = event.detail;
+  //   this.setData({
+  //     "form.pond": value.name,
+  //     "form.fishes_pond_id": value.id,
+  //     "pondPicker.show": false
+  //   });
+  // },
   handleChange(event) {
     const { field } = event.currentTarget.dataset;
     const value = event.detail;
     this.setData({ [`form.${field}`]: value });
-  },
-  openPondPicker() {
-    const { pondList, form } = this.data;
-    const selectIndex = pondList.findIndex(v => form.fishes_pond_id == v.id);
-    const pondPicker = {
-      show: true,
-      selectIndex
-    };
-    this.setData({ pondPicker });
-  },
-  closePondPicker() {
-    this.setData({ ["pondPicker.show"]: false });
-  },
-  confirmPondPicker(event) {
-    const { value } = event.detail;
-    this.setData({
-      "form.pond": value.name,
-      "form.fishes_pond_id": value.id,
-      "pondPicker.show": false
-    });
   },
   openFishesPicker() {
     const { fishList, form } = this.data;
@@ -105,7 +109,7 @@ Page({
       }
     });
   },
-  handleDelete(event) {
+  deleteItem(event) {
     const { index } = event.detail;
     const { fileList } = this.data;
     fileList.splice(index, 1);
@@ -126,7 +130,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.setData({ groupId: options.groupId });
+    // this.setData({ groupId: options.groupId });
+    this.setData({
+      "form.fishes_pond_id": options.pondId,
+      "form.pond": options.pondName
+    });
     this.getData();
   },
 

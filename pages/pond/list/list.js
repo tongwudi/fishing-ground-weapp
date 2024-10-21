@@ -28,7 +28,7 @@ Page({
     const url = "/pages/pond/detail/detail";
     wx.navigateTo({ url: id ? `${url}?id=${id}` : url });
   },
-  async handleDelete(event) {
+  async deleteItem(event) {
     const { id } = event.currentTarget.dataset;
     const res = await wx.showModal({ content: "确定要删除该塘口吗？" });
     if (res.confirm) {

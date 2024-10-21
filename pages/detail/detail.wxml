@@ -61,10 +61,10 @@
             </view>
             <van-grid border="{{ false }}" direction="horizontal" column-num="2" icon-size="32rpx">
               <block wx:if="{{ isFish }}">
-                <van-grid-item icon="underway-o" text="放鱼" />
+                <van-grid-item icon="underway-o" text="放鱼" url="/pages/put/add/add?pondId={{ item.id }}&pondName={{ item.name }}" />
               </block>
               <block wx:else>
-                <van-grid-item icon="underway-o" text="开钓" />
+                <van-grid-item icon="underway-o" text="开钓" url="/pages/settings/fishToday/fishToday" />
               </block>
               <van-grid-item icon="browsing-history-o" text="查看" />
             </van-grid>

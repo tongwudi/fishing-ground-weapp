@@ -30,7 +30,7 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: space-evenly;
       padding-left: global.$small-space;
       background-color: global.$bg-white;
     }

@@ -7,7 +7,7 @@
           <view class="actions" slot="right-icon">
             <van-button size="small" type="primary" plain data-id="{{ item.id }}" bind:tap="gpPlan">放鱼计划</van-button>
             <van-button size="small" plain type="info" data-id="{{ item.id }}" bind:click="goPage">修改</van-button>
-            <van-button size="small" type="danger" plain data-id="{{ item.id }}" bind:tap="handleDelete">删除</van-button>
+            <van-button size="small" type="danger" plain data-id="{{ item.id }}" bind:tap="deleteItem">删除</van-button>
           </view>
         </van-cell>
       </block>

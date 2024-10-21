@@ -38,7 +38,7 @@ Page({
   handleEdit() {
     wx.navigateTo({ url: "/pages/group/detail/detail" });
   },
-  async handleDelete(event) {
+  async deleteItem(event) {
     const { id } = event.currentTarget.dataset;
     const res = await wx.showModal({ content: "确定要删除该钓场吗？" });
     if (res.confirm) {

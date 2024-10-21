@@ -22,7 +22,7 @@ Page({
   goPage() {
     wx.navigateTo({ url: "/pages/fish/add/add" });
   },
-  async handleDelete(event) {
+  async deleteItem(event) {
     const { id } = event.currentTarget.dataset;
     const res = await wx.showModal({ content: "确定要删除该鱼种吗？" });
     if (res.confirm) {

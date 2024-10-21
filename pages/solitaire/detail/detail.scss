@@ -1,1 +1,13 @@
 /* pages/solitaire/detail/detail.wxss */
+.title {
+  font-size: global.$large-size;
+  font-weight: 600;
+}
+
+.tag {
+  margin: global.$small-space 0;
+}
+
+.introduction {
+  line-height: 1.5;
+}

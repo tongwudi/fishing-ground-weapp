@@ -34,6 +34,68 @@ declare namespace API {
     user_id?: string;
   };
 
+  type Connection = {
+    connection_configuration_id?: string;
+    /** 接龙内容 */
+    content?: ConnectionUser[];
+    /** 用户id */
+    user_id?: string;
+  };
+
+  type ConnectionConfiguration = {
+    /** 活动说明 */
+    activity_description?: string;
+    /** 活动结束时间 */
+    activity_end_time?: string;
+    /** 活动规则 */
+    activity_rules?: string;
+    /** 活动开始时间 */
+    activity_start_time?: string;
+    /** 活动标题 */
+    activity_title?: string;
+    /** 钓场 */
+    angling_site?: AnglingSite;
+    /** 钓场id */
+    angling_site_id?: string;
+    create_time?: string;
+    /** 自定义分享图 */
+    custom_share_image?: string;
+    delete_time?: DeletedAt;
+    /** 抽号时间 */
+    draw_number_time?: string;
+    /** 放鱼数量 */
+    fish_number?: string;
+    /** 鱼种 */
+    fish_species?: string;
+    /** 塘口 */
+    fishes_pond?: FishesPond;
+    /** 塘口id */
+    fishes_pond_id?: string;
+    id?: string;
+    /** 是否需要抽号 */
+    is_draw_number?: boolean;
+    /** 限制接龙次数 */
+    limit_join_times?: string;
+    other_users?: number[];
+    /** 人数限制 */
+    people_limit?: string;
+    /** 接龙截止时间 */
+    registration_deadline?: string;
+    /** 回鱼价格 */
+    return_fish_price?: string;
+    /** 类型 1:接龙 2:正钓 3:钓鱼大赛 */
+    type?: string;
+    update_time?: string;
+    users?: User[];
+  };
+
+  type ConnectionUser = {
+    /** 同一个人多个 */
+    custom?: boolean;
+    name?: string;
+    user_id?: string;
+  };
+
   type DeletedAt = {
     time?: string;
     /** Valid is true if Time is not NULL */
@@ -53,6 +115,18 @@ declare namespace API {
   type deletePrivateUserRole_openAPI_deleteParams = {
     /** 角色ID */
     id: string;
+  };
+
+  type DrawRecord = {
+    create_time?: string;
+    delete_time?: DeletedAt;
+    draw_time?: string;
+    fishing_spot_id?: string;
+    id?: string;
+    /** 钓位号 */
+    seat_number?: string;
+    update_time?: string;
+    user_id?: string;
   };
 
   type File = {
@@ -97,6 +171,8 @@ declare namespace API {
   };
 
   type FishesPond = {
+    /** 钓场 */
+    angling_site?: AnglingSite;
     /** 钓场ID */
     angling_site_id?: string;
     /** 收费规则 */
@@ -114,6 +190,8 @@ declare namespace API {
     files?: File[];
     /** 鱼种,不关联,直接拿前端存储 */
     fishes?: string;
+    /** 钓位 */
+    fishing_spots?: FishingSpot[];
     id?: string;
     /** 塘口名 */
     name?: string;
@@ -135,6 +213,9 @@ declare namespace API {
     rule?: string;
     /** 塘口大小 */
     size?: number;
+    /** TODO
+	塘口示意图 */
+    sketch_map?: string;
     /** 状态 */
     status?: number;
     update_time?: string;
@@ -162,21 +243,49 @@ declare namespace API {
     pond_id?: string;
   };
 
-  type FishingTimeRecord = {
-    angling_site?: AnglingSite;
-    angling_site_id?: string;
+  type FishingRegistration = {
+    /** 活动id */
+    connection_configuration_id?: string;
+  };
+
+  type FishingSpot = {
     create_time?: string;
     delete_time?: DeletedAt;
+    /** 结束时间 */
+    end_time?: string;
+    fishes_pond_id?: string;
+    id?: string;
+    /** 是否为大边 */
+    is_big_side?: boolean;
+    number?: string;
+    /** 开始时间 */
+    start_time?: string;
+    /** 占用状况 available 可用 , assigned 占用 */
+    status?: string;
+    update_time?: string;
+  };
+
+  type FishingSpotEdit = {
+    fishes_pond_id?: string;
+    fishing_spots?: FishingSpot[];
+  };
+
+  type FishingTimeRecord = {
+    /** 钓场 */
+    angling_site?: AnglingSite;
+    /** 钓场id */
+    angling_site_id?: string;
+    /** 结束时间 */
+    end_time?: string;
     /** 塘口 */
     fishes_pond?: FishesPond;
     /** 塘口id */
     fishes_pond_id?: string;
-    id?: string;
+    'model_._model'?: Model;
     /** 座位号 */
-    position_num?: number;
-    /** 时长 */
-    time?: string;
-    update_time?: string;
+    position_num?: string;
+    /** 开始时间 */
+    start_time?: string;
     user?: User;
     user_id?: string;
   };
@@ -207,6 +316,21 @@ declare namespace API {
     phone?: string;
   };
 
+  type getPrivateFishAdminConnectionListParams = {
+    /** 塘口id */
+    fishes_pond_id: string;
+  };
+
+  type getPrivateFishAdminDrawParams = {
+    /** 活动ID */
+    connection_configuration_id: string;
+  };
+
+  type getPrivateFishAdminDrawSpotParams = {
+    /** 塘口ID */
+    fishes_pond_id: string;
+  };
+
   type getPrivateFishAdminPondListParams = {
     /** 钓场id */
     id: string;
@@ -217,9 +341,24 @@ declare namespace API {
     angling_site_id?: string;
   };
 
+  type getPrivateFishAdminRecordFishPondParams = {
+    /** 塘口ID */
+    fishes_pond_id?: string;
+  };
+
+  type getPrivateFishAdminRecordPondFishingParams = {
+    /** 塘口ID */
+    fishes_pond_id?: string;
+  };
+
   type getPrivateFishAdminRecordTodayParams = {
     /** 钓场ID */
     angling_site_id?: string;
+  };
+
+  type getPrivateFishAdminSpotListParams = {
+    /** 塘口ID */
+    fishes_pond_id: string;
   };
 
   type getPrivateOtherFileListParams = {
@@ -289,6 +428,18 @@ declare namespace API {
     userId: string;
   };
 
+  type getPublicFishActivityListParams = {
+    /** 页码 */
+    page: number;
+    /** 每页数量 */
+    page_size: number;
+  };
+
+  type getPublicFishConnectionParams = {
+    /** 活动ID */
+    connection_configuration_id: string;
+  };
+
   type getPublicFishGroundsParams = {
     /** 钓场id */
     id: string;
@@ -322,6 +473,13 @@ declare namespace API {
     role?: Role[];
     token?: string;
     user?: User;
+  };
+
+  type Model = {
+    create_time?: string;
+    delete_time?: DeletedAt;
+    id?: string;
+    update_time?: string;
   };
 
   type Permission = {

@@ -6,9 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    form: {
-      currentTime: ""
-    }
+    form: {}
   },
 
   handleChange(event) {
@@ -21,11 +19,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {
-    this.data.timer = setInterval(() => {
-      this.setData({ "form.currentTime": formatTime(new Date()) });
-    });
-  },
+  onLoad() {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -45,9 +39,7 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload() {
-    this.data.timer && clearInterval(this.data.timer);
-  },
+  onUnload() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作

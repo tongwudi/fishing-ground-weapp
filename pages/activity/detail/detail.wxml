@@ -1,2 +1,61 @@
-<!--pages/activity/detail/detail.wxml-->
-<text>pages/activity/detail/detail.wxml</text>
+<view class="container">
+  <van-cell-group>
+    <van-cell title="活动类型" title-width="6.2em" title-class="cell-title">
+      <van-radio-group value="{{ form.type }}" data-field="type" bind:change="handleChange">
+        <van-row>
+          <van-col span="12">
+            <van-radio icon-size="18px" name="0">正钓</van-radio>
+          </van-col>
+          <van-col span="12">
+            <van-radio icon-size="18px" name="1">接龙</van-radio>
+          </van-col>
+        </van-row>
+      </van-radio-group>
+    </van-cell>
+    <van-field label="活动标题" value="{{ form.name }}" data-field="name" bind:change="handleChange" clearable placeholder="请输入活动标题" />
+    <van-field label="报名截止时间" value="{{ form.time }}" data-field="time" bind:click-input="openPicker" readonly placeholder="请选择报名截止时间" />
+    <van-cell title="是否需要抽号" title-width="6.2em" title-class="cell-title">
+      <van-radio-group value="{{ form.ch }}" data-field="ch" bind:change="handleChange">
+        <van-row>
+          <van-col span="12">
+            <van-radio icon-size="18px" name="{{ 1 }}">是</van-radio>
+          </van-col>
+          <van-col span="12">
+            <van-radio icon-size="18px" name="{{ 0 }}">否</van-radio>
+          </van-col>
+        </van-row>
+      </van-radio-group>
+    </van-cell>
+    <block wx:if="{{ form.ch === 1 }}">
+      <van-field label="抽号时间" value="{{ form.time2 }}" data-field="time2" bind:click-input="openPicker" readonly placeholder="请选择抽号时间" />
+    </block>
+    <van-field label="下杆时间" value="{{ form.time3 }}" data-field="time3" bind:click-input="openPicker" readonly placeholder="请选择下杆时间" />
+    <van-field label="活动结束时间" value="{{ form.time4 }}" data-field="time4" bind:click-input="openPicker" readonly placeholder="请选择下杆时间" />
+    <van-field label="鱼种" readonly value="{{ form.fishes }}" data-field="fishes" bind:click-input="openFishesPicker" placeholder="请选择鱼种" />
+    <van-field label="放鱼数量" type="number" value="{{ form.number }}" data-field="number" bind:change="handleChange" bind:click-icon="handleUnitClick" placeholder="请选择单位">
+      <text slot="right-icon">斤</text>text>
+    </van-field>
+    <van-field label="活动说明" type="textarea" autosize="{{ { maxHeight: 100, minHeight: 50 } }}" value="{{ form.description }}" data-field="description" bind:change="handleChange" placeholder="请输入活动说明" />
+    <van-field label="回鱼价格" type="number" value="{{ form.price }}" data-field="price" bind:change="handleChange" placeholder="请输入回鱼价格" />
+    <block wx:if="{{ form.type === '1' }}">
+      <van-field label="每人接龙次数" type="number" value="{{ form.number2 }}" data-field="number2" bind:change="handleChange" placeholder="请输入回鱼价格" />
+    </block>
+    <van-field label="人数限制" type="number" value="{{ form.number3 }}" data-field="number3" bind:change="handleChange" placeholder="不输入则不限制" />
+    <van-cell title="自定义分享图" title-width="6.2em" title-class="cell-title" border="{{ false }}">
+      <view class="upload-box">
+        <van-uploader file-list="{{ fileList }}" max-count="1" bind:after-read="afterRead" />
+      </view>
+    </van-cell>
+  </van-cell-group>
+
+  <view class="operate-btn">
+    <van-button type="info" block bind:click="handleSave">保存</van-button>
+  </view>
+
+  <van-popup show="{{ pickerConfig.show }}" position="bottom" bind:close="closePicker">
+    <van-datetime-picker type="datetime" value="{{ form[pickerConfig.timeKey] }}" bind:confirm="confirmTimePicker" />
+  </van-popup>
+  <van-popup show="{{ fishesPicker.show }}" position="bottom" bind:close="closeFishesPicker">
+    <van-picker show-toolbar title="选择鱼种" value-key="name" default-index="{{ fishesPicker.selectIndex }}" columns="{{ fishList }}" bind:cancel="closeFishesPicker" bind:confirm="confirmFishesPicker" />
+  </van-popup>
+</view>

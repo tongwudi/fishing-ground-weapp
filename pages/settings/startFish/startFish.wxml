@@ -1,7 +1,6 @@
 <!--pages/settings/startFish/startFish.wxml-->
 <view class="container">
   <van-cell-group>
-    <van-cell title="当前时间" value="{{ form.currentTime }}" />
     <van-field label="钓位号" value="{{ form.name }}" input-align="right" data-field="name" bind:change="handleChange" clearable placeholder="请选择钓位号" />
     <!-- <van-field label="时长" value="{{ form.name }}" data-field="name" bind:change="handleChange" clearable placeholder="请选择时长" /> -->
   </van-cell-group>

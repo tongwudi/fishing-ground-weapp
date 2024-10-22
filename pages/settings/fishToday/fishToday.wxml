@@ -6,7 +6,7 @@
 
   <van-cell-group>
     <van-cell title="开始时间" value="{{ form.beginTime }}" />
-    <van-cell title="当前时间" value="{{ form.currentTime }}" border="{{ false }}" />
+    <van-cell title="当前时间" value="{{ form.endTime }}" border="{{ false }}" />
   </van-cell-group>
 
   <view class="operate-btn">

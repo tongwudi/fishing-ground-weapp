@@ -1,6 +1,5 @@
 // pages/put/add/add.js
 import {
-  getPrivateFishAdminPondList,
   getPrivateFishAdminFishList,
   postPrivateFishAdminFishAdd
 } from "@/api/index";

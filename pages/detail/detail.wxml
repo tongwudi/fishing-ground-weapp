@@ -49,28 +49,26 @@
     </view>
   </block>
 
-  <block wx:if="{{ groupInfo.fishes_pond.length > 0 }}">
-    <view class="card">
-      <view class="title-box">开放塘口</view>
-      <view class="list">
-        <block wx:for="{{ groupInfo.fishes_pond }}" wx:key="id">
-          <view class="item van-hairline--surround">
-            <image class="item-img" src="https://pic.imgdb.cn/item/66b9a438d9c307b7e99a980c.jpg" />
-            <view class="item-info info">
-              <view class="info-title">{{ item.name }}</view>
-            </view>
-            <van-grid border="{{ false }}" direction="horizontal" column-num="2" icon-size="32rpx">
-              <block wx:if="{{ isFish }}">
-                <van-grid-item icon="underway-o" text="放鱼" url="/pages/put/add/add?pondId={{ item.id }}&pondName={{ item.name }}" />
-              </block>
-              <block wx:else>
-                <van-grid-item icon="underway-o" text="开钓" url="/pages/settings/fishToday/fishToday" />
-              </block>
-              <van-grid-item icon="browsing-history-o" text="查看" />
-            </van-grid>
+  <view class="card">
+    <view class="title-box">开放塘口</view>
+    <view class="list">
+      <block wx:for="{{ groupInfo.fishes_pond }}" wx:key="id">
+        <view class="item van-hairline--surround">
+          <image class="item-img" src="https://pic.imgdb.cn/item/66b9a438d9c307b7e99a980c.jpg" />
+          <view class="item-info info">
+            <view class="info-title">{{ item.name }}</view>
           </view>
-        </block>
-      </view>
+          <van-grid border="{{ false }}" direction="horizontal" column-num="2" icon-size="32rpx">
+            <block wx:if="{{ isFish }}">
+              <van-grid-item icon="underway-o" text="放鱼" url="/pages/put/add/add?pondId={{ item.id }}&pondName={{ item.name }}" />
+            </block>
+            <block wx:else>
+              <van-grid-item icon="underway-o" text="开钓" url="/pages/settings/startFish/startFish" />
+            </block>
+            <van-grid-item icon="browsing-history-o" text="查看" />
+          </van-grid>
+        </view>
+      </block>
     </view>
-  </block>
+  </view>
 </view>

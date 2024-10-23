@@ -1,2 +1,77 @@
-<!--pages/pond/display/display.wxml-->
-<text>pages/pond/display/display.wxml</text>
+<view class="container">
+  <scroll-view class="scroll-view" type="list" scroll-y>
+    <swiper indicator-dots autoplay>
+      <block wx:for="{{ pondInfo.banner }}" wx:key="index">
+        <swiper-item bindtap="previewImage">
+          <image src="{{ item }}" style="width: 100%;height: 100%"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <view class="card">
+      <view class="card-head">
+        <text class="title">{{ pondInfo.name }}</text>
+      </view>
+      <view class="card-body info">
+        <view class="info-item">
+          <text class="info-item_label">总钓位</text>
+          <text class="info-item_value van-ellipsis">{{ pondInfo.position_num }}个</text>
+        </view>
+        <view class="info-item">
+          <text class="info-item_label">塘口大小</text>
+          <text class="info-item_value">{{ pondInfo.size }}亩</text>
+        </view>
+        <view class="info-item">
+          <text class="info-item_label">水深</text>
+          <text class="info-item_value">{{ pondInfo.water_depth }}米</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="quick-bar">
+      <van-grid column-num="2" icon-size="40rpx">
+        <van-grid-item icon-color="#2f85da" icon="guide-o" text="放鱼记录" data-key="放鱼记录" bind:click="handleGridClick" />
+        <van-grid-item icon-color="#2f85da" icon="phone-o" text="放鱼计划" data-key="放鱼计划" bind:click="handleGridClick" />
+      </van-grid>
+    </view>
+
+    <view class="card">
+      <view class="title-box">塘口介绍</view>
+      <view class="info">
+        <view class="info-item">
+          <text class="info-item_label">收费标准</text>
+          <block wx:if="{{ pondInfo.charge_rule.length > 0}}">
+            <view class="info-item_block">
+              <block wx:for="{{ pondInfo.charge_rule }}" wx:key="id" wx:for-item="rule">
+                <view>
+                  <text>{{ rule.fish }}</text>
+                  <text>{{ rule.price }}元</text>
+                  <text>{{ rule.duration }}小时</text>
+                </view>
+              </block>
+            </view>
+          </block>
+          <block wx:else>
+            <text class="info-item_value">{{ pondInfo.charge_standard }}</text>
+          </block>
+        </view>
+        <view class="info-item">
+          <text class="info-item_label">回鱼规则</text>
+          <text class="info-item_value">{{ pondInfo.return_fish_rule }}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-item_label">限杆规则</text>
+          <text class="info-item_value">{{ pondInfo.rod_limit }}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-item_label">塘口规则</text>
+          <text class="info-item_value">{{ pondInfo.rule }}</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="operate-btn">
+    <van-button type="info" block bind:click="goPage">开钓</van-button>
+  </view>
+</view>

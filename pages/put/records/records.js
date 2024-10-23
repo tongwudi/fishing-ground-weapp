@@ -1,11 +1,3 @@
-/*
- * @Author: wangzhongjie
- * @Date: 2024-10-14 08:53:37
- * @LastEditors: wangzhongjie
- * @LastEditTime: 2024-10-17 16:15:22
- * @Description:
- * @Email: shutdown0630@163.com
- */
 import { getPublicFishPond, getPublicFishRecord } from "@/api/index";
 import { mainBehavior } from "@/store/behaviors";
 
@@ -16,26 +8,29 @@ Page({
    */
   data: {
     info: {},
-    recordList: [],
-    pondId: "",
+    recordList: []
   },
 
   async getData(id) {
     const [{ data: info }, { data: recordList }] = await Promise.all([
       getPublicFishPond({ id }),
-      getPublicFishRecord({ id }),
+      getPublicFishRecord({ id })
     ]);
     this.setData({ info, recordList });
   },
   onClickLeft() {
-    wx.switchTab({ url: "/pages/home/home" });
+    // const { info } = this.data;
+    const pages = getCurrentPages();
+    pages.length > 1
+      ? wx.navigateBack()
+      : wx.switchTab({ url: "/pages/home/home" });
+    //  : wx.navigateTo({ url: `/pages/pond/display/display?pondId=${info.pondId}` });
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.setData({ pondId: options.id });
     this.getData(options.id);
   },
 
@@ -75,11 +70,12 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {
-    const { info, pondId } = this.data;
+    const { info } = this.data;
+    const { angling_site, name, pondId } = info;
     return {
-      title: info.angling_site.name + "(" + info.name + ")",
+      title: angling_site.name + "(" + name + ")",
       path: `/pages/put/records/records?id=${pondId}`,
-      imageUrl: "https://pic.imgdb.cn/item/66bc67d9d9c307b7e9878f2d.jpg",
+      imageUrl: "https://pic.imgdb.cn/item/66bc67d9d9c307b7e9878f2d.jpg"
     };
-  },
+  }
 });

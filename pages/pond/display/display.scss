@@ -1,1 +1,23 @@
-/* pages/pond/display/display.wxss */
+page,
+.container {
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: global.$large-size;
+  font-weight: 600;
+}
+
+.quick-bar {
+  margin-bottom: global.$medium-space;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.05);
+}
+
+.info {
+  line-height: 2;
+}

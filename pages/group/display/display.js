@@ -39,7 +39,7 @@ Page({
   handleGridClick(event) {
     const { key, index } = event.currentTarget.dataset;
     const { groupInfo, isLogin } = this.data;
-    const item = groupInfo.fishes_pond[index];
+    const { id: pondId, name: pondName } = groupInfo.fishes_pond[index];
     switch (key) {
       case "开钓":
         if (!isLogin) {
@@ -55,12 +55,11 @@ Page({
         wx.navigateTo({ url: "/pages/settings/startFish/startFish" });
         break;
       case "放鱼":
-        const { id: pondId, name: pondName } = item;
         const url = `/pages/put/add/add?pondId=${pondId}&pondName=${pondName}`;
         wx.navigateTo({ url });
         break;
       case "查看":
-        wx.navigateTo({ url: `/pages/pond/display/display` });
+        wx.navigateTo({ url: `/pages/pond/display/display?pondId=${pondId}` });
         break;
     }
   },

@@ -65,7 +65,7 @@
             <block wx:else>
               <van-grid-item icon="underway-o" text="开钓" url="/pages/settings/startFish/startFish" />
             </block>
-            <van-grid-item icon="browsing-history-o" text="查看" />
+            <van-grid-item icon="browsing-history-o" text="查看" url="/pages/pond/display/display" />
           </van-grid>
         </view>
       </block>

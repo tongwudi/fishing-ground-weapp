@@ -1,11 +1,12 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/detail/detail",
     "pages/group/list/list",
     "pages/group/detail/detail",
+    "pages/group/display/display",
     "pages/pond/list/list",
     "pages/pond/detail/detail",
+    "pages/pond/display/display",
     "pages/plan/detail/detail",
     "pages/plan/records/records",
     "pages/put/records/records",

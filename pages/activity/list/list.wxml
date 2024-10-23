@@ -37,7 +37,7 @@
           </view>
           <van-grid direction="horizontal" column-num="2" icon-size="32rpx">
             <van-grid-item icon="share-o" text="分享" />
-            <van-grid-item icon="browsing-history-o" text="查看" url="/pages/activity/detail/detail" />
+            <van-grid-item icon="browsing-history-o" text="查看" data-type="{{ item.type }}" bind:click="goPage" />
           </van-grid>
         </view>
       </block>

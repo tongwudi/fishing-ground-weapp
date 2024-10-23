@@ -16,6 +16,15 @@ Page({
     ]
   },
 
+  goPage(event) {
+    const { type } = event.currentTarget.dataset;
+    const url =
+      type === "1"
+        ? "/pages/solitaire/detail/detail"
+        : "/pages/solitaire/detail/detail";
+    wx.navigateTo({ url });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

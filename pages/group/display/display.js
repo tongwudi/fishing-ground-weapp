@@ -1,4 +1,4 @@
-import { getPublicFishGrounds, getPublicFishPond } from "@/api/index";
+import { getPublicFishGrounds } from "@/api/index";
 import { mainBehavior } from "@/store/behaviors";
 
 Page({
@@ -8,29 +8,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    banner: ["https://pic.imgdb.cn/item/66b9a438d9c307b7e99a980c.jpg"],
-    groupInfo: {},
-    pondInfo: {},
-    active: ""
+    groupInfo: {}
   },
 
   async getData(id) {
-    let { banner } = this.data;
-    const { data } = await getPublicFishGrounds({ id });
-    const { files = [], ...groupInfo } = data;
-    files.length > 0 && (banner = files.map(v => v.path));
-    this.setData({
-      banner,
-      groupInfo
-    });
-    // 是否存在塘口
-    if (groupInfo.fishes_pond.length == 0) return;
-    const pondId = groupInfo.fishes_pond[0].id;
-    this.getPondInfo(pondId);
+    const { data: groupInfo } = await getPublicFishGrounds({ id });
+    const { files = [] } = groupInfo;
+    const imgPath = "https://pic.imgdb.cn/item/66b9a438d9c307b7e99a980c.jpg";
+    groupInfo.banner = files.length == 0 ? [imgPath] : files.map(v => v.path);
+    this.setData({ groupInfo });
   },
   previewImage() {
-    const { banner } = this.data;
-    wx.previewImage({ urls: banner });
+    const { groupInfo } = this.data;
+    wx.previewImage({ urls: groupInfo.banner });
   },
   callPosition() {
     const { groupInfo } = this.data;
@@ -47,8 +37,9 @@ Page({
     wx.makePhoneCall({ phoneNumber: groupInfo.phone });
   },
   handleGridClick(event) {
-    const { key } = event.currentTarget.dataset;
-    const { isLogin } = this.data;
+    const { key, index } = event.currentTarget.dataset;
+    const { groupInfo, isLogin } = this.data;
+    const item = groupInfo.fishes_pond[index];
     switch (key) {
       case "开钓":
         if (!isLogin) {
@@ -63,33 +54,14 @@ Page({
         }
         wx.navigateTo({ url: "/pages/settings/startFish/startFish" });
         break;
-      case "今日鱼情":
-        wx.navigateTo({ url: "/pages/settings/fishToday/fishToday" });
-        break;
       case "放鱼":
-        // wx.navigateTo({ url: "/pages/put/add/add?groupId=" });
+        const { id: pondId, name: pondName } = item;
+        const url = `/pages/put/add/add?pondId=${pondId}&pondName=${pondName}`;
+        wx.navigateTo({ url });
         break;
-    }
-  },
-  async handleChange(event) {
-    const id = event.detail.name;
-    await this.getPondInfo(id);
-  },
-  async getPondInfo(id) {
-    wx.showLoading({ title: "加载中" });
-    const { data: pondInfo } = await getPublicFishPond({ id });
-    this.setData({
-      pondInfo,
-      active: id
-    });
-    wx.hideLoading();
-  },
-  goPage(event) {
-    const { id, type } = event.currentTarget.dataset;
-    if (type == "plan") {
-      wx.navigateTo({ url: `/pages/plan/records/records?id=${id}` });
-    } else {
-      wx.navigateTo({ url: `/pages/put/records/records?id=${id}` });
+      case "查看":
+        wx.navigateTo({ url: `/pages/pond/display/display` });
+        break;
     }
   },
 

@@ -12,18 +12,27 @@
       <view class="card-head">
         <text class="title">{{ pondInfo.name }}</text>
       </view>
-      <view class="card-body info">
-        <view class="info-item">
-          <text class="info-item_label">总钓位</text>
-          <text class="info-item_value van-ellipsis">{{ pondInfo.position_num }}个</text>
+      <view class="statistic">
+        <view class="statistic-item">
+          <view class="statistic-item_con">
+            <text class="con-number">{{ pondInfo.position_num }}</text>
+            <text class="con-unit">个</text>
+          </view>
+          <view class="statistic-item_text">总钓位</view>
         </view>
-        <view class="info-item">
-          <text class="info-item_label">塘口大小</text>
-          <text class="info-item_value">{{ pondInfo.size }}亩</text>
+        <view class="statistic-item">
+          <view class="statistic-item_con">
+            <text class="con-number">{{ pondInfo.size }}</text>
+            <text class="con-unit">亩</text>
+          </view>
+          <view class="statistic-item_text">塘口大小</view>
         </view>
-        <view class="info-item">
-          <text class="info-item_label">水深</text>
-          <text class="info-item_value">{{ pondInfo.water_depth }}米</text>
+        <view class="statistic-item">
+          <view class="statistic-item_con">
+            <text class="con-number">{{ pondInfo.water_depth }}</text>
+            <text class="con-unit">米</text>
+          </view>
+          <view class="statistic-item_text">水深</view>
         </view>
       </view>
     </view>

@@ -1,0 +1,52 @@
+<view class="container">
+  <block wx:if="{{ list.length > 0 }}">
+    <view class="list">
+      <block wx:for="{{ list }}" wx:key="id">
+        <view class="item van-hairline--surround">
+          <view class="item-wrapper">
+            <view class="wrapper-title">
+              <text class="title">{{ item.name }}</text>
+              <van-tag size="medium" color="danger" wx:if="{{ item.type === '0' }}">正钓</van-tag>
+              <van-tag size="medium" type="success" wx:if="{{ item.type=== '1' }}">接龙</van-tag>
+            </view>
+            <view class="wrapper-info info">
+              <van-row>
+                <van-col span="12">
+                  <view class="info-item">
+                    <text class="info-item_label">票价</text>
+                    <text class="info-item_value">{{ item.price }}</text>
+                  </view>
+                </van-col>
+                <van-col span="12">
+                  <view class="info-item">
+                    <text class="info-item_label">鱼种</text>
+                    <text class="info-item_value">{{ item.fish }}</text>
+                  </view>
+                </van-col>
+              </van-row>
+              <view class="info-item">
+                <text class="info-item_label">摇号时间</text>
+                <text class="info-item_value">{{ item.lotteryTime }}</text>
+              </view>
+              <view class="info-item">
+                <text class="info-item_label">开始时间</text>
+                <text class="info-item_value">{{ item.startTime }}</text>
+              </view>
+            </view>
+          </view>
+          <view class="grid van-hairline--top">
+            <view class="grid-item">
+              <van-icon class="grid-item_icon" size="32rpx" name="share-o" />
+              <text class="grid-item_text">分享</text>
+            </view>
+            <view class="grid-item" data-type="{{ item.type }}" bind:tap="goPage">
+              <van-icon class="grid-item_icon" size="32rpx" name="browsing-history-o" />
+              <text class="grid-item_text">查看</text>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </block>
+  <van-empty wx:else description="暂无数据" />
+</view>

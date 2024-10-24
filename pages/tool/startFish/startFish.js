@@ -1,28 +1,20 @@
+// pages/tool/startFish/startFish.ts
+import { formatTime } from "@/utils/util";
+
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    list: [
-      {
-        id: 1,
-        name: "xxxxxxx活动",
-        price: "168/5小时",
-        fish: "鲫鱼",
-        lotteryTime: "2024-10-21 12:12:21",
-        startTime: "2024-10-21 12:12:21",
-        type: "0"
-      }
-    ]
+    form: {}
   },
 
-  goPage(event) {
-    const { id } = event.currentTarget.dataset;
-    const url = id
-      ? "/pages/solitaire/detail/detail"
-      : "/pages/activity/detail/detail";
-    wx.navigateTo({ url });
+  handleChange(event) {
+    const { field } = event.currentTarget.dataset;
+    const value = event.detail;
+    this.setData({ [`form.${field}`]: value });
   },
+  handleSave() {},
 
   /**
    * 生命周期函数--监听页面加载

@@ -18,10 +18,12 @@
     "pages/profile/profile",
     "pages/login/login",
     "pages/register/register",
-    "pages/settings/startFish/startFish",
-    "pages/settings/fishToday/fishToday",
+    "pages/tool/startFish/startFish",
+    "pages/tool/fishToday/fishToday",
+    "pages/tool/fishFriend/fishFriend",
     "pages/activity/list/list",
     "pages/activity/detail/detail",
+    "pages/activity/records/records",
     "pages/solitaire/list/list",
     "pages/solitaire/detail/detail",
     "pages/forum/settings/settings"
@@ -71,7 +73,7 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/activity/list/list",
+        "pagePath": "pages/activity/records/records",
         "iconPath": "/assets/tabbar/fish.png",
         "selectedIconPath": "/assets/tabbar/fish-active.png",
         "text": "活动"

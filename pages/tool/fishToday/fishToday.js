@@ -1,28 +1,18 @@
+// pages/tool/fishToday/fishToday.ts
+
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    list: [
-      {
-        id: 1,
-        name: "xxxxxxx活动",
-        price: "168/5小时",
-        fish: "鲫鱼",
-        lotteryTime: "2024-10-21 12:12:21",
-        startTime: "2024-10-21 12:12:21",
-        type: "0"
-      }
-    ]
+    value: 45,
+    form: {
+      beginTime: "2024-10-12 12:12:12",
+      endTime: "2024-10-13 12:12:12"
+    }
   },
 
-  goPage(event) {
-    const { id } = event.currentTarget.dataset;
-    const url = id
-      ? "/pages/solitaire/detail/detail"
-      : "/pages/activity/detail/detail";
-    wx.navigateTo({ url });
-  },
+  stop() {},
 
   /**
    * 生命周期函数--监听页面加载

@@ -43,7 +43,7 @@ Page({
       });
       return;
     }
-    wx.navigateTo({ url: "/pages/settings/startFish/startFish" });
+    wx.navigateTo({ url: "/pages/tool/startFish/startFish" });
   },
 
   /**

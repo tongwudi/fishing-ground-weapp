@@ -18,14 +18,14 @@
           <van-grid-item icon-color="#2f85da" icon="qr" text="我的钓场" url="/pages/group/list/list" />
           <van-grid-item icon-color="#2f85da" icon="qr" text="塘口管理" url="/pages/pond/list/list" />
           <van-grid-item icon-color="#2f85da" icon="qr" text="鱼种管理" url="/pages/fish/list/list" />
-          <van-grid-item icon-color="#2f85da" icon="qr" text="在场钓友" />
-          <van-grid-item icon-color="#2f85da" icon="qr" text="活动管理" />
+          <van-grid-item icon-color="#2f85da" icon="qr" text="在场钓友" url="/pages/tool/fishFriend/fishFriend" />
+          <van-grid-item icon-color="#2f85da" icon="qr" text="活动管理" url="/pages/activity/list/list" />
           <van-grid-item icon-color="#2f85da" icon="qr" text="公告管理" />
         </van-grid>
       </block>
       <block wx:else>
         <van-grid border="{{ false }}" icon-size="40rpx">
-          <van-grid-item icon-color="#2f85da" icon="guide-o" text="今日钓鱼" url="/pages/settings/fishToday/fishToday" />
+          <van-grid-item icon-color="#2f85da" icon="guide-o" text="今日钓鱼" url="/pages/tool/fishToday/fishToday" />
           <van-grid-item icon-color="#2f85da" icon="phone-o" text="视频回鱼" />
           <van-grid-item icon-color="#2f85da" icon="qr" text="钓鱼记录" url="/pages/fish/records/records" />
           <van-grid-item icon-color="#2f85da" icon="qr" text="鱼获记录" />

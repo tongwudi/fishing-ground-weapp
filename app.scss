@@ -22,45 +22,6 @@ page {
   --grid-item-content-padding: 24rpx 16rpx;
 }
 
-.grid {
-  display: flex;
-  background-color: #fff;
-  .grid-item {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16rpx;
-    padding: 24rpx 16rpx;
-    position: relative;
-    // &::after,
-    & + .grid-item::before {
-      content: "";
-      position: absolute;
-      right: -50%;
-      top: -50%;
-      bottom: -50%;
-      left: -50%;
-      transform: scale(0.5);
-      transform-origin: center;
-      border: 0 solid #ebedf0;
-      pointer-events: none;
-      box-sizing: border-box;
-    }
-    & + .grid-item::before {
-      border-left-width: 1px;
-    }
-    // &::after {
-    //   border-bottom-width: 1px;
-    // }
-    &_text {
-      height: 40rpx;
-      font-size: 28rpx;
-      color: #5c5858;
-    }
-  }
-}
-
 // 封装组件
 .van-nav-bar {
   .van-nav-bar__left {
@@ -105,6 +66,90 @@ page {
 
   .card-body {
     line-height: 2;
+  }
+}
+
+.grid {
+  display: flex;
+  background-color: #fff;
+  .grid-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24rpx 16rpx;
+    position: relative;
+    // &::after,
+    & + .grid-item::before {
+      content: "";
+      position: absolute;
+      right: -50%;
+      top: -50%;
+      bottom: -50%;
+      left: -50%;
+      transform: scale(0.5);
+      transform-origin: center;
+      border: 0 solid #ebedf0;
+      pointer-events: none;
+      box-sizing: border-box;
+    }
+    & + .grid-item::before {
+      border-left-width: 1px;
+    }
+    // &::after {
+    //   border-bottom-width: 1px;
+    // }
+    &_text {
+      height: 40rpx;
+      margin-left: 16rpx;
+      font-size: 28rpx;
+      color: #5c5858;
+    }
+  }
+}
+
+// 封装组件
+.statistic {
+  display: flex;
+  background-color: #f6f7fb;
+  .statistic-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24rpx 16rpx;
+    position: relative;
+    & + .statistic-item::before {
+      content: "";
+      position: absolute;
+      right: -50%;
+      top: -25%;
+      bottom: -25%;
+      left: -50%;
+      transform: scale(0.5);
+      transform-origin: center;
+      border: 0 solid #ebedf0;
+      pointer-events: none;
+      box-sizing: border-box;
+    }
+    & + .statistic-item::before {
+      border-left-width: 1px;
+    }
+    .con-number {
+      margin-left: 8rpx;
+      font-weight: bold;
+      font-size: 38rpx;
+      color: #2f85da;
+    }
+    .con-unit {
+      margin-left: 8rpx;
+      font-size: 28rpx;
+    }
+    &_text {
+      margin-top: 16rpx;
+      color: #5c5858;
+    }
   }
 }
 

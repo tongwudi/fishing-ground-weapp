@@ -9,7 +9,7 @@ Component({
         text: "首页"
       },
       {
-        pagePath: "/pages/activity/list/list",
+        pagePath: "/pages/activity/records/records",
         iconPath: "/assets/tabbar/fish.png",
         selectedIconPath: "/assets/tabbar/fish-active.png",
         text: "活动"

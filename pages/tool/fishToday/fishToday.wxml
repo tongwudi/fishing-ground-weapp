@@ -1,4 +1,4 @@
-<!--pages/settings/fishToday/fishToday.wxml-->
+<!--pages/tool/fishToday/fishToday.wxml-->
 <view class="container">
   <view class="circle-box">
     <van-circle size="120" stroke-width="8" value="{{ value }}" text="{{ value + '%' }}" />

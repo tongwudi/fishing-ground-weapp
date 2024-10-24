@@ -52,7 +52,7 @@ Page({
           });
           return;
         }
-        wx.navigateTo({ url: "/pages/settings/startFish/startFish" });
+        wx.navigateTo({ url: "/pages/tool/startFish/startFish" });
         break;
       case "放鱼":
         const url = `/pages/put/add/add?pondId=${pondId}&pondName=${pondName}`;

@@ -1,0 +1,25 @@
+/* pages/activity/list/list.wxss */
+.title {
+  font-size: global.$large-size;
+  font-weight: 600;
+}
+
+.list {
+  padding: global.$medium-space;
+  .item {
+    margin-bottom: global.$medium-space;
+    .item-wrapper {
+      padding: global.$medium-space;
+      background-color: #fff;
+      .wrapper-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: global.$medium-space;
+      }
+      .wrapper-info {
+        line-height: 2;
+      }
+    }
+  }
+}

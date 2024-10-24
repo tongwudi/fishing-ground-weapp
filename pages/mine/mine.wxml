@@ -27,7 +27,7 @@
         <van-grid border="{{ false }}" icon-size="40rpx">
           <van-grid-item icon-color="#2f85da" icon="guide-o" text="今日钓鱼" url="/pages/settings/fishToday/fishToday" />
           <van-grid-item icon-color="#2f85da" icon="phone-o" text="视频回鱼" />
-          <van-grid-item icon-color="#2f85da" icon="qr" text="钓鱼记录" />
+          <van-grid-item icon-color="#2f85da" icon="qr" text="钓鱼记录" url="/pages/fish/records/records" />
           <van-grid-item icon-color="#2f85da" icon="qr" text="鱼获记录" />
           <van-grid-item icon-color="#2f85da" icon="qr" text="接龙" url="/pages/solitaire/list/list" />
           <van-grid-item icon-color="#2f85da" icon="qr" text="正钓" />

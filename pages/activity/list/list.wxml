@@ -35,10 +35,16 @@
               </view>
             </view>
           </view>
-          <van-grid direction="horizontal" column-num="2" icon-size="32rpx">
-            <van-grid-item icon="share-o" text="分享" />
-            <van-grid-item icon="browsing-history-o" text="查看" data-type="{{ item.type }}" bind:click="goPage" />
-          </van-grid>
+          <view class="grid van-hairline--top">
+            <view class="grid-item">
+              <van-icon class="grid-item_icon" size="32rpx" name="share-o" />
+              <text class="grid-item_text">分享</text>
+            </view>
+            <view class="grid-item" data-type="{{ item.type }}" bind:tap="goPage">
+              <van-icon class="grid-item_icon" size="32rpx" name="browsing-history-o" />
+              <text class="grid-item_text">查看</text>
+            </view>
+          </view>
         </view>
       </block>
     </view>

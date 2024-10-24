@@ -58,15 +58,24 @@
           <view class="item-info info">
             <view class="info-title">{{ item.name }}</view>
           </view>
-          <van-grid border="{{ false }}" direction="horizontal" column-num="2" icon-size="32rpx">
+          <view class="grid van-hairline--top">
             <block wx:if="{{ isFish }}">
-              <van-grid-item icon="underway-o" text="放鱼" data-key="放鱼" data-index="{{ index }}" bind:click="handleGridClick" />
+              <view class="grid-item">
+                <van-icon class="grid-item_icon" size="32rpx" name="underway-o" />
+                <text class="grid-item_text" data-key="放鱼" data-index="{{ index }}" bind:tap="handleGridClick">放鱼</text>
+              </view>
             </block>
             <block wx:else>
-              <van-grid-item icon="underway-o" text="开钓" data-key="开钓" data-index="{{ index }}" bind:click="handleGridClick" />
+              <view class="grid-item" data-key="开钓" data-index="{{ index }}" bind:tap="handleGridClick">
+                <van-icon class="grid-item_icon" size="32rpx" name="underway-o" />
+                <text class="grid-item_text">开钓</text>
+              </view>
             </block>
-            <van-grid-item icon="browsing-history-o" text="查看" data-key="查看" data-index="{{ index }}" bind:click="handleGridClick" />
-          </van-grid>
+            <view class="grid-item" data-key="查看" data-index="{{ index }}" bind:tap="handleGridClick">
+              <van-icon class="grid-item_icon" size="32rpx" name="browsing-history-o" />
+              <text class="grid-item_text">查看</text>
+            </view>
+          </view>
         </view>
       </block>
     </view>

@@ -18,7 +18,9 @@ Page({
     },
     fishList: [],
     fileList: [],
-    form: {}
+    form: {
+      type:"0"
+    }
   },
 
   async getData() {
